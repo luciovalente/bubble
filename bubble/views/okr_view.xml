@@ -1,4 +1,5 @@
 <odoo>
+<data>
     <record id="view_okr_tree" model="ir.ui.view">
         <field name="name">okr.tree</field>
         <field name="model">okr</field>
@@ -41,4 +42,6 @@
         </record>
         <menuitem id="menu_okr_list" name="OKRs" parent_id="menu_okr"
                   action="action_okr" sequence="5"/>
+
+</data>
 </odoo>
