@@ -4,6 +4,10 @@
             <field name="name">Execute Bubble</field>
             <field name="model_id" ref="model_bubble"/>
             <field name="state">code</field>
+            <field name="binding_model_id" ref="model_bubble"/>
+            <field name="binding_view_types">form</field>
+            <field name="groups_id" eval="[(4, ref('group_bubble_administrator'))]"/>
+
             <field name="code">
                 for r in records.filtered(lambda x: x.with_automation):
                     r._run_action_code()
@@ -13,7 +17,11 @@
         <record id="action_bubble_type_execute_code" model="ir.actions.server">
             <field name="name">Execute Bubble Types</field>
             <field name="model_id" ref="model_bubble_type"/>
+            <field name="binding_model_id" ref="model_bubble_type"/>
+            <field name="binding_view_types">form</field>
             <field name="state">code</field>
+            <field name="groups_id" eval="[(4, ref('group_bubble_administrator'))]"/>
+
             <field name="code">
                 for r in records.filtered(lambda x: x.with_automation):
                     r._run_action_code()
