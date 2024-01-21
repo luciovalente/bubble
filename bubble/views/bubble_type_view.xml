@@ -1,4 +1,5 @@
 <odoo>
+<data>
     <record id="view_buble_type_tree" model="ir.ui.view">
         <field name="name">bubble.type.tree</field>
         <field name="model">bubble.type</field>
@@ -33,5 +34,5 @@
             <field name="res_model">bubble.type</field>
             <field name="view_mode">tree,form</field>
         </record>
-        
+      </data> 
 </odoo>
