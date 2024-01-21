@@ -35,14 +35,12 @@
     </record>
 
 
-    <menuitem id="menu_okr" name="OKRs" parent_id="menu_objective_main" sequence="4"/>
+    
         <record id="action_okr" model="ir.actions.act_window">
             <field name="name">OKRs</field>
             <field name="res_model">okr</field>
             <field name="view_mode">tree,form</field>
         </record>
-        <menuitem id="menu_okr_list" name="OKRs" parent_id="menu_okr"
-                  action="action_okr" sequence="5"/>
 
 </data>
 </odoo>
