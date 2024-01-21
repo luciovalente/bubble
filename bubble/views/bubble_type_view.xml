@@ -22,8 +22,8 @@
                             <field name="description"/>
                             <field name="company_id"/>
                             <field name="role_ids" widget="many2many_tags"/>
-
-                            <field name="code" widget="ace" groups="bubble.group_bubble_administrator"/>
+                            <field name="with_automation" groups="bubble.group_bubble_administrator"/>
+                            <field name="code" widget="ace" options="{'mode': 'python'}" groups="bubble.group_bubble_administrator" attrs="{'invisible': [('with_automation','=',False)]}"/>
                         </group>
                     </sheet>
                 </form>
