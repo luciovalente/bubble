@@ -63,9 +63,9 @@ class Bubble(models.Model):
     @api.depends('model_id', 'res_ids')
     def _compute_linked_objects(self):
         for record in self.sudo():
-            if record.model_id and record.res_ids:
-                model = self.env[record.model_id.model]
-                ids_list = [int(rec_id) for rec_id in record.res_ids.split(',') if rec_id.isdigit()]
+            if record.sudo().model_id and record.sudo().res_ids:
+                model = self.sudo().env[record.model_id.model]
+                ids_list = [int(rec_id) for rec_id in record.sudo().res_ids.split(',') if rec_id.isdigit()]
                 record.linked_object_count = len(ids_list)
                 # Prendi i nomi dei primi N record (ad esempio i primi 5)
                 records = model.browse(ids_list[:5])
@@ -167,11 +167,11 @@ class Bubble(models.Model):
     
     def action_view_linked_records(self):
         self.ensure_one()
-        record_ids = [int(rec_id) for rec_id in self.res_ids.split(',') if rec_id.isdigit()]
+        record_ids = [int(rec_id) for rec_id in self.sudo().res_ids.split(',') if rec_id.isdigit()]
         return {
             'type': 'ir.actions.act_window',
             'name': 'Linked Records',
-            'res_model': self.model_id.model,
+            'res_model': self.sudo().model_id.model,
             'view_type': 'form',
             'view_mode': 'tree,form',
             'domain': [('id', 'in', record_ids)],
