@@ -21,8 +21,8 @@
                 <form>
                     <sheet>
                         <group>
-                            <field name="objective_id"/>
-                            <field name="name"/>
+                            <field name="objective_id" required="1"/>
+                            <field name="name" required="1"/>
                             <field name="description"/>
                             <field name="bubble_id"/>
                             <field name="user_id"/>

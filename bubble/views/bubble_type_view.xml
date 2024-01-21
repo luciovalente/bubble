@@ -17,7 +17,7 @@
             <field name="arch" type="xml">
                 <form>
                     <group>
-                        <field name="name"/>
+                        <field name="name" required="1"/>
                         <field name="description"/>
                         <field name="company_id"/>
                         <field name="role_ids"/>

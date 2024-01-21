@@ -23,7 +23,7 @@
 
                         <button string="Set to Draft" type="object" name="action_draft" attrs="{'invisible': [('status','!=','dismiss')]}" />
                         <button string="Freeze" type="object" name="action_freeze" attrs="{'invisible': [('status','!=','running')]}" />
-                        <button string="Dismiss" type="object" name="action_dismiss" attrs="{'invisible': [('status','!=','freeze')]}" />
+                        <button string="Dismiss" type="object" name="action_dismiss" attrs="{'invisible': [('status','!=','running')]}" />
                         <button string="Set to Running" type="object" name="action_run" attrs="{'invisible': [('status','!=','draft')]}" />
                         <button string="Delete" type="object" name="action_delete" attrs="{'invisible': [('status','!=','dismiss')]}" />
                         <button string="Start OKR Valuation" type="object" name="action_start_okr_valuation" attrs="{'invisible': [('with_okr_valuation', '=', False),('status','!=','running')]}" class="oe_highlight"/>
@@ -44,15 +44,14 @@ s</span>
                             </button>
                         </div>
                         <group>
-                            <field name="name"/>
+                            <field name="name" required="1"/>
                             <field name="purpose"/>
-                            <field name="bubble_type_id"/>
+                            <field name="bubble_type_id" required="1"/>
                             <field name="parent_bubble_id"/>
-                            <field name="status"/>
-                            <field name="close_date"/>
+                            <field name="close_date" readonly="1" attrs="{'invisible': [('status','!=','dismiss')]}"/>
                             <field name="link"/>
                             <field name="company_id"/>
-                            <field name="owner_id"/>
+                            <field name="owner_id" required="1"/>
                             <field name="with_okr_valuation"/>
                         </group>
                         <notebook>

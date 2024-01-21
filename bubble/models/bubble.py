@@ -54,7 +54,7 @@ class Bubble(models.Model):
         self.write({'status': 'freeze'})
 
     def action_dismiss(self):
-        self.write({'status': 'dismiss'})
+        self.write({'status': 'dismiss','close_date':fields.Datetime.now()})
 
     def action_run(self):
         self.write({'status': 'running'})
