@@ -8,9 +8,9 @@
                 <form>
                     <sheet>
                         <group>
-                            <field name="user_id"/>
-                            <field name="date_from"/>
-                            <field name="date_to"/>
+                            <field name="user_id" readonly="1"/>
+                            <field name="date_from" readonly="1"/>
+                            <field name="date_to" readonly="1" />
                             <field name="notes"/>
                         </group>
                         <notebook>

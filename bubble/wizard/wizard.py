@@ -18,8 +18,8 @@ class WizardStartOKREvaluation(models.TransientModel):
             # Creare una nuova valutazione OKR per il membro
             evaluation = OkrEvaluation.create({
                 'user_id': member.id,
-                'date': fields.Date.today(),
-                # Altri eventuali campi per OkrEvaluation
+                'date_from': self.date_from,
+                'date_to': self.date_to
             })
 
             # Trova gli OKR personali, di bolla e di ruolo per il membro
@@ -35,6 +35,5 @@ class WizardStartOKREvaluation(models.TransientModel):
                 OkrResult.create({
                     'okr_id': okr.id,
                     'evaluation_id': evaluation.id,
-                    'date': fields.Date.today(),
-                    'status': 'planned'
+                    'date': fields.Date.today()
                 })

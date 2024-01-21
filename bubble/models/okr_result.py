@@ -9,6 +9,6 @@ class OkrResult(models.Model):
     result = fields.Float(string='Result')
     result_char = fields.Char(string="Result Char")
     evaluation_id = fields.Many2one('okr.evaluation', string='OKR Evaluation')
-    status = fields.Selection(related="evaluation_id.status")
+    status = fields.Selection(related="evaluation_id.status",store=True)
     user_id = fields.Many2one('res.users',related="evaluation_id.user_id",store=True)
 
