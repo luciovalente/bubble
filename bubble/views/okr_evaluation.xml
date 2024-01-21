@@ -6,12 +6,18 @@
             <field name="model">okr.evaluation</field>
             <field name="arch" type="xml">
                 <form>
+                    <header>
+                        <field name="status" widget="statusbar" statusbar_visible="in_progress,done" />
+                        <button string="Set to Done" type="object" name="action_done" attrs="{'invisible': [('status','not in',('in_progress'))]}" />
+
+                    </header>
                     <sheet>
+
                         <group>
                             <field name="user_id" readonly="1"/>
+                            <field name="owner_id" readonly="1"/>
                             <field name="date_from" readonly="1"/>
                             <field name="date_to" readonly="1" />
-
                         </group>
                         <notebook>
 

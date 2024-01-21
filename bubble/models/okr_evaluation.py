@@ -10,7 +10,7 @@ class OkrEvaluation(models.Model):
     status = fields.Selection([
         ('in_progress', 'In Progress'),
         ('done', 'Done')
-    ], string='Status',default="in_progress")
+    ], string='Status',default="in_progress",tracking=True)
     okr_result_ids = fields.One2many('okr.result', 'evaluation_id', string='OKR Results')
     notes = fields.Html(string='Notes')
     date_from = fields.Date(string='Date From')
@@ -20,7 +20,7 @@ class OkrEvaluation(models.Model):
     @api.depends('user_id','date_from','date_to')
     def _compute_name(self):
         for evaluation in self:
-            evaluation.name = evaluation.user_id 
+            evaluation.name = evaluation.user_id.name 
 
     def action_done(self):
         self.write({'status': 'done'})
