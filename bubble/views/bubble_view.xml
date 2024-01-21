@@ -42,7 +42,7 @@
 s</span>
                             </button>
 
-                            <button class="oe_stat_button" type="object" name="%(action_okr_evaluation)d" attrs="{'invisible': [('okr_evaluation_count', '=', 0)]}" icon="fa-list-ul">
+                            <button class="oe_stat_button" type="object" name="action_open_okr_evaluation" attrs="{'invisible': [('okr_evaluation_count', '=', 0)]}" icon="fa-list-ul">
                                 <field string="OKR Evaluations" name="okr_evaluation_count" widget="statinfo"/>
                             </button>
                         </div>

@@ -97,7 +97,17 @@ class Bubble(models.Model):
         safe_eval(self.code.strip(), eval_context, mode="exec", nocopy=True)  # nocopy allows to return 'action'
         return eval_context.get('action')
 
-
+    def action_open_okr_evaluation(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Evaluation',
+            'res_model': 'okr.evaluation',
+            'view_type': 'form',
+            'view_mode': 'tree,form',
+            'domain': [('id', 'in', self.okr_evaluation_ids.filtered(lambda x:x.status=='in_progress'))],
+        }
+    
     def action_view_linked_records(self):
         self.ensure_one()
         record_ids = [int(rec_id) for rec_id in self.res_ids.split(',') if rec_id.isdigit()]
@@ -111,17 +121,6 @@ class Bubble(models.Model):
         }
     
 
-    def action_view_linked_records(self):
-        self.ensure_one()
-        record_ids = [int(rec_id) for rec_id in self.res_ids.split(',') if rec_id.isdigit()]
-        return {
-            'type': 'ir.actions.act_window',
-            'name': 'Linked Records',
-            'res_model': self.model_id.model,
-            'view_type': 'form',
-            'view_mode': 'tree,form',
-            'domain': [('id', 'in', record_ids)],
-        }
     def action_start_okr_valuation(self):
         self.ensure_one()
         # Crea un record del wizard e pre-popola i campi
