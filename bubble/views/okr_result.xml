@@ -6,7 +6,7 @@
             <tree editable="bottom">
                 <field name="okr_id"/>
                 <field name="date"/>
-                <field name="status"/>
+                <field name="evaluation_id"/>
                 <field name="result"/>
                 <field name="result_char"/>
             </tree>
