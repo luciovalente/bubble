@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
+<data>
     <record id="view_buble_tree" model="ir.ui.view">
         <field name="name">bubble.tree</field>
         <field name="model">bubble</field>
@@ -107,13 +108,12 @@
         </field>
     </record>
 
-    <menuitem id="menu_bubble" name="Bubbles" parent_id="menu_bubble_main" sequence="6"/>
+    
         <record id="action_bubble" model="ir.actions.act_window">
             <field name="name">Bubbles</field>
             <field name="res_model">bubble</field>
             <field name="view_mode">tree,form</field>
         </record>
-        <menuitem id="menu_bubble_list" name="Bubbles" parent_id="menu_bubble"
-                  action="action_bubble" sequence="7"/>
-
+       
+</data>
 </odoo>
