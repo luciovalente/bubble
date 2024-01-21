@@ -5,3 +5,4 @@ from . import role_bubble
 from . import okr
 from . import okr_evaluation
 from . import okr_result
+from . import objective
