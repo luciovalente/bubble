@@ -1,11 +1,11 @@
 {
-    'name': 'Buble',
-    'version': '1.0',
+    'name': 'Bubble and OKR',
+    'version': '15.1.1.0',
     'summary': 'Gestione delle Buble',
     'sequence': -100,
-    'description': """Gestione delle Buble""",
-    'category': 'Custom',
-    'website': 'https://www.tuo-sito-web.com',
+    'description': """Gestione delle Bolle""",
+    'category': 'Hr',
+    'website': 'https://www.rapsodoo.com',
     'depends': ['mail'],
     'data': [
         'security/security.xml',
