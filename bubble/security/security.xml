@@ -70,6 +70,13 @@
         </record>
 
 
+        <record id="okr_result_evaluation_manager" model="ir.rule">
+            <field name="name">Okr Evaluation</field>
+            <field name="model_id" ref="model_okr_evaluation"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_bubble_manager'))]"/>
+        </record>
+
 
 
 
