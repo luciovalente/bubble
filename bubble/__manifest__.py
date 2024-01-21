@@ -10,15 +10,15 @@
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
-        'views/bubble_role_view.xml',
-        'views/bubble_type_view.xml',
-        'views/bubble_view.xml',
-        'views/objective_view.xml',
-        'views/okr_view.xml',
-        'views/okr_result.xml',
-        'views/okr_evaluation.xml',
-       
-        'data/data.xml'
+       # 'views/bubble_role_view.xml',
+       # 'views/bubble_type_view.xml',
+       # 'views/bubble_view.xml',
+        #'views/objective_view.xml',
+       # 'views/okr_view.xml',
+       # 'views/okr_result.xml',
+       # 'views/okr_evaluation.xml',
+       # 'views/menu.xml',
+       # 'data/data.xml'
     ],
     'demo': [],
     'installable': True,
