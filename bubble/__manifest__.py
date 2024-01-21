@@ -15,7 +15,8 @@
         'views/bubble_view.xml',
         'views/objective_view.xml',
         'views/okr_view.xml',
-        'views/okr_result_view.xml',
+        'views/okr_result.xml',
+        'views/okr_evaluation.xml',
         'views/menu.xml',
         'data/data.xml'
     ],
