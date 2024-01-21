@@ -14,7 +14,11 @@
                     </group>
                     <notebook>
                         <page string="Members">
-                            <field name="member_ids"/>
+                            <field name="member_ids">
+                                <tree >
+                                    <field name="name" />
+                                </tree>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>
