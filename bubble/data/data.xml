@@ -27,5 +27,19 @@
                     r._run_action_code()
             </field>
         </record>
+
+
+        <record id="action_okr_result_execute_code" model="ir.actions.server">
+            <field name="name">Execute OKR Result</field>
+            <field name="model_id" ref="model_okr_result"/>
+            <field name="state">code</field>
+            <field name="binding_model_id" ref="model_okr_result"/>
+            <field name="binding_view_types">list</field>
+            <field name="groups_id" eval="[(4, ref('group_bubble_administrator'))]"/>
+            <field name="code">
+                for r in records.filtered(lambda x: x.okr_id.with_automation):
+                    r.okr_id._run_action_code(r)
+            </field>
+        </record>
     </data>
 </odoo>
