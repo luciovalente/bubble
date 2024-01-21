@@ -20,9 +20,9 @@
                         <field name="name" required="1"/>
                         <field name="description"/>
                         <field name="company_id"/>
-                        <field name="role_ids"/>
+                        <field name="role_ids" widget="many2many_tags"/>
                        
-                        <field name="code" widget="ace"/>
+                        <field name="code" widget="ace" groups="bubble.group_bubble_administrator"/>
                     </group>
                 </form>
             </field>

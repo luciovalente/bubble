@@ -6,7 +6,6 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
-                    <field name="mandatory"/>
                     <field name="company_id"/>
                 </tree>
             </field>
@@ -17,13 +16,13 @@
             <field name="model">bubble.role</field>
             <field name="arch" type="xml">
                 <form>
-                    <group>
-                        <field name="name"/>
-                        <field name="description"/>
-                        <field name="mandatory"/>
-                        <field name="company_id"/>
-                        <field name="user_roles_ids"/>
-                    </group>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="company_id"/>
+                        </group>
+                    </sheet>
                 </form>
             </field>
         </record>
