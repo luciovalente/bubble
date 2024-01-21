@@ -1,5 +1,4 @@
 <odoo>
-    <data>
 
         <menuitem id="menu_bubble_main" name="Bubble" sequence="1"/>
 
@@ -66,6 +65,5 @@
                   action="action_okr_result" sequence="7"/>
 
 
-                  
-    </data>
+                
 </odoo>
