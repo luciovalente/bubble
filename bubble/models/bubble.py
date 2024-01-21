@@ -12,7 +12,7 @@ class Bubble(models.Model):
 
     name = fields.Char(string='Name')
     purpose = fields.Char(string='Purpose')
-    bubble_type_id = fields.Many2one('bublbe.type', string='Bubble Type')
+    bubble_type_id = fields.Many2one('bubble.type', string='Bubble Type')
     parent_bubble_id = fields.Many2one('bubble', string='Parent Bubble')
     status = fields.Selection([
         ('freeze', 'Freeze'),
