@@ -1,4 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
     <record id="view_okr_result_tree" model="ir.ui.view">
         <field name="name">okr.result.tree</field>
         <field name="model">okr.result</field>
@@ -14,14 +16,13 @@
     </record>
 
 
-    <menuitem id="menu_okr_result" name="OKR Results" parent_id="menu_objective_main" sequence="6"/>
+   
         <record id="action_okr_result" model="ir.actions.act_window">
             <field name="name">OKR Results</field>
             <field name="res_model">okr.result</field>
             <field name="view_mode">tree</field>
         </record>
-        <menuitem id="menu_okr_result_list" name="OKR Results" parent_id="menu_okr_result"
-                  action="action_okr_result" sequence="7"/>
+        
 
-    
+    </data>
 </odoo>
