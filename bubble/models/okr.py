@@ -36,7 +36,7 @@ class Okr(models.Model):
         ('inactive', 'Inactive')
     ], string='Status', default='active')
     code = fields.Text(string='Code',groups='bubble.group_bubble_administrator')
-    with_automation = fields.Boolean(groups='bubble.group_bubble_administrator')
+    with_automation = fields.Boolean()
 
     @api.constrains('code')
     def _check_python_code(self):
