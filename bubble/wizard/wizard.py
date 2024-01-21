@@ -5,7 +5,7 @@ class WizardStartOKREvaluation(models.TransientModel):
     _description = 'Wizard to Start OKR Evaluation'
 
     bubble_id = fields.Many2one('bubble', string='Bubble', required=True)
-    member_ids = fields.Many2many('res.users', string='Members', related='bubble_id.member_ids', readonly=True)
+    member_ids = fields.Many2many('res.users', string='Members', related='bubble_id.member_ids')
     date_from = fields.Date(string='Date From')
     date_to = fields.Date(string='Date To')
 
@@ -26,7 +26,7 @@ class WizardStartOKREvaluation(models.TransientModel):
             # Trova gli OKR personali, di bolla e di ruolo per il membro
             personal_okrs = self.env['okr'].search([('user_id', '=', member.id)])
             bubble_okrs = self.env['okr'].search([('bubble_id', '=', self.id)])
-            role_okrs = self.env['okr'].search([('bubble_id.user_roles_ids.user_id', '=', member.id)])
+            role_okrs = self.env['okr'].search([('user_roles_ids.user_id', '=', member.id)])
 
             # Unisci tutti gli OKR unici
             all_okrs = personal_okrs | bubble_okrs | role_okrs

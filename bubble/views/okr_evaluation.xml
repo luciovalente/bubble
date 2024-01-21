@@ -25,7 +25,7 @@
                                 <field name="okr_result_ids">
                                     <tree editable="bottom">
                                         <field name="okr_id" />
-                                        <field name="result" />
+                                        <field name="result" widget="percentage"/>
                                         <field name="result_char" />
                                     </tree>
                                 </field>

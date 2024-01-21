@@ -20,7 +20,7 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <field name="status" widget="statusbar" statusbar_visible="active,inactive" />
+                        <field name="status" widget="statusbar" statusbar_visible="active,inactive" clickable="True" />
                     </header>
                     <sheet>
                         <group>
