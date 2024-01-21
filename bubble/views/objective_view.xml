@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<data>
-    <record id="view_objective_tree" model="ir.ui.view">
-        <field name="name">objective.tree</field>
-        <field name="model">objective</field>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="company_id"/>
-                <field name="name"/>
-            </tree>
-        </field>
-    </record>
+    <data>
+        <record id="view_objective_tree" model="ir.ui.view">
+            <field name="name">objective.tree</field>
+            <field name="model">objective</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="company_id"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
 
-    <record id="view_objective_form" model="ir.ui.view">
-        <field name="name">objective.form</field>
-        <field name="model">objective</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <group>
-                        <field name="company_id"/>
-                        <field name="name"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
+        <record id="view_objective_form" model="ir.ui.view">
+            <field name="name">objective.form</field>
+            <field name="model">objective</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="company_id"/>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
 
-    
+
         <record id="action_objective" model="ir.actions.act_window">
             <field name="name">Objectives</field>
             <field name="res_model">objective</field>
             <field name="view_mode">tree,form</field>
         </record>
-      </data>  
+    </data>
 </odoo>

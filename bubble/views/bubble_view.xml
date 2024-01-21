@@ -1,119 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<data>
-    <record id="view_buble_tree" model="ir.ui.view">
-        <field name="name">bubble.tree</field>
-        <field name="model">bubble</field>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="name"/>
-                <field name="status"/>
-                <field name="company_id"/>
-            </tree>
-        </field>
-    </record>
+    <data>
+        <record id="view_buble_tree" model="ir.ui.view">
+            <field name="name">bubble.tree</field>
+            <field name="model">bubble</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="status"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
 
-    <record id="view_buble_form" model="ir.ui.view">
-        <field name="name">bubble.form</field>
-        <field name="model">bubble</field>
-        <field name="arch" type="xml">
-            <form>
-                <header>
-                    <button string="Set to Draft" type="object" name="action_draft" 
-                            attrs="{'invisible': [('status','=','draft')]}" />
-                    <button string="Freeze" type="object" name="action_freeze" 
-                            attrs="{'invisible': [('status','=','freeze')]}" />
-                    <button string="Dismiss" type="object" name="action_dismiss" 
-                            attrs="{'invisible': [('status','=','dismiss')]}" />
-                    <button string="Set to Running" type="object" name="action_run" 
-                            attrs="{'invisible': [('status','=','running')]}" />
-                    <button string="Delete" type="object" name="action_delete" 
-                            attrs="{'invisible': [('status','=','deleted')]}" />
-                    <button string="Start OKR Valuation" type="object" name="action_start_okr_valuation" 
-                            attrs="{'invisible': [('with_okr_valuation', '=', False),('status','!=','running')]}" 
-                            class="oe_highlight"/>
-                </header>
-                <sheet>
-                    <field name="model_id" invisible="1"/>
-                    <field name="res_ids" invisible="1"/>
-                    <div name="button_box" class="oe_button_box">
-                            <button name="action_view_linked_records"
-                                    class="oe_stat_button"
-                                    icon="fa-bars"
-                                    type="object"
-                                    attrs="{'invisible': [('res_ids', '=', False)]}"
-                                    >
+        <record id="view_buble_form" model="ir.ui.view">
+            <field name="name">bubble.form</field>
+            <field name="model">bubble</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Set to Draft" type="object" name="action_draft" attrs="{'invisible': [('status','=','draft')]}" />
+                        <button string="Freeze" type="object" name="action_freeze" attrs="{'invisible': [('status','=','freeze')]}" />
+                        <button string="Dismiss" type="object" name="action_dismiss" attrs="{'invisible': [('status','=','dismiss')]}" />
+                        <button string="Set to Running" type="object" name="action_run" attrs="{'invisible': [('status','=','running')]}" />
+                        <button string="Delete" type="object" name="action_delete" attrs="{'invisible': [('status','=','deleted')]}" />
+                        <button string="Start OKR Valuation" type="object" name="action_start_okr_valuation" attrs="{'invisible': [('with_okr_valuation', '=', False),('status','!=','running')]}" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <field name="model_id" invisible="1"/>
+                        <field name="res_ids" invisible="1"/>
+                        <div name="button_box" class="oe_button_box">
+                            <button name="action_view_linked_records" class="oe_stat_button" icon="fa-bars" type="object" attrs="{'invisible': [('res_ids', '=', False)]}">
 
-                                     <field name="linked_object_count"/>
-                                <span attrs="{'invisible': [('linked_object_count','&gt;', 1)]}"><field class="oe_inline" name="linked_object_name" /></span>
-                                <span attrs="{'invisible': [('linked_object_count','&lt;=', 1)]}"><field class="oe_inline" name="linked_object_name" />s</span>
+                                <field name="linked_object_count"/>
+                                <span attrs="{'invisible': [('linked_object_count','&gt;', 1)]}">
+                                    <field class="oe_inline" name="linked_object_name" />
+                                </span>
+                                <span attrs="{'invisible': [('linked_object_count','&lt;=', 1)]}">
+                                    <field class="oe_inline" name="linked_object_name" />
+s</span>
                             </button>
                         </div>
-                    <group>
-                        <field name="name"/>
-                        <field name="purpose"/>
-                        <field name="bubble_type_id"/>
-                        <field name="parent_bubble_id"/>
-                        <field name="status"/>
-                        <field name="close_date"/>
-                        <field name="link"/>
-                        <field name="company_id"/>
-                        <field name="owner_id"/>
-                        <field name="with_okr_valuation"/>
-                    </group>
-                    <notebook>
-                        <!-- Pagina per User Roles -->
-                        <page string="User Roles">
-                            <field name="user_roles_ids">
-                                <tree editable="bottom">
-                                    <!-- Definisci i campi da mostrare per user_roles_ids -->
-                                    <field name="role_id"/>
-                                    <field name="user_id"/>
-                                </tree>
-                            </field>
-                        </page>
-                        <!-- Pagina per Members -->
-                        <page string="Members">
-                            <field name="member_ids" >
-                                <tree editable="bottom">
-                                    <!-- Definisci i campi da mostrare per user_roles_ids -->
-                                    <field name="name"/>
-                                    <field name="email"/>
-                                </tree>
-                            </field>
-                        </page>
-                    </notebook>
-                </sheet>
-                <div class="oe_chatter">
+                        <group>
+                            <field name="name"/>
+                            <field name="purpose"/>
+                            <field name="bubble_type_id"/>
+                            <field name="parent_bubble_id"/>
+                            <field name="status"/>
+                            <field name="close_date"/>
+                            <field name="link"/>
+                            <field name="company_id"/>
+                            <field name="owner_id"/>
+                            <field name="with_okr_valuation"/>
+                        </group>
+                        <notebook>
+                            <!-- Pagina per User Roles -->
+                            <page string="User Roles">
+                                <field name="user_roles_ids">
+                                    <tree editable="bottom">
+                                        <!-- Definisci i campi da mostrare per user_roles_ids -->
+                                        <field name="role_id"/>
+                                        <field name="user_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <!-- Pagina per Members -->
+                            <page string="Members">
+                                <field name="member_ids">
+                                    <tree editable="bottom">
+                                        <!-- Definisci i campi da mostrare per user_roles_ids -->
+                                        <field name="name"/>
+                                        <field name="email"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
                         <field name="message_follower_ids" options="{'post_refresh':True}" groups="base.group_user"/>
                         <field name="activity_ids"/>
                         <field name="message_ids"/>
                     </div>
-            </form>
-        </field>
-    </record>
+                </form>
+            </field>
+        </record>
 
 
-    <record id="view_bubble_search" model="ir.ui.view">
-        <field name="name">bubble.search</field>
-        <field name="model">bubble</field>
-        <field name="arch" type="xml">
-            <search>
-                <!-- Campi di ricerca e filtri possono essere aggiunti qui -->
-                <field name="name" />
-                <field name="owner_id" />
-                <!-- Filtro My Bubble -->
-                <filter string="My Bubbles" name="my_bubble" domain="[('member_ids', 'in', uid)]"/>
-            </search>
-        </field>
-    </record>
+        <record id="view_bubble_search" model="ir.ui.view">
+            <field name="name">bubble.search</field>
+            <field name="model">bubble</field>
+            <field name="arch" type="xml">
+                <search>
+                    <!-- Campi di ricerca e filtri possono essere aggiunti qui -->
+                    <field name="name" />
+                    <field name="owner_id" />
+                    <!-- Filtro My Bubble -->
+                    <filter string="My Bubbles" name="my_bubble" domain="[('member_ids', 'in', uid)]"/>
+                </search>
+            </field>
+        </record>
 
-    
+
         <record id="action_bubble" model="ir.actions.act_window">
             <field name="name">Bubbles</field>
             <field name="res_model">bubble</field>
             <field name="view_mode">tree,form</field>
         </record>
-       
-</data>
+
+    </data>
 </odoo>

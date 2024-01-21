@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<data>
-    <record id="view_okr_result_tree" model="ir.ui.view">
-        <field name="name">okr.result.tree</field>
-        <field name="model">okr.result</field>
-        <field name="arch" type="xml">
-            <tree editable="bottom">
-                <field name="okr_id"/>
-                <field name="date"/>
-                <field name="evaluation_id"/>
-                <field name="result"/>
-                <field name="result_char"/>
-            </tree>
-        </field>
-    </record>
+    <data>
+        <record id="view_okr_result_tree" model="ir.ui.view">
+            <field name="name">okr.result.tree</field>
+            <field name="model">okr.result</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="okr_id"/>
+                    <field name="date"/>
+                    <field name="evaluation_id"/>
+                    <field name="result"/>
+                    <field name="result_char"/>
+                </tree>
+            </field>
+        </record>
 
 
-   
+
         <record id="action_okr_result" model="ir.actions.act_window">
             <field name="name">OKR Results</field>
             <field name="res_model">okr.result</field>
             <field name="view_mode">tree</field>
         </record>
-        
+
 
     </data>
 </odoo>
