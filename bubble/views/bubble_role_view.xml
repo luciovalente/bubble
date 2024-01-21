@@ -1,4 +1,5 @@
 <odoo>
+<data>
     <record id="view_bubble_role_tree" model="ir.ui.view">
         <field name="name">bubble.role.tree</field>
         <field name="model">bubble.role</field>
@@ -27,14 +28,11 @@
         </field>
     </record>
 
-     <menuitem id="menu_bubble_main" name="Bubble" sequence="1"/>
-
-     <menuitem id="menu_bubble_role" name="Bubble Roles" parent_id="menu_bubble_main" sequence="2"/>
-        <record id="action_bubble_role" model="ir.actions.act_window">
+     
+    <record id="action_bubble_role" model="ir.actions.act_window">
             <field name="name">Bubble Roles</field>
             <field name="res_model">bubble.role</field>
             <field name="view_mode">tree,form</field>
-        </record>
-        <menuitem id="menu_bubble_role_list" name="Bubble Roles" parent_id="menu_bubble_role"
-                  action="action_bubble_role" sequence="3"/>
+    </record>
+        </data>
 </odoo>
