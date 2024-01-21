@@ -4,11 +4,14 @@ from odoo.exceptions import MissingError, UserError, ValidationError, AccessErro
 from odoo.osv import expression
 from odoo.tools.safe_eval import safe_eval, test_python_expr
 from odoo.tools.float_utils import float_compare
+import json
 
 import base64
 from collections import defaultdict
 import functools
 import logging
+import requests
+
 
 from pytz import timezone
 
@@ -34,6 +37,25 @@ class BubbleType(models.Model):
             
     @api.model
     def _get_eval_context(self, action=None):
+        def log(message, level="info"):
+            with self.pool.cursor() as cr:
+                cr.execute(
+                    """
+                    INSERT INTO ir_logging(create_date, create_uid, type, dbname, name, level, message, path, line, func)
+                    VALUES (NOW() at time zone 'UTC', %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                """,
+                    (
+                        self.env.uid,
+                        "server",
+                        self._cr.dbname,
+                        __name__,
+                        level,
+                        message,
+                        "action",
+                        self.id,
+                        self.name,
+                    ),
+                )
         """ evaluation context to pass to safe_eval """
         return {
             'uid': self._uid,
@@ -45,9 +67,12 @@ class BubbleType(models.Model):
             'float_compare': float_compare,
             'b64encode': base64.b64encode,
             'b64decode': base64.b64decode,
-            'bubble_ids': self.bubble_ids,
             'bubble_type_id':self,
-            'env':self.env
+            'env':self.env,
+            "request": requests.request,
+            "json_dumps": json.dumps,
+            "json_load": json.load,
+            "log":log
         }
 
 
