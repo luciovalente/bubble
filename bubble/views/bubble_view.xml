@@ -1,8 +1,8 @@
 <odoo>
 
     <record id="view_buble_tree" model="ir.ui.view">
-        <field name="name">buble.tree</field>
-        <field name="model">buble</field>
+        <field name="name">bubble.tree</field>
+        <field name="model">bubble</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
@@ -13,8 +13,8 @@
     </record>
 
     <record id="view_buble_form" model="ir.ui.view">
-        <field name="name">buble.form</field>
-        <field name="model">buble</field>
+        <field name="name">bubble.form</field>
+        <field name="model">bubble</field>
         <field name="arch" type="xml">
             <form>
                 <header>
