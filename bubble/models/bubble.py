@@ -37,7 +37,14 @@ class Bubble(models.Model):
     linked_object_name = fields.Char(string='Linked Object Name', compute='_compute_linked_objects')
     okr_evaluation_ids = fields.One2many('okr.evaluation','bubble_id')
     okr_evaluation_count = fields.Integer(string='OKR Evaluation Count', compute='_compute_okr_evaluation_count')
+    okr_ids = fields.One2many('okr','bubble_id')
+    okr_count = fields.Integer(string='OKR Count', compute='_compute_okr_count')
 
+    @api.depends('okr_ids')
+    def _compute_okr_count(self):
+        for record in self:
+            record.okr_count = len(record.okr_ids.filtered(lambda x:x.status=='active'))
+       
     @api.depends('okr_evaluation_ids')
     def _compute_okr_evaluation_count(self):
         for record in self:
@@ -105,7 +112,18 @@ class Bubble(models.Model):
             'res_model': 'okr.evaluation',
             'view_type': 'form',
             'view_mode': 'tree,form',
-            'domain': [('id', 'in', self.okr_evaluation_ids.filtered(lambda x:x.status=='in_progress'))],
+            'domain': [('id', 'in', self.okr_evaluation_ids.filtered(lambda x:x.status=='in_progress').ids)],
+        }
+
+    def action_open_okr(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Okr',
+            'res_model': 'okr',
+            'view_type': 'form',
+            'view_mode': 'tree,form',
+            'domain': [('id', 'in', self.okr_ids.filtered(lambda x:x.status=='active').ids)],
         }
     
     def action_view_linked_records(self):

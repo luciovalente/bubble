@@ -32,7 +32,7 @@ class WizardStartOKREvaluation(models.TransientModel):
             all_okrs = personal_okrs | bubble_okrs | role_okrs
 
             # Creare OkrResult per ogni Okr unico
-            for okr in all_okrs:
+            for okr in all_okrs.filtered(lambda x: x.status == 'active'):
                 OkrResult.create({
                     'okr_id': okr.id,
                     'evaluation_id': evaluation.id,
