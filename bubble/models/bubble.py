@@ -36,7 +36,7 @@ class Bubble(models.Model):
     linked_object_count = fields.Integer(string='Linked Objects Count', compute='_compute_linked_objects')
     linked_object_name = fields.Char(string='Linked Object Name', compute='_compute_linked_objects')
 
-    @api.depends('linked_model_id', 'model_ids')
+    @api.depends('model_id', 'res_ids')
     def _compute_linked_objects(self):
         for record in self.sudo():
             if record.model_id and record.res_ids:
