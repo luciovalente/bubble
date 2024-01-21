@@ -5,6 +5,7 @@ class OkrEvaluation(models.Model):
     _description = 'OKR Evaluation'
 
     name = fields.Char(store=True,compute="_compute_name")
+    owner_id = fields.Many2one('res.users', string='Owner',store=True,related="bubble_id.user_id")
     user_id = fields.Many2one('res.users', string='User')
     status = fields.Selection([
         ('in_progress', 'In Progress'),
@@ -14,6 +15,7 @@ class OkrEvaluation(models.Model):
     notes = fields.Html(string='Notes')
     date_from = fields.Date(string='Date From')
     date_to = fields.Date(string='Date To')
+    bubble_id = fields.Many2one('bubble')
     
     @api.depends('user_id','date_from','date_to')
     def _compute_name(self):

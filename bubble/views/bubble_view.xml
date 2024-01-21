@@ -29,7 +29,7 @@
                         <button string="Start OKR Valuation" type="object" name="action_start_okr_valuation" attrs="{'invisible': ['|',('with_okr_valuation', '=', False),('status','!=','running')]}" class="oe_highlight"/>
                     </header>
                     <sheet>
-                        
+
                         <div name="button_box" class="oe_button_box">
                             <button name="action_view_linked_records" class="oe_stat_button" icon="fa-bars" type="object" attrs="{'invisible': [('res_ids', '=', False)]}">
 
@@ -40,6 +40,10 @@
                                 <span attrs="{'invisible': [('linked_object_count','&lt;=', 1)]}">
                                     <field class="oe_inline" name="linked_object_name" />
 s</span>
+                            </button>
+
+                            <button class="oe_stat_button" type="object" name="%(action_okr_evaluation)d" attrs="{'invisible': [('okr_evaluation_count', '=', 0)]}" icon="fa-list-ul">
+                                <field string="OKR Evaluations" name="okr_evaluation_count" widget="statinfo"/>
                             </button>
                         </div>
                         <group>
@@ -78,7 +82,7 @@ s</span>
                             </page>
                             <page string="Code" groups="bubble.group_bubble_administrator">
                                 <field name="code" widget="ace">
-                                    
+
                                 </field>
                             </page>
                         </notebook>

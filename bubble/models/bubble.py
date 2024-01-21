@@ -11,7 +11,7 @@ class Bubble(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char(string='Name')
-    purpose = fields.Char(string='Purpose')
+    purpose = fields.Html(string='Purpose')
     bubble_type_id = fields.Many2one('bubble.type', string='Bubble Type')
     parent_bubble_id = fields.Many2one('bubble', string='Parent Bubble')
     status = fields.Selection([
@@ -35,7 +35,14 @@ class Bubble(models.Model):
     code = fields.Text(string='Code',groups='bubble.group_bubble_administrator')
     linked_object_count = fields.Integer(string='Linked Objects Count', compute='_compute_linked_objects')
     linked_object_name = fields.Char(string='Linked Object Name', compute='_compute_linked_objects')
+    okr_evaluation_ids = fields.One2many('okr.evaluation','bubble_id')
+    okr_evaluation_count = fields.Integer(string='OKR Evaluation Count', compute='_compute_okr_evaluation_count')
 
+    @api.depends('okr_evaluation_ids')
+    def _compute_okr_evaluation_count(self):
+        for record in self:
+            record.okr_evaluation_count = len(record.okr_evaluation_ids.filtered(lambda x:x.status=='in_progress'))
+            
     @api.depends('model_id', 'res_ids')
     def _compute_linked_objects(self):
         for record in self.sudo():
@@ -102,6 +109,18 @@ class Bubble(models.Model):
             'domain': [('id', 'in', record_ids)],
         }
     
+
+    def action_view_linked_records(self):
+        self.ensure_one()
+        record_ids = [int(rec_id) for rec_id in self.res_ids.split(',') if rec_id.isdigit()]
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Linked Records',
+            'res_model': self.model_id.model,
+            'view_type': 'form',
+            'view_mode': 'tree,form',
+            'domain': [('id', 'in', record_ids)],
+        }
     def action_start_okr_valuation(self):
         self.ensure_one()
         # Crea un record del wizard e pre-popola i campi

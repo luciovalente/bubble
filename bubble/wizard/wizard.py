@@ -19,7 +19,8 @@ class WizardStartOKREvaluation(models.TransientModel):
             evaluation = OkrEvaluation.create({
                 'user_id': member.id,
                 'date_from': self.date_from,
-                'date_to': self.date_to
+                'date_to': self.date_to,
+                'bubble_id':self.bubble_id
             })
 
             # Trova gli OKR personali, di bolla e di ruolo per il membro

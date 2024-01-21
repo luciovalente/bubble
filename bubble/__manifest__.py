@@ -1,9 +1,9 @@
 {
     'name': 'Bubble and OKR',
     'version': '15.1.1.0',
-    'summary': 'Gestione delle Buble',
+    'summary': 'Bubble and OKR',
     'sequence': -100,
-    'description': """Gestione delle Bolle""",
+    'description': """Buble and OKR Management""",
     'category': 'Hr',
     'website': 'https://www.rapsodoo.com',
     'depends': ['mail'],
