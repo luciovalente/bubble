@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bubble_role,bubble.role,model_bubble_role,bubble.group_bubble_user,1,0,0,0
+access_bubble_type,bubble.type,model_bubble_type,bubble.group_bubble_user,1,0,0,0
+access_bubble,bubble,model_bubble,bubble.group_bubble_user,1,0,0,0
+access_role_bubble,role.bubble,model_role_bubble,bubble.group_bubble_user,1,0,0,0
+access_bubble_role,bubble.role,model_bubble_role,bubble.group_bubble_manager,1,1,1,1
+access_bubble_type,bubble.type,model_bubble_type,bubble.group_bubble_manager,1,1,1,1
+access_bubble,bubble,model_bubble,bubble.group_bubble_manager,1,1,1,1
+access_role_bubble,role.bubble,model_role_bubble,bubble.group_bubble_manager,1,1,1,1

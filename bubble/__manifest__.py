@@ -1,0 +1,27 @@
+{
+    'name': 'Buble',
+    'version': '1.0',
+    'summary': 'Gestione delle Buble',
+    'sequence': -100,
+    'description': """Gestione delle Buble""",
+    'category': 'Custom',
+    'website': 'https://www.tuo-sito-web.com',
+    'depends': ['mail'],
+    'data': [
+        'security/security.xml',
+        'security/ir.model.access.csv',
+        'views/bubble_role_view.xml',
+        'views/bubble_type_view.xml',
+        'views/bubble_view.xml',
+        'views/role_bubble_view.xml',
+        'views/objective_view.xml',
+        'views/okr_view.xml',
+        'views/okr_result_view.xml',
+        'views/menu.xml',
+        'data/data.xml'
+    ],
+    'demo': [],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+}

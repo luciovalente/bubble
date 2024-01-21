@@ -1,0 +1,29 @@
+<odoo>
+    <record id="view_bubble_role_tree" model="ir.ui.view">
+        <field name="name">bubble.role.tree</field>
+        <field name="model">bubble.role</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="mandatory"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_bubble_role_form" model="ir.ui.view">
+        <field name="name">bubble.role.form</field>
+        <field name="model">bubble.role</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="mandatory"/>
+                    <field name="company_id"/>
+                    <field name="user_roles_ids"/>
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>

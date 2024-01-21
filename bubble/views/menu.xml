@@ -1,0 +1,84 @@
+<odoo>
+    <data>
+
+        <!-- Menu principale per l'app Bubble -->
+        <menuitem id="menu_bubble_main" name="Bubble" sequence="1"/>
+
+        <!-- Sottomenu per BubbleRole -->
+        <menuitem id="menu_bubble_role" name="Bubble Roles" parent_id="menu_bubble_main" sequence="2"/>
+        <record id="action_bubble_role" model="ir.actions.act_window">
+            <field name="name">Bubble Roles</field>
+            <field name="res_model">bubble.role</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_bubble_role_list" name="Bubble Roles" parent_id="menu_bubble_role"
+                  action="action_bubble_role" sequence="3"/>
+
+        <!-- Sottomenu per BubleType -->
+        <menuitem id="menu_buble_type" name="Buble Types" parent_id="menu_bubble_main" sequence="4"/>
+        <record id="action_buble_type" model="ir.actions.act_window">
+            <field name="name">Buble Types</field>
+            <field name="res_model">buble.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_buble_type_list" name="Buble Types" parent_id="menu_buble_type"
+                  action="action_buble_type" sequence="5"/>
+
+        <!-- Sottomenu per Bubble -->
+        <menuitem id="menu_bubble" name="Bubbles" parent_id="menu_bubble_main" sequence="6"/>
+        <record id="action_bubble" model="ir.actions.act_window">
+            <field name="name">Bubbles</field>
+            <field name="res_model">bubble</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_bubble_list" name="Bubbles" parent_id="menu_bubble"
+                  action="action_bubble" sequence="7"/>
+
+
+        <menuitem id="menu_role_bubble" name="Role Bubbles" parent_id="menu_bubble_main" sequence="8"/>
+        <record id="action_role_bubble" model="ir.actions.act_window">
+            <field name="name">Role Bubbles</field>
+            <field name="res_model">role.bubble</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_role_bubble_list" name="Role Bubbles" parent_id="menu_role_bubble"
+                  action="action_role_bubble" sequence="9"/>
+
+
+        <menuitem id="menu_objective_main" name="Objectives & OKRs" sequence="1"/>
+
+        <!-- Sottomenu per Objective -->
+        <menuitem id="menu_objective" name="Objectives" parent_id="menu_objective_main" sequence="2"/>
+        <record id="action_objective" model="ir.actions.act_window">
+            <field name="name">Objectives</field>
+            <field name="res_model">objective</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_objective_list" name="Objectives" parent_id="menu_objective"
+                  action="action_objective" sequence="3"/>
+
+        <!-- Sottomenu per Okr -->
+        <menuitem id="menu_okr" name="OKRs" parent_id="menu_objective_main" sequence="4"/>
+        <record id="action_okr" model="ir.actions.act_window">
+            <field name="name">OKRs</field>
+            <field name="res_model">okr</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_okr_list" name="OKRs" parent_id="menu_okr"
+                  action="action_okr" sequence="5"/>
+
+        <!-- Sottomenu per OkrResult -->
+        <menuitem id="menu_okr_result" name="OKR Results" parent_id="menu_objective_main" sequence="6"/>
+        <record id="action_okr_result" model="ir.actions.act_window">
+            <field name="name">OKR Results</field>
+            <field name="res_model">okr.result</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_okr_result_list" name="OKR Results" parent_id="menu_okr_result"
+                  action="action_okr_result" sequence="7"/>
+
+
+                  
+    </data>
+</odoo>

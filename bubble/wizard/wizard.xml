@@ -1,0 +1,28 @@
+<odoo>
+    <record id="view_wizard_start_okr_evaluation_form" model="ir.ui.view">
+        <field name="name">wizard.start.okr.evaluation.form</field>
+        <field name="model">wizard.start.okr.evaluation</field>
+        <field name="arch" type="xml">
+
+            <form>
+                <sheet>
+                    <group>
+                        <field name="bubble_id"/>
+                    
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <notebook>
+                        <page string="Members">
+                            <field name="member_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button string="Start Evaluation" type="object" name="action_start_okr_valuation" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
