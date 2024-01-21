@@ -21,7 +21,7 @@
                     <header>
                         <field name="status" widget="statusbar" statusbar_visible="draft,running,dismiss" />
 
-                        <button string="Set to Draft" type="object" name="action_draft" attrs="{'invisible': [('status','not in',('freeze','dismiss')]}" />
+                        <button string="Set to Draft" type="object" name="action_draft" attrs="{'invisible': [('status','not in',('freeze','dismiss'))]}" />
                         <button string="Freeze" type="object" name="action_freeze" attrs="{'invisible': [('status','!=','running')]}" />
                         <button string="Dismiss" type="object" name="action_dismiss" attrs="{'invisible': [('status','!=','running')]}" />
                         <button string="Set to Running" type="object" name="action_run" attrs="{'invisible': [('status','!=','draft')]}" />
