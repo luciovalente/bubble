@@ -10,7 +10,7 @@
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
-       # 'views/bubble_role_view.xml',
+        'views/bubble_role_view.xml',
        # 'views/bubble_type_view.xml',
        # 'views/bubble_view.xml',
         #'views/objective_view.xml',
