@@ -27,9 +27,10 @@
                             <field name="objective_id" required="1"/>
                             <field name="name" required="1"/>
                             <field name="description"/>
-                            <field name="bubble_id"/>
-                            <field name="user_id"/>
-                            <field name="bubble_role_id"/>
+                            <field name="type"/>
+                            <field name="bubble_id" attrs="{'invisible': [('type','!=','bubble')]}"/>
+                            <field name="user_id" attrs="{'invisible': [('type','!=','personal')]}"/>
+                            <field name="bubble_role_id" attrs="{'invisible': [('type','!=','role')]}"/>
                             <field name="with_automation" groups="bubble.group_bubble_administrator"/>
                             <field name="code" widget="ace" options="{'mode': 'python'}" groups="bubble.group_bubble_administrator" attrs="{'invisible': [('with_automation','=',False)]}"/>
                         </group>

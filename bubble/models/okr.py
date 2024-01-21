@@ -21,6 +21,11 @@ class Okr(models.Model):
 
     objective_id = fields.Many2one('objective', string='Objective')
     name = fields.Char(string='Name')
+    type = fields.Selection([
+        ('personal', 'Personal'),
+        ('bubble', 'Bubble'),
+        ('role','Role')
+    ], string='Type', default='personal')
     description = fields.Text(string='Description')
     bubble_id = fields.Many2one('bubble', string='Bubble')
     user_id = fields.Many2one('res.users', string='User')
