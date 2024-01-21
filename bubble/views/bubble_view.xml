@@ -33,7 +33,7 @@
                             class="oe_highlight"/>
                 </header>
                 <sheet>
-                    <field name="model_ids" invisible="1"/>
+                    <field name="model_id" invisible="1"/>
                     <field name="res_ids" invisible="1"/>
                     <div name="button_box" class="oe_button_box">
                             <button name="action_view_linked_records"

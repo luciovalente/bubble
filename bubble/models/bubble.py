@@ -29,10 +29,10 @@ class Bubble(models.Model):
     owner_id = fields.Many2one('res.users', string='Owner')
     member_ids = fields.Many2many('res.users', string='Members')
     user_roles_ids = fields.One2many('role.bubble', 'bubble_id', string='User Roles')
-    with_automation = fields.Boolean(groups='bubble.group_bubble_manager')
+    with_automation = fields.Boolean(groups='bubble.group_bubble_administrator')
     model_id = fields.Many2one('ir.model', string='Model')
     res_ids = fields.Char('Res Ids')
-    code = fields.Text(string='Code',groups='bubble.group_bubble_manager')
+    code = fields.Text(string='Code',groups='bubble.group_bubble_administrator')
     linked_object_count = fields.Integer(string='Linked Objects Count', compute='_compute_linked_objects')
     linked_object_name = fields.Char(string='Linked Object Name', compute='_compute_linked_objects')
 
