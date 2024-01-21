@@ -51,8 +51,8 @@
                     <group>
                         <field name="name"/>
                         <field name="purpose"/>
-                        <field name="buble_type_id"/>
-                        <field name="parent_buble_id"/>
+                        <field name="bubble_type_id"/>
+                        <field name="parent_bubble_id"/>
                         <field name="status"/>
                         <field name="close_date"/>
                         <field name="link"/>
