@@ -20,7 +20,7 @@ class WizardStartOKREvaluation(models.TransientModel):
                 'user_id': member.id,
                 'date_from': self.date_from,
                 'date_to': self.date_to,
-                'bubble_id':self.bubble_id
+                'bubble_id':self.bubble_id.id
             })
 
             # Trova gli OKR personali, di bolla e di ruolo per il membro

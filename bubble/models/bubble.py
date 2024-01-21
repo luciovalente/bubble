@@ -86,7 +86,8 @@ class Bubble(models.Model):
             'float_compare': float_compare,
             'b64encode': base64.b64encode,
             'b64decode': base64.b64decode,
-            'bubble_id': self.bubble_id
+            'bubble_id': self,
+            'env':self.env
         }
 
 

@@ -39,7 +39,9 @@ class BubbleType(models.Model):
             'float_compare': float_compare,
             'b64encode': base64.b64encode,
             'b64decode': base64.b64decode,
-            'bubble_ids': self.bubble_ids
+            'bubble_ids': self.bubble_ids,
+            'bubble_type_id':self,
+            'env':self.env
         }
 
 
