@@ -65,14 +65,14 @@
         <record id="okr_result_rule" model="ir.rule">
             <field name="name">Okr Result Rule</field>
             <field name="model_id" ref="model_okr_result"/>
-            <field name="domain_force">['|','|',('okr_id.bubble_id.member_ids', 'in', [user.id]),('okr_id.user_id', '=', user.id),('okr_id.bubble_id.user_roles_ids.user_id', '=', user.id)]</field>
+            <field name="domain_force">[('user_id', '=', user.id)]</field>
             <field name="groups" eval="[(4, ref('group_bubble_user'))]"/>
         </record>
 
         <record id="okr_result_rule_manager" model="ir.rule">
             <field name="name">Okr Result Rule</field>
             <field name="model_id" ref="model_okr_result"/>
-            <field name="domain_force">[('owner_id', '=', user.id)]</field>
+            <field name="domain_force">['|',('owner_id', '=', user.id),('user_id', '=', user.id)]</field>
             <field name="groups" eval="[(4, ref('group_bubble_manager'))]"/>
         </record>
 
@@ -94,7 +94,7 @@
         <record id="okr_result_evaluation_manager" model="ir.rule">
             <field name="name">Okr Evaluation</field>
             <field name="model_id" ref="model_okr_evaluation"/>
-            <field name="domain_force">[('owner_id', '=', user.id)]</field>
+            <field name="domain_force">['|',('owner_id', '=', user.id),('user_id', '=', user.id)]</field>
             <field name="groups" eval="[(4, ref('group_bubble_manager'))]"/>
         </record>
 

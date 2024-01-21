@@ -6,8 +6,8 @@
             <field name="model">objective</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="company_id"/>
                     <field name="name" required="1"/>
+                    <field name="company_id"/>
                 </tree>
             </field>
         </record>
