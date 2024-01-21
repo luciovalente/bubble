@@ -1,12 +1,12 @@
 <odoo>
     <data noupdate='1'>
 
-         <record id="module_category_bubble" model="ir.module.category">
+        <record id="module_category_bubble" model="ir.module.category">
             <field name="name">Bubble</field>
             <field name="sequence">10</field>
         </record>
 
-        
+
 
         <!-- Creazione dei gruppi di sicurezza -->
         <record id="group_bubble_user" model="res.groups">
@@ -24,6 +24,7 @@
             <field name="name">Bubble Administrator</field>
             <field name="category_id" ref="module_category_bubble"/>
             <field name="implied_ids" eval="[(4, ref('group_bubble_manager'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
         </record>
 
         <record id="bubble_company_rule" model="ir.rule">
@@ -43,11 +44,11 @@
             <field name="model_id" ref="model_bubble_role"/>
             <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
         </record>
-        
 
-        
 
-         <record id="okr_rule" model="ir.rule">
+
+
+        <record id="okr_rule" model="ir.rule">
             <field name="name">Okr Rule</field>
             <field name="model_id" ref="model_okr"/>
             <field name="domain_force">['|','|',('bubble_id.member_ids', 'in', [user.id]),('user_id', '=', user.id),('bubble_id.user_roles_ids.user_id', '=', user.id)]</field>
@@ -61,7 +62,7 @@
             <field name="groups" eval="[(4, ref('group_bubble_user'))]"/>
         </record>
 
-       
+
 
     </data>
 </odoo>
