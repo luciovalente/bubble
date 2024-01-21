@@ -16,14 +16,16 @@
             <field name="model">bubble.type</field>
             <field name="arch" type="xml">
                 <form>
-                    <group>
-                        <field name="name" required="1"/>
-                        <field name="description"/>
-                        <field name="company_id"/>
-                        <field name="role_ids" widget="many2many_tags"/>
-                       
-                        <field name="code" widget="ace" groups="bubble.group_bubble_administrator"/>
-                    </group>
+                    <sheet>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="description"/>
+                            <field name="company_id"/>
+                            <field name="role_ids" widget="many2many_tags"/>
+
+                            <field name="code" widget="ace" groups="bubble.group_bubble_administrator"/>
+                        </group>
+                    </sheet>
                 </form>
             </field>
         </record>

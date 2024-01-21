@@ -17,7 +17,7 @@ class BubbleType(models.Model):
     _description = 'Bubble Type'
 
     name = fields.Char(string='Name')
-    description = fields.Text(string='Description')
+    description = fields.Html(string='Description')
     company_id = fields.Many2one('res.company', string='Company')
     role_ids = fields.Many2many('bubble.role', string='Roles')
     with_automation = fields.Boolean()

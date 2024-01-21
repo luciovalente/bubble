@@ -19,6 +19,9 @@
             <field name="model">okr</field>
             <field name="arch" type="xml">
                 <form>
+                    <header>
+                        <field name="status" widget="statusbar" statusbar_visible="active,inactive">
+                    </header>
                     <sheet>
                         <group>
                             <field name="objective_id" required="1"/>
@@ -26,8 +29,8 @@
                             <field name="description"/>
                             <field name="bubble_id"/>
                             <field name="user_id"/>
-                            <field name="active"/>
-                            <field name="status"/>
+                            <field name="bubble_role_id"/>
+                            
                         </group>
                     </sheet>
                 </form>
