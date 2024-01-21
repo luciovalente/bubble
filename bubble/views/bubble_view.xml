@@ -83,6 +83,14 @@
                                     </tree>
                                 </field>
                             </page>
+                            <page string="Child Bubbles">
+                                <field name="child_bubble_ids" readonly="1">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="bubble_type_id"/>
+                                    </tree>
+                                </field>
+                            </page>
                             <page string="Code" groups="bubble.group_bubble_administrator">
                                 <field name="code" widget="ace">
 

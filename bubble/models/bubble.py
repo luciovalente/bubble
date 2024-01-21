@@ -14,6 +14,7 @@ class Bubble(models.Model):
     purpose = fields.Html(string='Purpose')
     bubble_type_id = fields.Many2one('bubble.type', string='Bubble Type')
     parent_bubble_id = fields.Many2one('bubble', string='Parent Bubble')
+    child_bubble_ids = fields.One2many('bubble','parent_bubble_id')
     status = fields.Selection([
         ('freeze', 'Freeze'),
         ('draft', 'Draft'),
