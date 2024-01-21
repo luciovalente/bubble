@@ -25,7 +25,13 @@ class BubbleType(models.Model):
     code = fields.Text(string='Code')
     bubble_ids = fields.One2many('bubble','bubble_type_id')
 
-
+    @api.constrains('code')
+    def _check_python_code(self):
+        for action in self.sudo().filtered('code'):
+            msg = test_python_expr(expr=action.code.strip(), mode="exec")
+            if msg:
+                raise ValidationError(msg)
+            
     @api.model
     def _get_eval_context(self, action=None):
         """ evaluation context to pass to safe_eval """

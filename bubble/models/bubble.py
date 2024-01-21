@@ -5,6 +5,13 @@ from odoo.osv import expression
 from odoo.tools.safe_eval import safe_eval, test_python_expr
 from odoo.tools.float_utils import float_compare
 
+import base64
+from collections import defaultdict
+import functools
+import logging
+
+from pytz import timezone
+
 class Bubble(models.Model):
     _name = 'bubble'
     _description = 'Bubble'
@@ -80,6 +87,12 @@ class Bubble(models.Model):
     def action_delete(self):
         self.write({'status': 'deleted'})
 
+    @api.constrains('code')
+    def _check_python_code(self):
+        for action in self.sudo().filtered('code'):
+            msg = test_python_expr(expr=action.code.strip(), mode="exec")
+            if msg:
+                raise ValidationError(msg)
 
     @api.model
     def _get_eval_context(self, action=None):
