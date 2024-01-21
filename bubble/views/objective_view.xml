@@ -26,14 +26,11 @@
     </record>
 
 
-    <menuitem id="menu_objective_main" name="Objectives and OKRs" sequence="1"/>
-
-        <menuitem id="menu_objective" name="Objectives" parent_id="menu_objective_main" sequence="2"/>
+    
         <record id="action_objective" model="ir.actions.act_window">
             <field name="name">Objectives</field>
             <field name="res_model">objective</field>
             <field name="view_mode">tree,form</field>
         </record>
-        <menuitem id="menu_objective_list" name="Objectives" parent_id="menu_objective"
-                  action="action_objective" sequence="3"/>
+        
 </odoo>

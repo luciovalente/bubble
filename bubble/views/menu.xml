@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
        
+        <menuitem id="menu_bubble_main" name="Bubble" sequence="1"/>
 
+     <menuitem id="menu_bubble_role" name="Bubble Roles" parent_id="menu_bubble_main" sequence="2"/>
     
 
+        <menuitem id="menu_bubble_role_list" name="Bubble Roles" parent_id="menu_bubble_role"
+                  action="action_bubble_role" sequence="3"/>
+<menuitem id="menu_buble_type_list" name="Buble Types" parent_id="menu_buble_type"
+                  action="action_buble_type" sequence="5"/>
+<menuitem id="menu_buble_type" name="Buble Types" parent_id="menu_bubble_main" sequence="4"/>
+<menuitem id="menu_bubble" name="Bubbles" parent_id="menu_bubble_main" sequence="6"/>
+         <menuitem id="menu_bubble_list" name="Bubbles" parent_id="menu_bubble"
+                  action="action_bubble" sequence="7"/>
+
         
+<menuitem id="menu_objective_main" name="Objectives and OKRs" sequence="1"/>
 
+        <menuitem id="menu_objective" name="Objectives" parent_id="menu_objective_main" sequence="2"/>
+        <menuitem id="menu_objective_list" name="Objectives" parent_id="menu_objective"
+                  action="action_objective" sequence="3"/>      
+<menuitem id="menu_okr_result_list" name="OKR Results" parent_id="menu_okr_result"
+                  action="action_okr_result" sequence="7"/>
 
-
-        
-
-        
-
-        
-    </data>         
 </odoo>
