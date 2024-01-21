@@ -17,7 +17,7 @@
         'views/okr_view.xml',
         'views/okr_result.xml',
         'views/okr_evaluation.xml',
-        'views/menu.xml',
+       
         'data/data.xml'
     ],
     'demo': [],
