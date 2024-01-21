@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-       
+       <data>
         <menuitem id="menu_bubble_main" name="Bubble" sequence="1"/>
 
      <menuitem id="menu_bubble_role" name="Bubble Roles" parent_id="menu_bubble_main" sequence="2"/>
@@ -23,5 +23,5 @@
                   action="action_objective" sequence="3"/>      
 <menuitem id="menu_okr_result_list" name="OKR Results" parent_id="menu_okr_result"
                   action="action_okr_result" sequence="7"/>
-
+</data>
 </odoo>
