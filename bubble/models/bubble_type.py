@@ -21,7 +21,7 @@ class BubbleType(models.Model):
     company_id = fields.Many2one('res.company', string='Company')
     role_ids = fields.Many2many('bubble.role', string='Roles')
     with_automation = fields.Boolean()
-    model_id = fields.Many2one('ir.model', string='Model')
+    
     code = fields.Text(string='Code')
     bubble_ids = fields.One2many('bubble','bubble_type_id')
 

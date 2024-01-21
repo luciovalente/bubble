@@ -20,7 +20,7 @@ class Bubble(models.Model):
         ('running', 'Running'),
         ('dismiss', 'Dismiss'),
         ('deleted', 'Deleted')
-    ], string='Status')
+    ], string='Status',default='draft')
     close_date = fields.Datetime(string='Close Date')
     link = fields.Char(string='Link')
     with_okr_valuation = fields.Boolean(string='With OKR Valuation', default=False)
