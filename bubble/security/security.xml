@@ -1,5 +1,5 @@
 <odoo>
-    <data noupdate='1'>
+    <data >
 
         <record id="module_category_bubble" model="ir.module.category">
             <field name="name">Bubble</field>
