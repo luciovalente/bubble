@@ -5,7 +5,7 @@ class OkrEvaluation(models.Model):
     _description = 'OKR Evaluation'
 
     name = fields.Char(store=True,compute="_compute_name")
-    owner_id = fields.Many2one('res.users', string='Owner',store=True,related="bubble_id.user_id")
+    owner_id = fields.Many2one('res.users', string='Owner',store=True,related="bubble_id.owner_id")
     user_id = fields.Many2one('res.users', string='User')
     status = fields.Selection([
         ('in_progress', 'In Progress'),
