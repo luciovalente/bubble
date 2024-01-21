@@ -22,10 +22,13 @@
                         <notebook>
 
                             <page string="OKR">
-                                <field name="okr_result_ids">
+                                <field name="okr_result_ids" attrs="{'readonly': [('status','=','done')]}" >
                                     <tree editable="bottom">
                                         <field name="okr_id" />
-                                        <field name="result" widget="percentage"/>
+                                        <field name="bubble_id" />
+                                        <field name="bubble_role_id" />
+                                        <field name="with_automation" invisible="1" />
+                                        <field name="result" attrs="{'readonly': [('with_automation','=',True)]}" widget="percentage"/>
                                         <field name="result_char" />
                                     </tree>
                                 </field>
