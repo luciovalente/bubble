@@ -26,4 +26,13 @@
             </form>
         </field>
     </record>
+
+    <menuitem id="menu_buble_type" name="Buble Types" parent_id="menu_bubble_main" sequence="4"/>
+        <record id="action_buble_type" model="ir.actions.act_window">
+            <field name="name">Buble Types</field>
+            <field name="res_model">bubble.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_buble_type_list" name="Buble Types" parent_id="menu_buble_type"
+                  action="action_buble_type" sequence="5"/>
 </odoo>
