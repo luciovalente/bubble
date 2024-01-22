@@ -35,7 +35,7 @@ function initializeBubbles(canvasElement, bubbleData) {
         }
 
         // Funzione per creare una bolla
-        function createBubble(name, position, size, content,color,aplha=0) {
+        function createBubble(name, position, size, content,color,alpha=0) {
             var bubble = BABYLON.MeshBuilder.CreateSphere(name, {diameter: size}, scene);
             bubble.position = position;
             bubble.material = new BABYLON.StandardMaterial(name + "Material", scene);
