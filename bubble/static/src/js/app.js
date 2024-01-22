@@ -84,7 +84,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             }
         };
 
-        // Gestione clic sul pulsante di ritorno
+        /* Gestione clic sul pulsante di ritorno
         document.getElementById("backButton").addEventListener("click", function() {
             if (parentLevels.length > 0) {
                 currentLevelData = parentLevels.pop(); // Torna al livello genitore
@@ -92,7 +92,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             }
             this.style.display = parentLevels.length > 0 ? 'block' : 'none';
         });
-
+*/
         showBubbles(currentLevelData);
 
         return scene;
