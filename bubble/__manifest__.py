@@ -19,7 +19,8 @@
         'views/okr_evaluation.xml',
         'views/menu.xml',
         'wizard/wizard.xml',
-        'data/data.xml'
+        'data/data.xml',
+        'views/asset.xml'
     ],
     'demo': [],
     'installable': True,

@@ -1,0 +1,6 @@
+<t t-name="BubbleChartWidgetTemplate">
+    <div class="o_field_bubble_chart">
+        <canvas id="renderCanvas"></canvas>
+        <button id="backButton" style="display:none;">Back</button>
+    </div>
+</t>
