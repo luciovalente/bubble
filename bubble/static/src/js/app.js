@@ -11,6 +11,7 @@ function initializeBubbles(canvasElement, bubbleData) {
         scene.clearColor = new BABYLON.Color4(1, 0.85, 0.90 ,1);
         var camera = new BABYLON.UniversalCamera("UniversalCamera", new BABYLON.Vector3(0, 1, -5), scene);
         camera.setTarget(BABYLON.Vector3.Zero());
+        camera.speed = 2;
         camera.attachControl(canvas, true);
 
         var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0), scene);
@@ -18,7 +19,7 @@ function initializeBubbles(canvasElement, bubbleData) {
         // Funzione per creare il testo sotto la bolla
         function createBubbleText(name, position, visible) {
             var dynamicTexture = new BABYLON.DynamicTexture("DynamicTexture", 512, scene, true);
-            
+            dynamicTexture.hasAlpha = true; // Impostare la trasparenza della texture
             dynamicTexture.drawText(name, null, null, "bold 40px Arial", "black", "transparent", true);
 
             var plane = BABYLON.Mesh.CreatePlane("TextPlane", 2, scene);
@@ -86,7 +87,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             }
         };
 
-        /* Gestione clic sul pulsante di ritorno
+        
         document.getElementById("backButton").addEventListener("click", function() {
             if (parentLevels.length > 0) {
                 currentLevelData = parentLevels.pop(); // Torna al livello genitore
@@ -94,7 +95,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             }
             this.style.display = parentLevels.length > 0 ? 'block' : 'none';
         });
-*/
+
         showBubbles(currentLevelData);
 
         return scene;
