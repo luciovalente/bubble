@@ -120,6 +120,9 @@
                     <field name="owner_id" />
                     <!-- Filtro My Bubble -->
                     <filter string="My Bubbles" name="my_bubble" domain="[('member_ids', 'in', uid)]"/>
+                    <group expand="0" string="Group By" colspan="16">
+                        <filter string="Parent" name="parent" context="{'group_by':'parent_bubble_id'}"/>
+                    </group>
                 </search>
             </field>
         </record>
