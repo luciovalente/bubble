@@ -19,6 +19,7 @@
         'views/okr_evaluation.xml',
         'views/menu.xml',
         'wizard/wizard.xml',
+        'wizard/wizard_view_bubble.xml',
         'data/data.xml'
        # 'views/asset.xml'
     ],
