@@ -19,10 +19,17 @@
         'views/okr_evaluation.xml',
         'views/menu.xml',
         'wizard/wizard.xml',
-        'data/data.xml',
-        'views/asset.xml'
+        'data/data.xml'
+       # 'views/asset.xml'
     ],
     'qweb': ['static/src/xml/bubble_widget.xml'],
+    'assets': {
+        'web.assets_backend': [
+            'https://cdn.babylonjs.com/babylon.js',
+            '/bubble/static/src/js/app.js',
+            '/bubble/static/src/js/bubble_widget.js'
+            ]
+    },
     'demo': [],
     'installable': True,
     'application': True,
