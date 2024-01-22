@@ -11,8 +11,10 @@ function initializeBubbles(canvasElement, bubbleData) {
         scene.clearColor = new BABYLON.Color4(1, 0.85, 0.90 ,1);
         var camera = new BABYLON.UniversalCamera("UniversalCamera", new BABYLON.Vector3(0, 1, -5), scene);
         camera.setTarget(BABYLON.Vector3.Zero());
-        camera.speed = 2;
         camera.attachControl(canvas, true);
+        camera.angularSensibilityX = 1000; // Valore più alto per ridurre la sensibilità sull'asse X
+        camera.angularSensibilityY = 1000; // Valore più alto per ridurre la sensibilità sull'asse Y
+        camera.speed = 1;
 
         var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0), scene);
 
