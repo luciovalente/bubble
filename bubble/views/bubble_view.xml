@@ -27,6 +27,8 @@
                         <button string="Set to Running" type="object" groups="bubble.group_bubble_manager" name="action_run" attrs="{'invisible': [('status','!=','draft')]}" />
                         <button string="Delete" type="object" groups="bubble.group_bubble_manager" name="action_delete" attrs="{'invisible': [('status','!=','dismiss')]}" />
                         <button string="Start OKR Valuation" groups="bubble.group_bubble_manager" type="object" name="action_start_okr_valuation" attrs="{'invisible': ['|',('with_okr_valuation', '=', False),('status','!=','running')]}" class="oe_highlight"/>
+                        <button string="View 3d Bubble"  type="object" name="action_view_bubble" />
+
                     </header>
                     <sheet>
 
@@ -53,7 +55,7 @@
                             <field name="name" required="1"/>
                             <field name="purpose"/>
                             <field name="bubble_type_id" required="1"/>
-                            <field name="parent_bubble_id" widget="bubble_chart"/>
+                            <field name="parent_bubble_id" />
                             <field name="close_date" readonly="1" attrs="{'invisible': [('status','!=','dismiss')]}"/>
                             <field name="company_id"/>
                             <field name="owner_id" required="1"/>

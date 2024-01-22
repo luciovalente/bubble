@@ -195,6 +195,23 @@ class Bubble(models.Model):
             'res_id': wizard.id,
             'target': 'new',
         }
+
+    def action_view_bubble(self):
+        self.ensure_one()
+        # Crea un record del wizard e pre-popola i campi
+        wizard = self.env['wizard.bubble.view'].create({
+            'bubble_id': self.id,
+            
+        })
+        # Restituisce un'azione per aprire il wizard
+        return {
+            'name': 'View Bubble',
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'res_model': 'wizard.bubble.view',
+            'res_id': wizard.id,
+            'target': 'new',
+        }
     
     def get_bubble_json(self):
         res = []

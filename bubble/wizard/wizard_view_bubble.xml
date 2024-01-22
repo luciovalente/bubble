@@ -1,0 +1,16 @@
+<odoo>
+    <record id="view_wizard_bubble_view_form" model="ir.ui.view">
+        <field name="name">wizard.bubble.view.form</field>
+        <field name="model">wizard.bubble.view</field>
+        <field name="arch" type="xml">
+
+            <form>
+                <sheet>
+                    
+                        <field name="bubble_id" widget="bubble_chart"/>
+                    
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

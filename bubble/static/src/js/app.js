@@ -8,7 +8,9 @@ function initializeBubbles(canvasElement, bubbleData) {
 
     var createScene = function () {
         var scene = new BABYLON.Scene(engine);
-        var camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2, 10, BABYLON.Vector3.Zero(), scene);
+        scene.clearColor = new BABYLON.Color4(1, 0.85, 0.90 ,1);
+        var camera = new BABYLON.UniversalCamera("UniversalCamera", new BABYLON.Vector3(0, 1, -5), scene);
+        camera.setTarget(BABYLON.Vector3.Zero());
         camera.attachControl(canvas, true);
 
         var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0), scene);
