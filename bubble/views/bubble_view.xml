@@ -53,7 +53,7 @@
                             <field name="name" required="1"/>
                             <field name="purpose"/>
                             <field name="bubble_type_id" required="1"/>
-                            <field name="parent_bubble_id"/>
+                            <field name="parent_bubble_id" widget="bubble_chart"/>
                             <field name="close_date" readonly="1" attrs="{'invisible': [('status','!=','dismiss')]}"/>
                             <field name="company_id"/>
                             <field name="owner_id" required="1"/>
