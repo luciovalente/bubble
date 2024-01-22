@@ -27,6 +27,7 @@ class BubbleType(models.Model):
     
     code = fields.Text(string='Code')
     bubble_ids = fields.One2many('bubble','bubble_type_id')
+    css_color = fields.Char('CSS color',default="#ff0000")
 
     @api.constrains('code')
     def _check_python_code(self):

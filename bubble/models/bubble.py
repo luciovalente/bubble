@@ -195,3 +195,16 @@ class Bubble(models.Model):
             'res_id': wizard.id,
             'target': 'new',
         }
+    
+    def get_bubble_json(self):
+        res = []
+        for bubble in self:
+            res.append(
+                {
+                  'name':'Bolla %s' % bubble.name,
+                  'color': bubble.bubble_type_id.css_color,
+                  'content': bubble.child_bubble_ids.get_bubble_json()
+                }
+            )
+        return res
+
