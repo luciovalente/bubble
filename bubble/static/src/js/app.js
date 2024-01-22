@@ -18,8 +18,8 @@ function initializeBubbles(canvasElement, bubbleData) {
         // Funzione per creare il testo sotto la bolla
         function createBubbleText(name, position, visible) {
             var dynamicTexture = new BABYLON.DynamicTexture("DynamicTexture", 512, scene, true);
-            dynamicTexture.hasAlpha = true; // Impostare la trasparenza della texture
-            dynamicTexture.drawText(name, null, null, "bold 40px Arial", "white", "transparent", true);
+            
+            dynamicTexture.drawText(name, null, null, "bold 40px Arial", "black", "transparent", true);
 
             var plane = BABYLON.Mesh.CreatePlane("TextPlane", 2, scene);
             plane.position = new BABYLON.Vector3(position.x, position.y - 1.5, position.z); // Posizionare il piano del testo sotto la bolla
