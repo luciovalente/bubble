@@ -3,7 +3,7 @@
 <templates id="template" xml:space="preserve">
     <t t-name="BubbleChartWidgetTemplate">
         <div class="o_field_bubble_chart">
-            <canvas id="renderCanvas"></canvas>
+            <canvas id="renderCanvas" width="1200" height="800"></canvas>
             <button id="backButton" style="display:none;">Back</button>
         </div>
     </t>
