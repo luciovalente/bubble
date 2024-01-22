@@ -66,7 +66,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             });
         }
 
-        showBubbles(data);
+        
 
         // Gestione clic su una bolla
         scene.onPointerDown = function (evt, pickResult) {
