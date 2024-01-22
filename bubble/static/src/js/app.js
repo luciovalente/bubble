@@ -35,13 +35,14 @@ function initializeBubbles(canvasElement, bubbleData) {
         }
 
         // Funzione per creare una bolla
-        function createBubble(name, position, size, content,color) {
+        function createBubble(name, position, size, content,color,aplha=0) {
             var bubble = BABYLON.MeshBuilder.CreateSphere(name, {diameter: size}, scene);
             bubble.position = position;
             bubble.material = new BABYLON.StandardMaterial(name + "Material", scene);
             bubble.material.diffuseColor = new BABYLON.Color3.FromHexString(color);
-            bubble.material.alpha = 0.6; // Rendere la bolla trasparente
-
+            if (alpha == 0) {
+                bubble.material.alpha = 0.6; // Rendere la bolla trasparente
+            }
 
             // Calcolare la posizione delle bolle contenute
             var innerBubbleSize = size / 3; // Ridurre la dimensione delle bolle interne
@@ -49,7 +50,7 @@ function initializeBubbles(canvasElement, bubbleData) {
                 if (index<=4) {
                 var angle = Math.PI * 2 * index / content.length; // Angolo per distribuire le bolle internamente
                 var innerPosition = position.add(new BABYLON.Vector3(Math.cos(angle) * size / 4, Math.sin(angle) * size / 4, 0));
-                createBubble(innerBubble.name, innerPosition, innerBubbleSize, innerBubble.content,innerBubble.color);
+                createBubble(innerBubble.name, innerPosition, innerBubbleSize, innerBubble.content,innerBubble.color,0.8);
             }
             });
         }
