@@ -2,9 +2,9 @@
 <odoo>
         <template id="assets_backend" name="bubble_chart_assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
-                
-                <script type="text/javascript" src="/bubble/static/src/js/app.js"/>
-                <script type="text/javascript" src="/bubble/static/src/js/bubble_widget.js"/>
+                <script type="text/javascript" src="https://cdn.babylonjs.com/babylon.js"></script>
+                <script type="text/javascript" src="/bubble/static/src/js/app.js"/></script>
+                <script type="text/javascript" src="/bubble/static/src/js/bubble_widget.js"/></script>
             </xpath>
         </template>
 </odoo>
