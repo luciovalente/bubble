@@ -27,7 +27,8 @@
         'web.assets_backend': [
             'https://cdn.babylonjs.com/babylon.js',
             '/bubble/static/src/js/app.js',
-            '/bubble/static/src/js/bubble_widget.js'
+            '/bubble/static/src/js/bubble_widget.js',
+            '/bubble/static/src/xml/**/*',
             ]
     },
     'demo': [],
