@@ -5,7 +5,7 @@ odoo.define('bubble_chart_widget.BubbleChartWidget', function (require) {
     var fieldRegistry = require('web.field_registry');
     var ajax = require('web.ajax');
 
-    
+
     var BubbleChartWidget = AbstractField.extend({
         template: 'BubbleChartWidgetTemplate',
 
@@ -20,9 +20,7 @@ odoo.define('bubble_chart_widget.BubbleChartWidget', function (require) {
                         window.initializeBubbles(canvas, bubbleData);
                     }
                 })
-                .fail(function (error) {
-                    console.error("Error while fetching bubble data:", error);
-                });
+                
         },
     });
 
