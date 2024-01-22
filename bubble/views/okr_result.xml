@@ -16,7 +16,20 @@
         </record>
 
 
+        <record id="view_okr_result_search" model="ir.ui.view">
+            <field name="name">okr.result.search</field>
+            <field name="model">okr.result</field>
+            <field name="arch" type="xml">
+                <search>
+                    <!-- Campi di ricerca e filtri possono essere aggiunti qui -->
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="objective_id" />
 
+                    <filter string="My OKR" name="my_okr" domain="[('user_id', '=', uid)]"/>
+                </search>
+            </field>
+        </record>
         <record id="action_okr_result" model="ir.actions.act_window">
             <field name="name">OKR Results</field>
             <field name="res_model">okr.result</field>

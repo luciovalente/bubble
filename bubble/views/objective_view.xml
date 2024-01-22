@@ -6,6 +6,8 @@
             <field name="model">objective</field>
             <field name="arch" type="xml">
                 <tree>
+
+                    <field name="objective_code" required="1"/>
                     <field name="name" required="1"/>
                     <field name="company_id"/>
                 </tree>
@@ -20,7 +22,8 @@
                     <sheet>
                         <group>
                             <field name="company_id"/>
-                            <field name="name"/>
+                            <field name="objective_code" required="1"/>
+                            <field name="name" required="1"/>
                         </group>
                     </sheet>
                 </form>

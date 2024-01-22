@@ -19,6 +19,7 @@ class Okr(models.Model):
     _name = 'okr'
     _description = 'OKR'
 
+    okr_code = fields.Char('Code')
     objective_id = fields.Many2one('objective', string='Objective')
     name = fields.Char(string='Name')
     type = fields.Selection([
