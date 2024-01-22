@@ -29,7 +29,10 @@
             'https://cdn.babylonjs.com/babylon.js',
             '/bubble/static/src/js/app.js',
             '/bubble/static/src/js/bubble_widget.js',
-            ]
+            ],
+          'web.assets_qweb': [
+                '/bubble/static/src/xml/bubble_widget.xml',
+            ],
     },
     'demo': [],
     'installable': True,
