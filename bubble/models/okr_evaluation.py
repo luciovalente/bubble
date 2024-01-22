@@ -3,6 +3,7 @@ from odoo import models, fields,api
 class OkrEvaluation(models.Model):
     _name = 'okr.evaluation'
     _description = 'OKR Evaluation'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char(store=True,compute="_compute_name")
     owner_id = fields.Many2one('res.users', string='Owner',store=True,related="bubble_id.owner_id")
