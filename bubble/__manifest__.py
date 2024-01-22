@@ -22,6 +22,7 @@
         'data/data.xml',
         'views/asset.xml'
     ],
+    'qweb': ['static/src/xml/bubble_widget.xml'],
     'demo': [],
     'installable': True,
     'application': True,
