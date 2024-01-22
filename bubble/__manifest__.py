@@ -25,7 +25,7 @@
     'qweb': ['static/src/xml/bubble_widget.xml'],
     'assets': {
         'web.assets_backend': [
-            '/bubble/static/src/xml/**/*',
+            '/bubble/static/src/xml/bubble_widget.xml',
             'https://cdn.babylonjs.com/babylon.js',
             '/bubble/static/src/js/app.js',
             '/bubble/static/src/js/bubble_widget.js',
