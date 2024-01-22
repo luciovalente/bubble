@@ -11,7 +11,7 @@ odoo.define('bubble_chart_widget.BubbleChartWidget', function (require) {
 
         _render: function () {
             var self = this;
-            var bubbleId = this.res_id;
+            var bubbleId = this.value.res_id;
 
             ajax.jsonRpc("/get_bubble_data", "call", {bubble_id: bubbleId})
                 .then(function (bubbleData) {
