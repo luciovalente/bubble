@@ -6,7 +6,7 @@
     'description': """Buble and OKR Management""",
     'category': 'Hr',
     'website': 'https://www.rapsodoo.com',
-    'depends': ['mail'],
+    'depends': ['mail','web'],
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
