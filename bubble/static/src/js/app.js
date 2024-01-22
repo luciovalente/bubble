@@ -50,10 +50,10 @@ function initializeBubbles(canvasElement, bubbleData) {
             var innerBubbleSize = size / 3; // Ridurre la dimensione delle bolle interne
             content.forEach(function (innerBubble, index) {
                 if (index<=4) {
-                var angle = Math.PI * 2 * index / content.length; // Angolo per distribuire le bolle internamente
-                var innerPosition = position.add(new BABYLON.Vector3(Math.cos(angle) * size / 4, Math.sin(angle) * size / 4, 0));
-                createBubble(innerBubble.name, innerPosition, innerBubbleSize, innerBubble.content,innerBubble.color,0.8);
-            }
+                    var angle = Math.PI * 2 * index / content.length; // Angolo per distribuire le bolle internamente
+                    var innerPosition = position.add(new BABYLON.Vector3(Math.cos(angle) * size / 4, Math.sin(angle) * size / 4, 0));
+                    createBubble(innerBubble.name, innerPosition, innerBubbleSize, innerBubble.content,innerBubble.color,0.8);
+                }
             });
         }
         function clearScene() {
@@ -82,9 +82,8 @@ function initializeBubbles(canvasElement, bubbleData) {
                      // Memorizza il livello genitore
                     parentLevels.push(currentLevelData);
                     currentLevelData = selectedBubbleData.content;
-                    
                     clearScene(); 
-                    showBubbles(currentLevelData, pickResult.pickedMesh.position);
+                    showBubbles(currentLevelData);
                     document.getElementById("backButton").style.display = 'block';
                 }
             }
