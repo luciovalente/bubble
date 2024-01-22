@@ -13,7 +13,6 @@ access_okr_user,okr_user,model_okr,group_bubble_user,1,0,0,0
 access_okr_manager,okr_manager,model_okr,group_bubble_manager,1,1,1,1
 access_okr_result_user,okr_result_user,model_okr_result,group_bubble_user,1,0,0,0
 access_okr_result_manager,okr_result_manager,model_okr_result,group_bubble_manager,1,1,1,1
-access_wizard_view_bubble,wizard_bubble_view,model_wizard_bubble_view,group_bubble_user,1,1,1,1
 access_wizard_manager,wizard_start_okr_evaluation,model_wizard_start_okr_evaluation,group_bubble_manager,1,1,1,1
 access_okr_evaluation_user,okr_result_user,model_okr_evaluation,group_bubble_user,1,0,0,0
 access_okr_evaluation_manager,okr_result_manager,model_okr_evaluation,group_bubble_manager,1,1,1,1
