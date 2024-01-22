@@ -22,9 +22,9 @@
             <field name="arch" type="xml">
                 <search>
                     <!-- Campi di ricerca e filtri possono essere aggiunti qui -->
-                    <field name="name" />
-                    <field name="code" />
-                    <field name="objective_id" />
+                    <field name="okr_id" />
+                    <field name="owner_id" />
+                    <field name="user_id" />
 
                     <filter string="My OKR" name="my_okr" domain="[('user_id', '=', uid)]"/>
                 </search>
