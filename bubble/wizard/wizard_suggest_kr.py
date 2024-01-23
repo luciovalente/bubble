@@ -93,6 +93,9 @@ class WizardToSuggestKR(models.TransientModel):
                 'bubble_role_id':self.bubble_role_id.id,
                 'suggest_kr_id':self.id
             })
+        return {
+                "type": "ir.actions.do_nothing",
+            }
        
 class WizardToSuggestKRLine(models.TransientModel):
     _name = 'wizard.suggest.kr.line'
