@@ -11,7 +11,7 @@ PROMPT = '''
     - per Singola Persona: Sono kr specifici assegnati ad una singola persona.
     Puoi aiutarmi a creare %d Key Results su questo obiettivo: '%s' e per %s 
     Questo è un testo ulteriore per specificare meglio cosa creare %s.
-    Dammi il risultato separando ogni key result da un a capo e direttamente senza nessuna spiegazione in %s.
+    Dammi direttamente i key results separando ogni key result da un a capo in %s.
 '''
 class WizardToSuggestKR(models.TransientModel):
     _name = 'wizard.suggest.kr'
@@ -56,7 +56,7 @@ class WizardToSuggestKR(models.TransientModel):
         json_response = response.json()
         okr_response = json_response['choices'][0]['message']['content']
         okrs = okr_response.strip().split('\n')
-        raise ValidationError(okrs)
+        raise ValidationError(prompt)
         # Filtra eventuali righe vuote o non valide
         okrs = [okr for okr in okrs if okr and okr.strip()]
         return okrs
