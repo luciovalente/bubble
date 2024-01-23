@@ -83,20 +83,17 @@ class WizardToSuggestKR(models.TransientModel):
         okrs = [okr for okr in okrs if okr and okr.strip()]
         return okrs
 
-
-
     def action_suggest_kr(self):
         okrs = self.get_okrs_from_chatgpt()
-        
         for okr in okrs:
+            raise ValidationError(okr)
             self.env['wizard.suggest.kr.line'].create({
                 'name':okr,
                 'bubble_id':self.bubble_id.id,
                 'user_id':self.user_id.id,
                 'bubble_role_id':self.bubble_role_id.id,
-                'suggest_kr_id':id
+                'suggest_kr_id':self.id
             })
-        return
        
 class WizardToSuggestKRLine(models.TransientModel):
     _name = 'wizard.suggest.kr.line'
