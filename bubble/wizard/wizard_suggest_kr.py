@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api
+from odoo.exceptions import UserError, ValidationError
 import requests
 import json
 
@@ -55,7 +56,7 @@ class WizardToSuggestKR(models.TransientModel):
         json_response = response.json()
         okr_response = json_response['choices'][0]['message']['content']
         okrs = okr_response.strip().split('\n')
-
+        raise ValidationError(okrs)
         # Filtra eventuali righe vuote o non valide
         okrs = [okr for okr in okrs if okr and okr.strip()]
         return okrs
@@ -64,6 +65,7 @@ class WizardToSuggestKR(models.TransientModel):
 
     def action_suggest_kr(self):
         okrs = self.get_okrs_from_chatgpt()
+        
         for okr in okrs:
             self.env['wizard.suggest.kr.line'].create({
                 'name':okr,
