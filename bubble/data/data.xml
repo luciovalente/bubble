@@ -44,14 +44,14 @@
 
 
         <record id="action_bubble_suggest_kr" model="ir.actions.server">
-    <field name="name">Suggest Key Results</field>
-    <field name="model_id" ref="model_bubble"/>
-    <field name="state">code</field>
-    <field name="binding_model_id" ref="model_bubble"/>
-    <field name="binding_view_types">form</field>
-    <field name="groups_id" eval="[(4, ref('group_bubble_manager'))]"/>
-    <field name="code">
-        wizard = self.env['wizard.suggest.kr'].create({'bubble_id': self.id})
+            <field name="name">Suggest Key Results</field>
+            <field name="model_id" ref="model_bubble"/>
+            <field name="state">code</field>
+            <field name="binding_model_id" ref="model_bubble"/>
+            <field name="binding_view_types">form</field>
+            <field name="groups_id" eval="[(4, ref('group_bubble_manager'))]"/>
+            <field name="code">
+        wizard = env['wizard.suggest.kr'].create({'bubble_id': record.id})
         action = {
             'type': 'ir.actions.act_window',
             'name': 'Suggest KR',
@@ -61,8 +61,8 @@
             'target': 'new',
         }
         return action
-    </field>
-</record>
+            </field>
+        </record>
 
     </data>
 </odoo>
