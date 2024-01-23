@@ -18,7 +18,9 @@ class Bubble(models.Model):
     _name = 'bubble'
     _description = 'Bubble'
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _order = "sequence"
 
+    sequence = fields.Integer('Sequence')
     name = fields.Char(string='Name')
     purpose = fields.Html(string='Purpose')
     bubble_type_id = fields.Many2one('bubble.type', string='Bubble Type')
