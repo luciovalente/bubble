@@ -6,7 +6,7 @@ class OkrEvaluation(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char(store=True,compute="_compute_name")
-    owner_id = fields.Many2one('res.users', string='Owner',store=True,related="bubble_id.owner_id")
+    owner_id = fields.Many2one('res.users', string='Leader',store=True,related="bubble_id.owner_id")
     user_id = fields.Many2one('res.users', string='User')
     status = fields.Selection([
         ('in_progress', 'In Progress'),
