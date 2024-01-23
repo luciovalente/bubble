@@ -3,6 +3,7 @@ from odoo import models, fields, api
 from odoo.exceptions import UserError, ValidationError
 import requests
 import json
+import re
 
 PROMPT = '''
     Devo creare degli OKR per la mia azienza. Gli OKR sono legati a tre tipologie:
@@ -10,8 +11,8 @@ PROMPT = '''
     - per Ruolo: Ogni ruolo ha una descrizione specifica
     - per Singola Persona: Sono kr specifici assegnati ad una singola persona.
     Puoi aiutarmi a creare %d Key Results su questo obiettivo: '%s' e per %s 
-    Questo è un testo ulteriore per specificare meglio cosa creare %s.
-    Dammi direttamente i key results separando ogni key result da un a capo in %s.
+    %s.
+    Dammi direttamente i key results separando ogni key result da un 'a capo' in %s.
 '''
 class WizardToSuggestKR(models.TransientModel):
     _name = 'wizard.suggest.kr'
@@ -23,11 +24,19 @@ class WizardToSuggestKR(models.TransientModel):
     role_description = fields.Text('Role Description',related="bubble_role_id.description")
     user_id = fields.Many2one('res.users', string='User')
     bubble_role_id = fields.Many2one('bubble.role', string='Role')
-    description = fields.Text('Description')
+    description = fields.Text('Add a Description')
     suggest_kr_line_ids = fields.One2many('wizard.suggest.kr.line','suggest_kr_id')
     number = fields.Integer('Number of Key Results',default=3)
     language = fields.Many2one('res.lang')
+    type = fields.Selection([
+        ('personal', 'Personal'),
+        ('bubble', 'Bubble'),
+        ('role','Role')
+    ], string='Type', default='personal')
     
+    def remove_html_tags(text):
+        clean = re.compile('<.*?>')
+        return re.sub(clean, '', text)
 
     def get_okrs_from_chatgpt(self):
         url = "https://api.openai.com/v1/chat/completions"
@@ -41,7 +50,11 @@ class WizardToSuggestKR(models.TransientModel):
             prompt_description += ''' questa bolla %s che ha questo purpose %s, '''%(self.bubble_id.name, self.bubble_purpose)
         if self.role_description:
             prompt_description += ''' questo ruolo %s che ha questa descrizione %s '''%(self.bubble_role_id.name, self.description)
-        prompt = PROMPT %(self.number,self.objective_id.name,prompt_description,self.description,self.language.name)
+        if self.user_id:
+            prompt_description += ''' è un kr personale quindi specifico per una singola persona %s '''
+        description = self.remove_html_tags(self.description)
+
+        prompt = PROMPT %(self.number,self.objective_id.name,prompt_description,description,self.language.name)
         
         data = {
             "model": "gpt-3.5-turbo",
@@ -96,7 +109,7 @@ class WizardToSuggestKRLine(models.TransientModel):
                 'bubble_id':self.bubble_id.id,
                 'user_id':self.user_id.id,
                 'bubble_role_id':self.bubble_role_id.id,
-                'type':'bubble' if self.bubble_id else ('role' if self.bubble_role_id else 'personal')
+                'type':self.suggest_kr_id.type
             })
             okr.okr_id = okr_id.id
 
