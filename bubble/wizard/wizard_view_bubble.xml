@@ -8,7 +8,7 @@
                 
                     
                         <field name="bubble_id" widget="bubble_chart"/>
-                    
+                        <field name="legenda" />
                 
             </form>
         </field>
