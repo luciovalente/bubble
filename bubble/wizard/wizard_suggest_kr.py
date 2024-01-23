@@ -22,7 +22,7 @@ class WizardToSuggestKR(models.TransientModel):
     user_id = fields.Many2one('res.users', string='User')
     bubble_role_id = fields.Many2one('bubble.role', string='Role')
     description = fields.Text('Description')
-    suggest_kr_line_ids = fields.One2many('wizard.suggest.kr','suggest_kr_id')
+    suggest_kr_line_ids = fields.One2many('wizard.suggest.kr.line','suggest_kr_id')
     number = fields.Integer('Number of KR',default=3)
     language = fields.Many2one('res.lang')
     
