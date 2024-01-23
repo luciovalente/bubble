@@ -39,7 +39,8 @@
                                     <field class="oe_inline" name="linked_object_name" />
                                 </span>
                                 <span attrs="{'invisible': [('linked_object_count','&lt;=', 1)]}">
-                                    <field class="oe_inline" name="linked_object_name" />s
+                                    <field class="oe_inline" name="linked_object_name" />
+s
                                 </span>
                             </button>
                             <button class="oe_stat_button" type="object" name="action_open_objective" attrs="{'invisible': [('objective_count', '=', 0)]}" icon="fa-bullseye">
@@ -52,10 +53,10 @@
                                 <field string="Evaluations" name="okr_evaluation_count" widget="statinfo"/>
                             </button>
                             <button class="oe_stat_button" type="object" string ="Bubble 3D" name="action_view_bubble" icon="fa-compass">
-                                
+
                             </button>
-                            
-                            
+
+
                         </div>
                         <group>
                             <field name="name" required="1"/>
@@ -69,6 +70,8 @@
                             <field name="with_automation" groups="bubble.group_bubble_administrator"/>
                             <field name="model_id" groups="bubble.group_bubble_administrator"/>
                             <field name="res_ids" groups="bubble.group_bubble_administrator"/>
+                            <field name="member_count" groups="bubble.group_bubble_administrator"/>
+
                         </group>
                         <notebook>
                             <!-- Pagina per User Roles -->
@@ -99,7 +102,7 @@
                                     </tree>
                                 </field>
                             </page>
-                            <page string="Code" groups="bubble.group_bubble_administrator" attrs="{'invisible': [('with_automation','=',False)]}" >
+                            <page string="Code" groups="bubble.group_bubble_administrator" attrs="{'invisible': [('with_automation','=',False)]}">
                                 <field name="code" widget="ace" options="{'mode': 'python'}">
 
                                 </field>

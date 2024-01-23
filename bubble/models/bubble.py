@@ -52,7 +52,7 @@ class Bubble(models.Model):
     objective_count = fields.Integer(string='Objective Count', compute='_compute_objective_count')
     okr_count = fields.Integer(string='OKR Count', compute='_compute_okr_count')
     size = fields.Float(compute="_compute_size")
-    member_count = fields.Integer(compute="_compute_member_count")
+    member_count = fields.Integer(compute="_compute_member_count",store=True)
 
     @api.depends('member_ids')
     def _compute_member_count(self):
@@ -247,13 +247,13 @@ class Bubble(models.Model):
         return action 
     
     def get_diameter(self):
-        if self.size > 100:
+        if self.size > 200:
             return 5
-        if self.size > 40:
+        if self.size > 100:
             return 4
-        if self.size > 20:
+        if self.size > 40:
             return 3
-        if self.size > 10:
+        if self.size > 15:
             return 2
         return 1
         
