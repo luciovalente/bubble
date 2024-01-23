@@ -56,4 +56,12 @@
         </record>
 
     </data>
+
+    <data noupdate="1">
+        <!-- Record per l'API Key di OpenAI -->
+        <record id="param_openai_api_key" model="ir.config_parameter">
+            <field name="key">openai.api_key</field>
+            <field name="value">tua_api_key_qui</field>
+        </record>
+    </data>
 </odoo>
