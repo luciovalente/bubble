@@ -22,8 +22,8 @@ function initializeBubbles(canvasElement, bubbleData) {
             var animation = new BABYLON.Animation("cameraAnimation", "position.z", 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
 
             var keys = []; 
-            keys.push({ frame: 0, value: -8 }); // Posizione iniziale della telecamera
-            keys.push({ frame: 100, value: -12}); // Telecamera si allontana
+            keys.push({ frame: 0, value: -7 }); // Posizione iniziale della telecamera
+            keys.push({ frame: 100, value: -10}); // Telecamera si allontana
             animation.setKeys(keys);
 
             // Applicazione dell'animazione alla telecamera
