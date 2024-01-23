@@ -86,7 +86,6 @@ class WizardToSuggestKR(models.TransientModel):
     def action_suggest_kr(self):
         okrs = self.get_okrs_from_chatgpt()
         for okr in okrs:
-            raise ValidationError(okr)
             self.env['wizard.suggest.kr.line'].create({
                 'name':okr,
                 'bubble_id':self.bubble_id.id,
