@@ -18,8 +18,9 @@
                 </group>
                 <notebook>
                     <page string="Suggest KR" attrs="{'invisible':[('suggest_kr_line_ids','=',False)]}">
-                        <field name="suggest_kr_line_ids" create="0">
-                            <tree editable="bottom">
+                        <field name="suggest_kr_line_ids" >
+                            <tree editable="bottom" create="0">
+                                <field name="name" />
                                 <field name="bubble_id" />
                                 <field name="bubble_role_id" />
                                 <field name="user_id" />
