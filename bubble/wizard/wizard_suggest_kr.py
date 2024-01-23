@@ -53,7 +53,7 @@ class WizardToSuggestKR(models.TransientModel):
         if self.user_id:
             prompt_description += ''' è un kr personale quindi specifico per una singola persona %s '''
 
-        prompt = PROMPT %(self.number,self.objective_id.name,prompt_description,description,self.language.name)
+        prompt = PROMPT %(self.number,self.objective_id.name,prompt_description,self.description,self.language.name)
         raise ValidationError(prompt)
         data = {
             "model": "gpt-3.5-turbo",
