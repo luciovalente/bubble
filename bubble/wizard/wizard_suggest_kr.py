@@ -10,9 +10,9 @@ PROMPT = '''
     - per Bolla: Ogni bolla è un raggruppamento di persone con uno scopo
     - per Ruolo: Ogni ruolo ha una descrizione specifica
     - per Singola Persona: Sono kr specifici assegnati ad una singola persona.
-    Puoi aiutarmi a creare %d Key Results su questo obiettivo: '%s' e per %s 
+    Crearmi %d Key Results senza nessun tipo di commento o spiegazioni su questo obiettivo: '%s' e per %s 
     %s.
-    Dammi direttamente i key results senza nessun tipo di commento o spiegazioni. 
+    . 
     Separami ogni key result da un solo 'a capo'. Presentami il risultato in lingua: %s.
 '''
 class WizardToSuggestKR(models.TransientModel):
