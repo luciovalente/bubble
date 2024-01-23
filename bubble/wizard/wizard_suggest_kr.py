@@ -10,10 +10,17 @@ PROMPT = '''
     - per Bolla: Ogni bolla è un raggruppamento di persone con uno scopo
     - per Ruolo: Ogni ruolo ha una descrizione specifica
     - per Singola Persona: Sono kr specifici assegnati ad una singola persona.
-    Crearmi %d Key Results senza nessun tipo di commento o spiegazioni su questo obiettivo: '%s' e per %s 
+    Genera una lista di %d Key Results . Per favore, elenca solo i risultati chiave 
+    in formato testo puro, senza numeri, introduzioni, o commenti aggiuntivi.
+    I key results devono essere su questo obiettivo: '%s' e per %s 
     %s.
-    . 
-    Separami ogni key result da un solo 'a capo'. Presentami il risultato in lingua: %s.
+
+    Un esempio di risultato di Key Results dovrebbe essere:
+    Breve descrizione del Key Result 1
+    Breve descrizione del Key Result 2
+    Breve descrizione del Key Result 3
+    
+    Presentami il risultato in lingua: %s.
 '''
 class WizardToSuggestKR(models.TransientModel):
     _name = 'wizard.suggest.kr'
