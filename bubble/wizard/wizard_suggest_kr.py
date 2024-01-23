@@ -12,7 +12,8 @@ PROMPT = '''
     - per Singola Persona: Sono kr specifici assegnati ad una singola persona.
     Puoi aiutarmi a creare %d Key Results su questo obiettivo: '%s' e per %s 
     %s.
-    Dammi direttamente i key results separando ogni key result da un 'a capo' in lingua: %s.
+    Dammi direttamente i key results senza nessun tipo di presentazione del risultato o spiegazioni 
+    e separami ogni key result da un solo 'a capo'. Presentami il risultato in lingua: %s.
 '''
 class WizardToSuggestKR(models.TransientModel):
     _name = 'wizard.suggest.kr'
