@@ -7,11 +7,11 @@
                 <group>
                     <field name="objective_id" required="1"/>
                     <field name="type"/>
-                    <field name="bubble_id" attrs="{'invisible': [('type','!=','bubble')],'required': [('type','!=','bubble')]}" required="1"/>
+                    <field name="bubble_id" attrs="{'invisible': [('type','!=','bubble')],'required': [('type','=','bubble')]}" required="1"/>
                     <field name="bubble_purpose" attrs="{'invisible': [('type','!=','bubble')]}"/>
 
-                    <field name="user_id" attrs="{'invisible': [('type','!=','personal')]}"/>
-                    <field name="bubble_role_id" attrs="{'invisible': [('type','!=','role')],'required': [('type','!=','role')]}" />
+                    <field name="user_id" attrs="{'invisible': [('type','!=','personal')],'required': [('type','=','personal')]}"/>
+                    <field name="bubble_role_id" attrs="{'invisible': [('type','!=','role')],'required': [('type','=','role')]}" />
                     <field name="role_description" attrs="{'invisible': [('type','!=','role')]}"/>
 
                     <field name="number" />
