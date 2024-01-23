@@ -248,13 +248,15 @@ class Bubble(models.Model):
     
     def get_bubble_json(self):
         res = []
+        max_size = max([m.size for m in self])
+        #max size should be 2 and min_size should be 1
         for bubble in self:
             res.append(
                 {
                   'name':'Bolla %s' % bubble.name,
                   'color': bubble.bubble_type_id.css_color,
                   'content': bubble.child_bubble_ids.get_bubble_json(),
-                  'size':bubble.size
+                  'size':((bubble.size / max_size) * 2) if max_size else 0
                 }
             )
         return res
