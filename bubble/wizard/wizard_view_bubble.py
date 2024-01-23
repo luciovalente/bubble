@@ -9,7 +9,7 @@ class WizardBubbleView(models.TransientModel):
 
     def _compute_legenda(self):
         types = self.env['bubble.type'].sudo().search([(1,'=',1)])
-        result = "<div style='position: absolute; top: 10px; right: 10px; display: block;display:none;'>"
+        result = "<div>"
         for t in types:
             result += '<span style="with:10px;border:1px solid %s;background-color:%s" />%s</span>'%(t.css_color,t.css_color,t.name)
         result += "</div>"
