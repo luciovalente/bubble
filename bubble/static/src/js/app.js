@@ -78,10 +78,10 @@ function initializeBubbles(canvasElement, bubbleData) {
         function showBubbles(bubblesData, parentPosition) {
             clearScene(); 
 
-            var startPosition = parentPosition || new BABYLON.Vector3(-2, 0, 0);
+            var startPosition = new BABYLON.Vector3(-2, 0, 0);
             bubblesData.forEach(function (bubbleData, index) {
-                createBubble(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 2, 0, 0)), bubbleData.size, bubbleData.content,bubbleData.color);
-                createBubbleText(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 2, 0, 0)), true);
+                createBubble(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 3, bubbleData.size, 0)), bubbleData.size, bubbleData.content,bubbleData.color);
+                createBubbleText(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 3, bubbleData.size, 0)), true);
 
             });
         }
