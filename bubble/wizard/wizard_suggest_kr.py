@@ -77,7 +77,6 @@ class WizardToSuggestKR(models.TransientModel):
         json_response = response.json()
         
         okr_response = json_response['choices'][0]['message']['content']
-        raise ValidationError(okr_response)
         okrs = okr_response.strip().split('\n')
         
         # Filtra eventuali righe vuote o non valide
