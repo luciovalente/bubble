@@ -18,8 +18,8 @@ class WizardToSuggestKR(models.TransientModel):
 
     objective_id = fields.Many2one('objective', string='Objective')
     bubble_id = fields.Many2one('bubble', string='Bubble', required=True)
-    bubble_purpose = fields.Html('Bubble Purpose',compute="_compute_purpose")
-    role_description = fields.Text('Role Description',compute="_compute_description")
+    bubble_purpose = fields.Html('Bubble Purpose',related="bubble_id.purpose")
+    role_description = fields.Text('Role Description',related="bubble_role_id.description")
     user_id = fields.Many2one('res.users', string='User')
     bubble_role_id = fields.Many2one('bubble.role', string='Role')
     description = fields.Text('Description')
