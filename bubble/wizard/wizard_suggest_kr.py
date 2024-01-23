@@ -6,21 +6,17 @@ import json
 import re
 
 PROMPT = '''
-    Devo creare degli OKR per la mia azienza. Gli OKR sono legati a tre tipologie:
-    - per Bolla: Ogni bolla è un raggruppamento di persone con uno scopo
-    - per Ruolo: Ogni ruolo ha una descrizione specifica
-    - per Singola Persona: Sono kr specifici assegnati ad una singola persona.
-    Genera una lista di %d Key Results . Per favore, elenca solo i risultati chiave 
+    Devo creare degli OKR per la mia azienza. 
+    Genera una lista di %d Key Results . Elenca solo i key results
     in formato testo puro, senza numeri, introduzioni, o commenti aggiuntivi.
     I key results devono essere su questo obiettivo: '%s' e per %s 
     %s.
-
-    La risposta deve essere un elenco Key Results quindi in formato testo puro, 
-    senza numeri, introduzioni, o commenti aggiuntivi. Una cosa simili:
+    La risposta deve essere un elenco Key Results in formato testo puro, 
+    senza numeri, introduzioni, o commenti aggiuntivi. Questè un esempio di 
+    risposta ammessa:
     Breve descrizione del Key Result 1
     Breve descrizione del Key Result 2
     Breve descrizione del Key Result 3
-    
     Presentami il risultato in lingua: %s.
 '''
 class WizardToSuggestKR(models.TransientModel):
