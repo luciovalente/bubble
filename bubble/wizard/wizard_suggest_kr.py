@@ -55,7 +55,7 @@ class WizardToSuggestKR(models.TransientModel):
         description = self.remove_html_tags(self.description)
 
         prompt = PROMPT %(self.number,self.objective_id.name,prompt_description,description,self.language.name)
-        
+        raise ValidationError(prompt)
         data = {
             "model": "gpt-3.5-turbo",
             "messages": [
@@ -69,7 +69,7 @@ class WizardToSuggestKR(models.TransientModel):
         json_response = response.json()
         okr_response = json_response['choices'][0]['message']['content']
         okrs = okr_response.strip().split('\n')
-        raise ValidationError(prompt)
+        
         # Filtra eventuali righe vuote o non valide
         okrs = [okr for okr in okrs if okr and okr.strip()]
         return okrs
