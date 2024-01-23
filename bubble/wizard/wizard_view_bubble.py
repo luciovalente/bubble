@@ -13,3 +13,5 @@ class WizardBubbleView(models.TransientModel):
         for t in types:
             result += '<span style="with:10px;border:1px solid %s;background-color:%s" />%s</span>'%(t.css_color,t.css_color,t.name)
         result += "</div>"
+        for wizard in self:
+            wizard.legenda = result
