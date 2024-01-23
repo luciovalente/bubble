@@ -4,7 +4,6 @@
         <field name="model">wizard.suggest.kr</field>
         <field name="arch" type="xml">
             <form>
-                <sheet>
                     <group>
                         <field name="objective_id" />
                         <field name="bubble_id" />
