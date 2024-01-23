@@ -12,7 +12,7 @@ PROMPT = '''
     - per Singola Persona: Sono kr specifici assegnati ad una singola persona.
     Puoi aiutarmi a creare %d Key Results su questo obiettivo: '%s' e per %s 
     %s.
-    Dammi direttamente i key results separando ogni key result da un 'a capo' in %s.
+    Dammi direttamente i key results separando ogni key result da un 'a capo' in lingua: %s.
 '''
 class WizardToSuggestKR(models.TransientModel):
     _name = 'wizard.suggest.kr'
@@ -54,7 +54,7 @@ class WizardToSuggestKR(models.TransientModel):
             prompt_description += ''' è un kr personale quindi specifico per una singola persona %s '''
 
         prompt = PROMPT %(self.number,self.objective_id.name,prompt_description,self.description,self.language.name)
-        raise ValidationError(prompt)
+        
         data = {
             "model": "gpt-3.5-turbo",
             "messages": [
@@ -66,6 +66,7 @@ class WizardToSuggestKR(models.TransientModel):
         response = requests.post(url, headers=headers, json=data)
         response.raise_for_status()  # Assicurati che la richiesta sia andata a buon fine
         json_response = response.json()
+        raise ValidationError(json_response)
         okr_response = json_response['choices'][0]['message']['content']
         okrs = okr_response.strip().split('\n')
         
