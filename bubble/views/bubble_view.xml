@@ -43,13 +43,17 @@
                                     <field class="oe_inline" name="linked_object_name" />s
                                 </span>
                             </button>
-
+                            <button class="oe_stat_button" type="object" name="action_open_objective" attrs="{'invisible': [('objective_count', '=', 0)]}" icon="fa-bullseye">
+                                <field string="Objective" name="objective_count" widget="statinfo"/>
+                            </button>
+                            <button class="oe_stat_button" type="object" name="action_open_okr" attrs="{'invisible': [('okr_count', '=', 0)]}" icon="fa-check-circle">
+                                <field string="Key Results" name="okr_count" widget="statinfo"/>
+                            </button>
                             <button class="oe_stat_button" type="object" name="action_open_okr_evaluation" attrs="{'invisible': [('okr_evaluation_count', '=', 0)]}" icon="fa-tasks">
                                 <field string="Evaluations" name="okr_evaluation_count" widget="statinfo"/>
                             </button>
-                            <button class="oe_stat_button" type="object" name="action_open_okr" attrs="{'invisible': [('okr_count', '=', 0)]}" icon="fa-check-circle">
-                                <field string="OKRs" name="okr_count" widget="statinfo"/>
-                            </button>
+                            
+                            
                         </div>
                         <group>
                             <field name="name" required="1"/>

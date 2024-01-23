@@ -48,7 +48,15 @@ class Bubble(models.Model):
     okr_evaluation_ids = fields.One2many('okr.evaluation','bubble_id')
     okr_evaluation_count = fields.Integer(string='OKR Evaluation Count', compute='_compute_okr_evaluation_count')
     okr_ids = fields.One2many('okr','bubble_id')
+    objective_ids = fields.One2many('objective','bubble_id')
+    objective_count = fields.Integer(string='Objective Count', compute='_compute_objective_count')
     okr_count = fields.Integer(string='OKR Count', compute='_compute_okr_count')
+
+
+    @api.depends('objective_ids')
+    def _compute_objective_count(self):
+        for record in self:
+            record.objective_count = len(record.objective_ids)
 
     @api.depends('okr_ids')
     def _compute_okr_count(self):
@@ -237,4 +245,15 @@ class Bubble(models.Model):
                 }
             )
         return res
+    
+    def action_open_objective(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Objective',
+            'res_model': 'objective',
+            'view_type': 'form',
+            'view_mode': 'tree,form',
+            'domain': [('id', 'in', self.objective_ids.ids)],
+        }
 
