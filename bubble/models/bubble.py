@@ -213,6 +213,19 @@ class Bubble(models.Model):
             'target': 'new',
         }
     
+    def action_wizard_suggest(self):
+        self.ensure_one()
+        wizard = self.env['wizard.suggest.kr'].create({'bubble_id': self.id})
+        action = {
+            'type': 'ir.actions.act_window',
+            'name': 'Suggest KR',
+            'res_model': 'wizard.suggest.kr',
+            'view_mode': 'form',
+            'res_id': wizard.id,
+            'target': 'new',
+        }
+        return action 
+    
     def get_bubble_json(self):
         res = []
         for bubble in self:

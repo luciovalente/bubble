@@ -51,16 +51,7 @@
             <field name="binding_view_types">form</field>
             <field name="groups_id" eval="[(4, ref('group_bubble_manager'))]"/>
             <field name="code">
-        wizard = env['wizard.suggest.kr'].create({'bubble_id': record.id})
-        action = {
-            'type': 'ir.actions.act_window',
-            'name': 'Suggest KR',
-            'res_model': 'wizard.suggest.kr',
-            'view_mode': 'form',
-            'res_id': wizard.id,
-            'target': 'new',
-        }
-        return action
+        action = record.action_wizard_suggest()
             </field>
         </record>
 
