@@ -38,7 +38,7 @@ class Bubble(models.Model):
     with_okr_valuation = fields.Boolean(string='With OKR Valuation', default=False)
 
     company_id = fields.Many2one('res.company', string='Company')
-    owner_id = fields.Many2one('res.users', string='Owner')
+    owner_id = fields.Many2one('res.users', string='Leader')
     member_ids = fields.Many2many('res.users', string='Members')
     user_roles_ids = fields.One2many('role.bubble', 'bubble_id', string='User Roles')
     with_automation = fields.Boolean(groups='bubble.group_bubble_administrator')
