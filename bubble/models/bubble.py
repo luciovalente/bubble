@@ -248,9 +248,9 @@ class Bubble(models.Model):
     
     def get_diameter(self):
         if self.size > 200:
-            return 5
+            return 3
         if self.size > 100:
-            return 4
+            return 3
         if self.size > 40:
             return 3
         if self.size > 15:
