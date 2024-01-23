@@ -41,5 +41,28 @@
                     r.okr_id._run_action_code(r)
             </field>
         </record>
+
+
+        <record id="action_bubble_suggest_kr" model="ir.actions.server">
+            <field name="name">Suggest Key Results</field>
+            <field name="model_id" ref="model_bubble"/>
+            <field name="state">code</field>
+            <field name="binding_model_id" ref="model_bubble"/>
+            <field name="binding_view_types">form</field>
+            <field name="groups_id" eval="[(4, ref('group_bubble_manager'))]"/>
+            <field name="code">
+                wizard = self.env['wizard.suggest.kr'].create({
+                    'bubble_id': self.id
+                })
+                action = {
+                    'type': 'ir.actions.act_window',
+                    'name': 'Suggest KR',
+                    'res_model': 'wizard.suggest.kr',
+                    'view_mode': 'form',
+                    'res_id': wizard.id,
+                    'target': 'new',
+                }
+            </field>
+        </record>
     </data>
 </odoo>

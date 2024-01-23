@@ -20,6 +20,7 @@
         'views/menu.xml',
         'wizard/wizard.xml',
         'wizard/wizard_view_bubble.xml',
+        'wizard/wizard_suggest_kr.xml',
         'data/data.xml'
        # 'views/asset.xml'
     ],

@@ -1,0 +1,40 @@
+<odoo>
+    <record id="view_wizard_suggest_kr_form" model="ir.ui.view">
+        <field name="name">wizard.suggest.kr.form</field>
+        <field name="model">wizard.suggest.kr</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="objective_id" />
+                        <field name="bubble_id" />
+                        <field name="bubble_purpose" />
+                        <field name="bubble_role_id" />
+                        <field name="role_description" />
+                        <field name="bubble_role_id" />
+                        <field name="number" />
+
+                    </group>
+                    <field name="description" />
+                    <notebook>
+                        <page string="Suggest KR" attrs="{'invisible':[('suggest_kr_line_ids','=',False)]}">
+                            <field name="suggest_kr_line_ids" create="0">
+                                <tree editable="bottom">
+                                    <field name="bubble_id" />
+                                    <field name="bubble_role_id" />
+                                    <field name="user_id" />
+                                    <field name="okr_id" invisible="1" />
+                                    <button name="action_confirm_kr" type="object" icon="fa-bar" attrs="{'invisible':[('okr_id','!=',False)]}"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button string="Suggest" class="oe_highlight" type="object" name="action_suggest_kr"/>
+                        <button string="Cancel" special="cancel"/>
+                    </footer>
+
+            </form>
+        </field>
+    </record>
+</odoo>

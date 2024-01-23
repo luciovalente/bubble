@@ -10,6 +10,7 @@
                     <field name="objective_code" required="1"/>
                     <field name="name" required="1"/>
                     <field name="company_id"/>
+                    <field name="bubble_id"/>
                 </tree>
             </field>
         </record>
@@ -24,6 +25,7 @@
                             <field name="company_id"/>
                             <field name="objective_code" required="1"/>
                             <field name="name" required="1"/>
+                            <field name="bubble_id"/>
                         </group>
                     </sheet>
                 </form>

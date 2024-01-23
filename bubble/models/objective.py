@@ -7,3 +7,4 @@ class Objective(models.Model):
     company_id = fields.Many2one('res.company', string='Company')
     objective_code = fields.Char('Code')
     name = fields.Char(string='Name')
+    bubble_id = fields.Many2one('bubble', string='Bubble')
