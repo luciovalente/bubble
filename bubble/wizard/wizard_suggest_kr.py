@@ -15,7 +15,8 @@ PROMPT = '''
     I key results devono essere su questo obiettivo: '%s' e per %s 
     %s.
 
-    Un esempio di risultato di Key Results dovrebbe essere:
+    La risposta deve essere un elenco Key Results quindi in formato testo puro, 
+    senza numeri, introduzioni, o commenti aggiuntivi. Una cosa simili:
     Breve descrizione del Key Result 1
     Breve descrizione del Key Result 2
     Breve descrizione del Key Result 3
