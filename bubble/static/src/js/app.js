@@ -23,7 +23,7 @@ function initializeBubbles(canvasElement, bubbleData) {
 
             var keys = []; 
             keys.push({ frame: 0, value: -5 }); // Posizione iniziale della telecamera
-            keys.push({ frame: 100, value: -8 }); // Telecamera si allontana
+            keys.push({ frame: 100, value: -6 }); // Telecamera si allontana
             animation.setKeys(keys);
 
             // Applicazione dell'animazione alla telecamera
