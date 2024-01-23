@@ -51,7 +51,19 @@ class Bubble(models.Model):
     objective_ids = fields.One2many('objective','bubble_id')
     objective_count = fields.Integer(string='Objective Count', compute='_compute_objective_count')
     okr_count = fields.Integer(string='OKR Count', compute='_compute_okr_count')
+    size = fields.Float(compute="_compute_size")
+    member_count = fields.Integer(compute="_compute_member_count")
 
+    @api.depends('member_ids')
+    def _compute_member_count(self):
+        for bubble in self:
+            bubble.member_count = len(bubble.member_ids)
+
+    @api.depends('child_bubble_ids','member_ids')
+    def _compute_size(self):
+        for bubble in self:
+            bubble.size = bubble.member_count + sum([child.size for child in bubble.child_bubble_ids ])
+        
 
     @api.depends('objective_ids')
     def _compute_objective_count(self):
@@ -241,7 +253,8 @@ class Bubble(models.Model):
                 {
                   'name':'Bolla %s' % bubble.name,
                   'color': bubble.bubble_type_id.css_color,
-                  'content': bubble.child_bubble_ids.get_bubble_json()
+                  'content': bubble.child_bubble_ids.get_bubble_json(),
+                  'size':bubble.size
                 }
             )
         return res

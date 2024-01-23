@@ -80,7 +80,7 @@ function initializeBubbles(canvasElement, bubbleData) {
 
             var startPosition = parentPosition || new BABYLON.Vector3(-2, 0, 0);
             bubblesData.forEach(function (bubbleData, index) {
-                createBubble(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 2, 0, 0)), 2, bubbleData.content,bubbleData.color);
+                createBubble(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 2, 0, 0)), bubbleData.size, bubbleData.content,bubbleData.color);
                 createBubbleText(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 2, 0, 0)), true);
 
             });
