@@ -34,7 +34,7 @@ class WizardToSuggestKR(models.TransientModel):
         ('role','Role')
     ], string='Type', default='personal')
     
-    def remove_html_tags(text):
+    def remove_html_tags(self,text):
         clean = re.compile('<.*?>')
         return re.sub(clean, '', text)
 

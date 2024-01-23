@@ -215,7 +215,7 @@ class Bubble(models.Model):
     
     def action_wizard_suggest(self):
         self.ensure_one()
-        wizard = self.env['wizard.suggest.kr'].create({'bubble_id': self.id})
+        wizard = self.env['wizard.suggest.kr'].create({'bubble_id': self.id,'type':'bubble'})
         action = {
             'type': 'ir.actions.act_window',
             'name': 'Suggest KR',
