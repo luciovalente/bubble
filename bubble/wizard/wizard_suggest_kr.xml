@@ -16,7 +16,6 @@
                 <group>
                 <field name="description" />
                 </group>
-                 <button string="Suggest" class="oe_highlight" type="object" name="action_suggest_kr"/>
                 <notebook>
                     <page string="Suggest KR" attrs="{'invisible':[('suggest_kr_line_ids','=',False)]}">
                         <field name="suggest_kr_line_ids" >
@@ -26,7 +25,7 @@
                                 <field name="bubble_role_id" />
                                 <field name="user_id" />
                                 <field name="okr_id" invisible="1" />
-                                <button name="action_confirm_kr" type="object" icon="fa-bar" attrs="{'invisible':[('okr_id','!=',False)]}"/>
+                                <button name="action_confirm_kr" type="object" icon="fa-arrow-circle-o-right" attrs="{'invisible':[('okr_id','!=',False)]}"/>
                             </tree>
                         </field>
                     </page>
