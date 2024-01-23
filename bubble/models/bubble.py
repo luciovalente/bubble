@@ -52,7 +52,7 @@ class Bubble(models.Model):
     objective_count = fields.Integer(string='Objective Count', compute='_compute_objective_count')
     okr_count = fields.Integer(string='OKR Count', compute='_compute_okr_count')
     size = fields.Float(compute="_compute_size")
-    member_count = fields.Integer(compute="_compute_member_count",store=True)
+    member_count = fields.Integer(compute="_compute_member_count",store=True,readonly=False)
 
     @api.depends('member_ids')
     def _compute_member_count(self):
