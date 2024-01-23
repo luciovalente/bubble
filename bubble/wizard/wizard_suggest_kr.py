@@ -94,8 +94,13 @@ class WizardToSuggestKR(models.TransientModel):
                 'suggest_kr_id':self.id
             })
         return {
-                "type": "ir.actions.do_nothing",
-            }
+            'type': 'ir.actions.act_window',
+            'res_model': self._name,
+            'res_id': self.id,
+            'view_mode': 'form',
+            'target': 'new',
+            'flags': {'form': {'action_buttons': True}},
+        }
        
 class WizardToSuggestKRLine(models.TransientModel):
     _name = 'wizard.suggest.kr.line'
