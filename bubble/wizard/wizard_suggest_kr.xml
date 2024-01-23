@@ -16,6 +16,7 @@
                 <group>
                 <field name="description" />
                 </group>
+                 <button string="Suggest" class="oe_highlight" type="object" name="action_suggest_kr"/>
                 <notebook>
                     <page string="Suggest KR" attrs="{'invisible':[('suggest_kr_line_ids','=',False)]}">
                         <field name="suggest_kr_line_ids" >
