@@ -125,5 +125,13 @@ class WizardToSuggestKRLine(models.TransientModel):
                 'type':self.suggest_kr_id.type
             })
             okr.okr_id = okr_id.id
+            return {
+                'type': 'ir.actions.act_window',
+                'res_model': self.suggest_kr_id._name,
+                'res_id': self.suggest_kr_id.id,
+                'view_mode': 'form',
+                'target': 'new',
+                'flags': {'form': {'action_buttons': True}},
+            }
 
     
