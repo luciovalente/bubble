@@ -51,7 +51,7 @@
                             <button class="oe_stat_button" type="object" name="action_open_okr_evaluation" attrs="{'invisible': [('okr_evaluation_count', '=', 0)]}" icon="fa-tasks">
                                 <field string="Evaluations" name="okr_evaluation_count" widget="statinfo"/>
                             </button>
-                            <button class="oe_stat_button" type="object" string ="Bubble 3D" name="action_view_bubble" icon="fa-vr-cardboard">
+                            <button class="oe_stat_button" type="object" string ="Bubble 3D" name="action_view_bubble" icon="fa-compass">
                                 
                             </button>
                             
