@@ -16,6 +16,8 @@ function initializeBubbles(canvasElement, bubbleData) {
         camera.angularSensibilityY = 1000; // Valore più alto per ridurre la sensibilità sull'asse Y
         camera.speed = 1;
         // Keyframes per l'animazione
+        var animation = new BABYLON.Animation("cameraAnimation", "position.z", 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
+
         var keys = []; 
         keys.push({ frame: 0, value: -5 }); // Posizione iniziale della telecamera
         keys.push({ frame: 100, value: -8 }); // Telecamera si allontana
