@@ -5,12 +5,11 @@
         <field name="arch" type="xml">
             <form>
                     <group>
-                        <field name="objective_id" />
+                        <field name="objective_id" required="1"/>
                         <field name="bubble_id" />
                         <field name="bubble_purpose" />
                         <field name="bubble_role_id" />
                         <field name="role_description" />
-                        <field name="bubble_role_id" />
                         <field name="number" />
 
                     </group>

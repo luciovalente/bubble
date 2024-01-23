@@ -17,14 +17,14 @@ class WizardToSuggestKR(models.TransientModel):
     _description = 'Wizard to Suggest OKR'
 
     objective_id = fields.Many2one('objective', string='Objective')
-    bubble_id = fields.Many2one('bubble', string='Bubble', required=True)
+    bubble_id = fields.Many2one('bubble', string='Bubble')
     bubble_purpose = fields.Html('Bubble Purpose',related="bubble_id.purpose")
     role_description = fields.Text('Role Description',related="bubble_role_id.description")
     user_id = fields.Many2one('res.users', string='User')
     bubble_role_id = fields.Many2one('bubble.role', string='Role')
     description = fields.Text('Description')
     suggest_kr_line_ids = fields.One2many('wizard.suggest.kr.line','suggest_kr_id')
-    number = fields.Integer('Number of KR',default=3)
+    number = fields.Integer('Number of Key Results',default=3)
     language = fields.Many2one('res.lang')
     
 
@@ -93,7 +93,8 @@ class WizardToSuggestKRLine(models.TransientModel):
                 'status':'active',
                 'bubble_id':self.bubble_id.id,
                 'user_id':self.user_id.id,
-                'bubble_role_id':self.bubble_role_id.id
+                'bubble_role_id':self.bubble_role_id.id,
+                'type':'bubble' if self.bubble_id else ('role' if self.bubble_role_id else 'personal')
             })
             okr.okr_id = okr_id.id
 

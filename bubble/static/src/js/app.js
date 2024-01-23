@@ -15,7 +15,17 @@ function initializeBubbles(canvasElement, bubbleData) {
         camera.angularSensibilityX = 1000; // Valore più alto per ridurre la sensibilità sull'asse X
         camera.angularSensibilityY = 1000; // Valore più alto per ridurre la sensibilità sull'asse Y
         camera.speed = 1;
+        // Keyframes per l'animazione
+        var keys = []; 
+        keys.push({ frame: 0, value: -5 }); // Posizione iniziale della telecamera
+        keys.push({ frame: 100, value: -8 }); // Telecamera si allontana
+        animation.setKeys(keys);
 
+        // Applicazione dell'animazione alla telecamera
+        camera.animations.push(animation);
+
+        // Avvia l'animazione
+        scene.beginAnimation(camera, 0, 100, false);
         var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0), scene);
 
         // Funzione per creare il testo sotto la bolla
