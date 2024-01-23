@@ -34,7 +34,7 @@ function initializeBubbles(canvasElement, bubbleData) {
         }
         // Funzione per creare il testo sotto la bolla
         function createBubbleText(name, position, visible) {
-            var dynamicTexture = new BABYLON.DynamicTexture("DynamicTexture", 512, scene, true);
+            var dynamicTexture = new BABYLON.DynamicTexture("DynamicTexture", 1028, scene, true);
             dynamicTexture.hasAlpha = true; // Impostare la trasparenza della texture
             dynamicTexture.drawText(name, null, null, "bold 60px Arial", "black", "transparent", true);
 
