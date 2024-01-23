@@ -246,17 +246,26 @@ class Bubble(models.Model):
         }
         return action 
     
+    def get_diameter(self):
+        if self.size > 100:
+            return 5
+        if self.size > 40:
+            return 4
+        if self.size > 20:
+            return 3
+        if self.size > 10:
+            return 2
+        return 1
+        
     def get_bubble_json(self):
         res = []
-        max_size = max([m.size for m in self])
-        #max size should be 2 and min_size should be 1
         for bubble in self:
             res.append(
                 {
                   'name':'Bolla %s' % bubble.name,
                   'color': bubble.bubble_type_id.css_color,
                   'content': bubble.child_bubble_ids.get_bubble_json(),
-                  'size':((bubble.size / max_size) * 2) if max_size else 0
+                  'size': bubble.get_diameter()
                 }
             )
         return res
