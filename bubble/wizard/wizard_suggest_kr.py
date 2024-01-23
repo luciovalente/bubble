@@ -52,6 +52,7 @@ class WizardToSuggestKR(models.TransientModel):
             prompt_description += ''' questo ruolo %s che ha questa descrizione %s '''%(self.bubble_role_id.name, self.description)
         if self.user_id:
             prompt_description += ''' è un kr personale quindi specifico per una singola persona %s '''
+        raise ValidationError(self.description)
         description = self.remove_html_tags(self.description)
 
         prompt = PROMPT %(self.number,self.objective_id.name,prompt_description,description,self.language.name)
