@@ -27,6 +27,7 @@ class Okr(models.Model):
         ('bubble', 'Bubble'),
         ('role','Role')
     ], string='Type', default='personal')
+    company_id = fields.Many2one('res.company', string='Company')
     description = fields.Text(string='Description')
     bubble_id = fields.Many2one('bubble', string='Bubble')
     user_id = fields.Many2one('res.users', string='User')
