@@ -64,6 +64,7 @@ s
                         </div>
                         <group>
                             <field name="name" required="1"/>
+                            <field name="image" />
                             <field name="purpose"/>
                             <field name="bubble_type_id" required="1"/>
                             <field name="parent_bubble_id" />

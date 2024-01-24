@@ -66,7 +66,8 @@ function initializeBubbles(canvasElement, bubbleData) {
                 if (index<=4) {
                     var angle = Math.PI * 2 * index / content.length; // Angolo per distribuire le bolle internamente
                     var innerPosition = position.add(new BABYLON.Vector3(Math.cos(angle) * size / 4, Math.sin(angle) * size / 4, 0));
-                    createBubble(innerBubble.name, innerPosition, innerBubbleSize, innerBubble.content,innerBubble.color,0.8);
+                    var image = innerBubble.image ? innerBubble.image : false;
+                    createBubble(innerBubble.name, innerPosition, innerBubbleSize, innerBubble.content,innerBubble.color,0.8,image);
                 }
             });
         }
@@ -80,7 +81,8 @@ function initializeBubbles(canvasElement, bubbleData) {
 
             var startPosition = new BABYLON.Vector3(-2, 0, 0);
             bubblesData.forEach(function (bubbleData, index) {
-                createBubble(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 3, 0, 0)), bubbleData.size, bubbleData.content,bubbleData.color);
+                var image = bubbleData.image ? bubbleData.image : false;
+                createBubble(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 3, 0, 0)), bubbleData.size, bubbleData.content,bubbleData.color,0,image);
                 createBubbleText(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 3, 0, 0)), true);
 
             });
