@@ -10,7 +10,7 @@
                     <field name="objective_code" required="1"/>
                     <field name="name" required="1"/>
                     <field name="company_id"/>
-                    <field name="bubble_id"/>
+                    <field name="bubble_id" required="1"/>
                 </tree>
             </field>
         </record>
@@ -25,8 +25,19 @@
                             <field name="company_id"/>
                             <field name="objective_code" required="1"/>
                             <field name="name" required="1"/>
-                            <field name="bubble_id"/>
+                            <field name="bubble_id" required="1"/>
                         </group>
+                        <notebook>
+                            <page string="Child Key Results">
+                                <field name="child_okr_ids" >
+                                    <tree>
+                                        <field name="okr_code" />
+                                        <field name="name" />
+                                        <field name="type" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>
