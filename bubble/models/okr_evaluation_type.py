@@ -117,7 +117,7 @@ class OkrEvaluationType(models.Model):
         }
         
         prompt = PROMPT %(self.description,self.get_library_and_variable(),self.get_model_and_fields())
-        raise ValidationError(PROMPT)
+        raise ValidationError(prompt)
         data = {
             "model": "gpt-3.5-turbo",
             "messages": [
