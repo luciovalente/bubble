@@ -37,12 +37,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             var dynamicTexture = new BABYLON.DynamicTexture("DynamicTexture", 1028, scene, true);
             dynamicTexture.hasAlpha = true; // Impostare la trasparenza della texture
             
-            if (image) {
-                var base64ImageString = "data:image/png;base64,"+image;
-                var texture = new BABYLON.Texture(base64ImageString, scene);
-                dynamicTexture = texture;
-
-            }
+            
             
             dynamicTexture.drawText(name, null, null, "bold 80px Arial", "black", "transparent", true);
 
@@ -55,6 +50,18 @@ function initializeBubbles(canvasElement, bubbleData) {
             plane.material.specularColor = new BABYLON.Color3(0, 0, 0);
             plane.material.emissiveColor = new BABYLON.Color3(1, 1, 1);
             plane.material.backFaceCulling = false;
+
+
+            if (image) {
+                var base64ImageString = "data:image/png;base64,"+image;
+                var texture = new BABYLON.Texture(base64ImageString, scene);
+                dynamicTexture = texture;
+                var plane = BABYLON.Mesh.CreatePlane("Image", 2, scene);
+                plane.position = new BABYLON.Vector3(position.x, position.y - 200, position.z); // Posizionare il piano del testo sotto la bolla
+                plane.material = new BABYLON.StandardMaterial("TextPlaneMaterial", scene);
+                plane.material.diffuseTexture = dynamicTexture;
+
+            }
             if (!visible) {
                 plane.visibility = 0; // Rendi il testo invisibile se non è nel livello corrente
             }
