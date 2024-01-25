@@ -24,20 +24,22 @@ PROMPT = '''
     
     %s
     
-     La variabile evaluation_id rappresenta il modello okr.evaluation che rappresenta la valutazione di un singolo candidato. 
-     Non è un id è proprio l'oggetto quindi non devi usare il browse.
+     
      Questi sono i campi e le relazioni che puoi usare nel tuo codice:
 
     %s
 
-    Alcune considerazioni. Quando parliamo di percentuali facciamo riferimento sempre a valori tra 0 e 1.
-    Quando facciamo riferimento a tipo di bolle usa sempre il bubble_type_id.name con il contains.
-    Non devi usare classi, import ne metodi. Scrivi direttamente il codice del calcolo .
+    La variabile evaluation_id rappresenta il modello okr.evaluation che rappresenta la valutazione di un singolo candidato. 
+    Non è un id è proprio l'oggetto quindi non devi usare il browse.
+    Se ci sono riferimenti a percentuali fai riferimento sempre a valori tra 0 e 1.
+    Se ci sono riferimenti a tipo di bolle usa sempre il bubble_type_id.name con il contains.
+    I risultati dei singoli okr dell'evalutaion li devi prendere da okr.result.
+    
     Alla fine del codice fai scrivere tramite write su evaluation_id il risultato 
     nel campo result (float) di evaluation_id e se c'è un risultato testuale scrivilo 
     nel campo result_char di evaluation_id.
-    Non aggiungere altre frasi oltre al codice. Devo importare il risultato direttamente in un campo
-    code pertanto mi occorre solo il codice python.
+    Non devi usare classi, import ne metodi. Scrivi direttamente il codice del calcolo .
+    Non aggiungere altre frasi oltre al codice.
 '''
 
 
