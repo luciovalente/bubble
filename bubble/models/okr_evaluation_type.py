@@ -30,9 +30,10 @@ PROMPT = '''
 
     %s
 
-    Nel codice python fai scrivere tramite write su evaluation_id il risultato 
+    Non devi usare classi, import ne metodi. Scrivi direttamente il codice del calcolo .
+    Alla fine del codice fai scrivere tramite write su evaluation_id il risultato 
     nel campo result (float) di evaluation_id e se c'è un risultato testuale scrivilo 
-    nel campo result_char di evaluation_id
+    nel campo result_char di evaluation_id.
 '''
 
 
