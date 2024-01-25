@@ -15,18 +15,18 @@ import requests
 from pytz import timezone
 
 PROMPT = '''
-    Devo creare degli il modello di valuazione della mia azieda. 
-    Genera codice python Odoo per questa modello di valutazione . 
+    Devo creare il modello di valuazione dei dipendenti della mia azieda. 
+    Genera il codice python Odoo per questo modello di valutazione . 
     Rispondi  solo con il codice python senza commenti o testo.
     Il codice deve implementare questa descrizione (inclusa in << e >>):
     << %s >>
-    Le indicazioni del codice sono queste. Puoi usare solo queste librerie e queste variabili:
+    Puoi usare solo queste librerie e queste variabili:
     
     %s
     
-    La variabile evaluation_id rappresenta il modello okr.evaluation che rappresenta la valutazione
-    di un singolo candidato.
-    Questi sono i campi e le relazioni che puoi usare nel tuo codice:
+     La variabile evaluation_id rappresenta il modello okr.evaluation che rappresenta la valutazione di un singolo candidato. 
+     Non è un id è proprio l'oggetto quindi non devi usare il browse.
+     Questi sono i campi e le relazioni che puoi usare nel tuo codice:
 
     %s
 
@@ -121,7 +121,6 @@ class OkrEvaluationType(models.Model):
         }
         
         prompt = PROMPT %(self.description,self.get_library_and_variable(),self.get_model_and_fields())
-        raise ValidationError(prompt)
         data = {
             "model": "gpt-3.5-turbo",
             "messages": [
@@ -135,8 +134,5 @@ class OkrEvaluationType(models.Model):
         json_response = response.json()
         
         result_response = json_response['choices'][0]['message']['content']
-        raise ValidationError(PROMPT)
+        self.code = result_response
         
-        # Filtra eventuali righe vuote o non valide
-        okrs = [okr for okr in okrs if okr and okr.strip()]
-        return okrs
