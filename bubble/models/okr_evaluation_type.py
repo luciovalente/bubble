@@ -34,6 +34,8 @@ PROMPT = '''
     Alla fine del codice fai scrivere tramite write su evaluation_id il risultato 
     nel campo result (float) di evaluation_id e se c'è un risultato testuale scrivilo 
     nel campo result_char di evaluation_id.
+    Non aggiungere altre frasi oltre al codice. Devo importare il risultato direttamente in un campo
+    code pertanto mi occorre solo il codice python.
 '''
 
 
