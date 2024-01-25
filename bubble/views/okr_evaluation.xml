@@ -19,6 +19,10 @@
                             <field name="evaluation_type_id" readonly="1"/>
                             <field name="date_from" readonly="1"/>
                             <field name="date_to" readonly="1" />
+
+                            <field name="date_from" readonly="1"/>
+                            <field name="date_to" readonly="1" />
+
                         </group>
                         <notebook>
 
@@ -38,6 +42,14 @@
                             <page string="Feedback">
                                 <field name="notes"/>
                             </page>
+                            <page string="Final Evaluation">
+                                <group>
+                                    <field name="result" widget="percentage"/>
+                                    <field name="result_char" />
+                                </group>
+                            </page>
+
+
                         </notebook>
                     </sheet>
                     <div class="oe_chatter">

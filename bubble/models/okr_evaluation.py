@@ -18,7 +18,7 @@ class OkrEvaluation(models.Model):
     date_from = fields.Date(string='Date From')
     date_to = fields.Date(string='Date To')
     bubble_id = fields.Many2one('bubble')
-    result = fields.Float(string='Result')
+    result = fields.Float(string='Result',tracking=True)
     result_char = fields.Char(string="Result Char")
     
     @api.depends('user_id','date_from','date_to')
