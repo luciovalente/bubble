@@ -33,10 +33,20 @@ function initializeBubbles(canvasElement, bubbleData) {
             scene.beginAnimation(camera, 0, 100, false);
         }
         // Funzione per creare il testo sotto la bolla
-        function createBubbleText(name, position, visible) {
+        function createBubbleText(name, position, visible, image=false) {
             var dynamicTexture = new BABYLON.DynamicTexture("DynamicTexture", 1028, scene, true);
             dynamicTexture.hasAlpha = true; // Impostare la trasparenza della texture
+            
+            if (image) {
+                var base64ImageString = "data:image/png;base64,"+image;
+                var texture = new BABYLON.Texture(base64ImageString, scene);
+                dynamicTexture = texture;
+
+            }
+            
             dynamicTexture.drawText(name, null, null, "bold 80px Arial", "black", "transparent", true);
+
+            
 
             var plane = BABYLON.Mesh.CreatePlane("TextPlane", 2, scene);
             plane.position = new BABYLON.Vector3(position.x, position.y - 2.5, position.z); // Posizionare il piano del testo sotto la bolla
@@ -51,7 +61,7 @@ function initializeBubbles(canvasElement, bubbleData) {
         }
 
         // Funzione per creare una bolla
-        function createBubble(name, position, size, content,color,alpha=0,image=false) {
+        function createBubble(name, position, size, content,color,alpha=0, image=false) {
             var bubble = BABYLON.MeshBuilder.CreateSphere(name, {diameter: size}, scene);
             bubble.position = position;
             bubble.material = new BABYLON.StandardMaterial(name + "Material", scene);
@@ -59,12 +69,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             if (alpha == 0) {
                 bubble.material.alpha = 0.6; // Rendere la bolla trasparente
             }
-            if (image) {
-                var base64ImageString = "data:image/png;base64,"+image;
-                var texture = new BABYLON.Texture(base64ImageString, scene);
-                bubble.material.diffuseTexture = texture;
-
-            }
+            
 
 
             // Calcolare la posizione delle bolle contenute
@@ -90,7 +95,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             bubblesData.forEach(function (bubbleData, index) {
                 var image = bubbleData.image ? bubbleData.image : false;
                 createBubble(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 3, 0, 0)), bubbleData.size, bubbleData.content,bubbleData.color,0,image);
-                createBubbleText(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 3, 0, 0)), true);
+                createBubbleText(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 3, 0, 0)), true,image);
 
             });
         }
