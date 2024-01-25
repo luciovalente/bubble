@@ -107,7 +107,7 @@ class OkrEvaluationType(models.Model):
             "Content-Type": "application/json"
         }
         
-        prompt = PROMPT %(self.description,self.get_model_and_fields())
+        prompt = PROMPT %(self.description,json.dumps(self._get_eval_context()),self.get_model_and_fields())
         raise ValidationError(PROMPT)
         data = {
             "model": "gpt-3.5-turbo",
