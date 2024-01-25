@@ -134,5 +134,6 @@ class OkrEvaluationType(models.Model):
         json_response = response.json()
         
         result_response = json_response['choices'][0]['message']['content']
+        raise ValidationError(result_response)
         self.code = result_response
         
