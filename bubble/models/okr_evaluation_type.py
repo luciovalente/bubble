@@ -34,7 +34,7 @@ PROMPT = '''
     Se ci sono riferimenti a percentuali fai riferimento sempre a valori tra 0 e 1.
     Se ci sono riferimenti a tipo di bolle usa sempre il bubble_type_id.name con il contains.
     I risultati dei singoli okr dell'evalutaion li devi prendere da okr.result.
-    
+    Non includere i caratteri iniziali e finali per racchiudere codice python (```python e ```)
     Alla fine del codice fai scrivere tramite write su evaluation_id il risultato 
     nel campo result (float) di evaluation_id e se c'è un risultato testuale scrivilo 
     nel campo result_char di evaluation_id.
