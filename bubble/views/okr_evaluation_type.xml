@@ -14,17 +14,11 @@
 
                         </group>
                         <notebook>
-
                             <page string="Description">
-                                <field name="description"  />
-
+                                <field name="description" />
                             </page>
-                        </notebook>
-                        <notebook>
-
                             <page string="Code">
                                 <field name="code" widget="ace" options="{'mode': 'python'}" groups="bubble.group_bubble_administrator" />
-
                             </page>
                         </notebook>
                     </sheet>
