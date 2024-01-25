@@ -56,7 +56,7 @@ class OkrEvaluationType(models.Model):
         return res
     
     def get_library_and_variable(self):
-        res = self._get_eval_contest()
+        res = self._get_eval_context()
         res_string = '';
         for key,value in res.items():
             res_string+=key
