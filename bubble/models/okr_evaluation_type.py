@@ -55,6 +55,13 @@ class OkrEvaluationType(models.Model):
             res += "%s;%s;%s;%s\n"%(f.model_id.name,f.name,f.ttype,f.relation)
         return res
     
+    def get_library_and_variable(self):
+        res = self._get_eval_contest()
+        res_string = '';
+        for key,value in res.items():
+            res_string+=key
+        return res_string
+    
     @api.model
     def _get_eval_context(self, evaluation_id=None):
         def log(message, level="info"):
@@ -95,8 +102,8 @@ class OkrEvaluationType(models.Model):
             "log":log
         }
 
-    def _run_action_code(self):
-        eval_context = self._get_eval_context()
+    def _run_action_code(self,evaluation_id):
+        eval_context = self._get_eval_context(evaluation_id)
         safe_eval(self.code.strip(), eval_context, mode="exec", nocopy=True)  # nocopy allows to return 'action'
         return eval_context.get('action')
     
@@ -109,7 +116,7 @@ class OkrEvaluationType(models.Model):
             "Content-Type": "application/json"
         }
         
-        prompt = PROMPT %(self.description,json.dumps(self._get_eval_context()),self.get_model_and_fields())
+        prompt = PROMPT %(self.description,self.get_library_and_variable(),self.get_model_and_fields())
         raise ValidationError(PROMPT)
         data = {
             "model": "gpt-3.5-turbo",
