@@ -21,11 +21,15 @@ PROMPT = '''
     Il codice deve implementare questa descrizione (inclusa in << e >>):
     << %s >>
     Le indicazioni del codice sono queste. Puoi usare solo queste librerie e queste variabili:
+    
     %s
+    
     La variabile evaluation_id rappresenta il modello okr.evaluation che rappresenta la valutazione
     di un singolo candidato.
     Questi sono i campi e le relazioni che puoi usare nel tuo codice:
-    %s.
+
+    %s
+
     Nel codice python fai scrivere tramite write su evaluation_id il risultato 
     nel campo result (float) di evaluation_id e se c'è un risultato testuale scrivilo 
     nel campo result_char di evaluation_id
@@ -52,14 +56,14 @@ class OkrEvaluationType(models.Model):
         res = 'Model;Field;Type;Relation'
         fields = self.sudo().env['ir.model.fields'].search([('model','in',('okr','okr.result','bubble','okr.evaluation','bubble.role'))])
         for f in fields:
-            res += "%s;%s;%s;%s\n"%(f.model_id.name,f.name,f.ttype,f.relation)
+            res += "%s;%s;%s;%s\n"%(f.model_id.model,f.name,f.ttype,f.relation)
         return res
     
     def get_library_and_variable(self):
         res = self._get_eval_context()
         res_string = '';
         for key,value in res.items():
-            res_string+=key
+            res_string+=key+"\n"
         return res_string
     
     @api.model
