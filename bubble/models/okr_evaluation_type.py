@@ -52,7 +52,8 @@ class OkrEvaluationType(models.Model):
         for action in self.sudo().filtered('code'):
             msg = test_python_expr(expr=action.code.strip(), mode="exec")
             if msg:
-                raise ValidationError(msg)
+                text =" Error in your code. If you are using ChatGPT ask him again\n: %s"%msg
+                raise ValidationError(text)
     
     def get_model_and_fields(self):
         self.ensure_one()
@@ -137,6 +138,5 @@ class OkrEvaluationType(models.Model):
         json_response = response.json()
         
         result_response = json_response['choices'][0]['message']['content']
-        raise ValidationError(result_response)
         self.code = result_response
         
