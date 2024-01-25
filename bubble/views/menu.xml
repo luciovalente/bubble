@@ -11,6 +11,8 @@
         <menuitem id="menu_bubble_configuration" name="Configuration" sequence="7" groups="bubble.group_bubble_administrator">
             <menuitem id="menu_bubble_role" name="Bubble Roles" sequence="8" action="action_bubble_role" />
             <menuitem id="menu_buble_type" name="Buble Types" action="action_buble_type" sequence="9"/>
+            <menuitem id="menu_bubble_evaluation_type" name="Evaluation Type" sequence="10" action="action_okr_evaluation_type" />
+
         </menuitem>
 
     </menuitem>

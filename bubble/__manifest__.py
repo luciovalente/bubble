@@ -17,6 +17,7 @@
         'views/okr_view.xml',
         'views/okr_result.xml',
         'views/okr_evaluation.xml',
+        'views/okr_evaluation_type.xml',
         'views/menu.xml',
         'wizard/wizard.xml',
         'wizard/wizard_view_bubble.xml',

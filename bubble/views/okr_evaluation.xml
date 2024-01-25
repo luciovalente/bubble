@@ -16,6 +16,7 @@
                         <group>
                             <field name="user_id" readonly="1"/>
                             <field name="owner_id" readonly="1"/>
+                            <field name="evaluation_type_id" readonly="1"/>
                             <field name="date_from" readonly="1"/>
                             <field name="date_to" readonly="1" />
                         </group>
@@ -25,6 +26,7 @@
                                 <field name="okr_result_ids" attrs="{'readonly': [('status','=','done')]}" >
                                     <tree editable="bottom">
                                         <field name="okr_id" />
+                                        <field name="okr_type" />
                                         <field name="bubble_id" />
                                         <field name="bubble_role_id" />
                                         <field name="with_automation" invisible="1" />
