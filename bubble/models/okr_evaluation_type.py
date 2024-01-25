@@ -122,7 +122,7 @@ class OkrEvaluationType(models.Model):
         
         prompt = PROMPT %(self.description,self.get_library_and_variable(),self.get_model_and_fields())
         data = {
-            "model": "gpt-3.5-turbo",
+            "model": "gpt-4",
             "messages": [
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt}
