@@ -30,6 +30,8 @@ PROMPT = '''
 
     %s
 
+    Alcune considerazioni. Quando parliamo di percentuali facciamo riferimento sempre a valori tra 0 e 1.
+    Quando facciamo riferimento a tipo di bolle usa sempre il bubble_type_id.name con il contains.
     Non devi usare classi, import ne metodi. Scrivi direttamente il codice del calcolo .
     Alla fine del codice fai scrivere tramite write su evaluation_id il risultato 
     nel campo result (float) di evaluation_id e se c'è un risultato testuale scrivilo 
