@@ -5,6 +5,7 @@ class WizardStartOKREvaluation(models.TransientModel):
     _description = 'Wizard to Start OKR Evaluation'
 
     bubble_id = fields.Many2one('bubble', string='Bubble', required=True)
+    evaluation_type_id = fields.Many2one('okr.evaluation.type')
     member_ids = fields.Many2many('res.users', string='Members')
     date_from = fields.Date(string='Date From')
     date_to = fields.Date(string='Date To')
@@ -20,6 +21,7 @@ class WizardStartOKREvaluation(models.TransientModel):
                 'user_id': member.id,
                 'date_from': self.date_from,
                 'date_to': self.date_to,
+                'evaluation_type_id':self.evaluation_type_id.id,
                 'bubble_id':self.bubble_id.id
             })
 

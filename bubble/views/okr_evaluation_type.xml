@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_okr_evaluation_type_form" model="ir.ui.view">
+            <field name="name">okr.evaluation.type.form</field>
+            <field name="model">okr.evaluation.type</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <sheet>
+
+                        <group>
+                            <field name="name" />
+                            <field name="with_automation" />
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <field name="description" />
+                            </page>
+                            <page string="Code" attrs="{'invisible': [('with_automation','=',False)]}">
+                                <field name="code" widget="ace" options="{'mode': 'python'}" groups="bubble.group_bubble_administrator" />
+                            </page>
+                        </notebook>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="view_okr_evaluation_type_tree" model="ir.ui.view">
+            <field name="name">okr.evaluation.type.tree</field>
+            <field name="model">okr.evaluation.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_okr_evaluation_type" model="ir.actions.act_window">
+            <field name="name">OKR Evaluation Type</field>
+            <field name="res_model">okr.evaluation.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

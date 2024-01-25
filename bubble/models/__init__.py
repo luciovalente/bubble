@@ -6,3 +6,4 @@ from . import okr
 from . import okr_evaluation
 from . import okr_result
 from . import objective
+from . import okr_evaluation_type

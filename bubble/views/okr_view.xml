@@ -36,9 +36,23 @@
                             <field name="bubble_id" attrs="{'invisible': [('type','!=','bubble')]}"/>
                             <field name="user_id" attrs="{'invisible': [('type','!=','personal')]}"/>
                             <field name="bubble_role_id" attrs="{'invisible': [('type','!=','role')]}"/>
+                            <field name="company_id" />
                             <field name="with_automation" groups="bubble.group_bubble_administrator"/>
                             <field name="code" widget="ace" options="{'mode': 'python'}" groups="bubble.group_bubble_administrator" attrs="{'invisible': [('with_automation','=',False)]}"/>
                         </group>
+                        <notebook>
+                            <page string="Child Objective">
+                                <field name="child_objective_ids" >
+                                    <tree>
+                                        <field name="objective_code" />
+                                        <field name="name" />
+                                        <field name="bubble_id" />
+                                    </tree>
+                                </field>
+                            </page>
+
+                            
+                        </notebook>
                     </sheet>
                 </form>
             </field>

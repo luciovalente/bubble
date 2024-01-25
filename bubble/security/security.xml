@@ -45,8 +45,17 @@
             <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
         </record>
 
+        <record id="objective_rule" model="ir.rule">
+            <field name="name">Objective Multi-Company</field>
+            <field name="model_id" ref="model_objective"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+        </record>
 
-
+        <record id="okr_rule" model="ir.rule">
+            <field name="name">OKR Multi-Company</field>
+            <field name="model_id" ref="model_okr"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+        </record>
 
         <record id="okr_rule" model="ir.rule">
             <field name="name">Okr Rule</field>

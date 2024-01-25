@@ -27,6 +27,7 @@ class Okr(models.Model):
         ('bubble', 'Bubble'),
         ('role','Role')
     ], string='Type', default='personal')
+    company_id = fields.Many2one('res.company', string='Company')
     description = fields.Text(string='Description')
     bubble_id = fields.Many2one('bubble', string='Bubble')
     user_id = fields.Many2one('res.users', string='User')
@@ -38,6 +39,8 @@ class Okr(models.Model):
     ], string='Status', default='active')
     code = fields.Text(string='Code',groups='bubble.group_bubble_administrator')
     with_automation = fields.Boolean()
+    child_objective_ids = fields.One2many('objective','parent_okr_id')
+
 
     @api.constrains('code')
     def _check_python_code(self):

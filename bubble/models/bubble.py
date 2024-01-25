@@ -39,6 +39,7 @@ class Bubble(models.Model):
 
     company_id = fields.Many2one('res.company', string='Company')
     owner_id = fields.Many2one('res.users', string='Leader')
+    image = fields.Image('Image')
     member_ids = fields.Many2many('res.users', string='Members')
     user_roles_ids = fields.One2many('role.bubble', 'bubble_id', string='User Roles')
     with_automation = fields.Boolean(groups='bubble.group_bubble_administrator')
@@ -267,7 +268,8 @@ class Bubble(models.Model):
                   'name':'Bolla %s' % bubble.name,
                   'color': bubble.bubble_type_id.css_color,
                   'content': bubble.child_bubble_ids.get_bubble_json(),
-                  'size': bubble.get_diameter()
+                  'size': bubble.get_diameter(),
+                  'image': bubble.image
                 }
             )
         return res

@@ -8,7 +8,8 @@
                 <form>
                     <header>
                         <field name="status" widget="statusbar" statusbar_visible="in_progress,done" />
-                        <button string="Set to Done" type="object" name="action_done" attrs="{'invisible': [('status','not in',('in_progress'))]}" />
+                        <button string="Set to Done" class="oe_highlight" type="object" name="action_done" attrs="{'invisible': [('status','not in',('in_progress'))]}" />
+                        <button string="Calculate Final Evaluations"  type="object" name="execute_evaluation" attrs="{'invisible': [('with_automation','=',False),('status','not in',('in_progress'))]}" />
 
                     </header>
                     <sheet>
@@ -16,8 +17,11 @@
                         <group>
                             <field name="user_id" readonly="1"/>
                             <field name="owner_id" readonly="1"/>
+                            <field name="evaluation_type_id" readonly="1"/>
+                            <field name="evaluation_description" readonly="1" />
                             <field name="date_from" readonly="1"/>
                             <field name="date_to" readonly="1" />
+                            <field name="with_automation" invisible="1" />
                         </group>
                         <notebook>
 
@@ -25,6 +29,7 @@
                                 <field name="okr_result_ids" attrs="{'readonly': [('status','=','done')]}" >
                                     <tree editable="bottom">
                                         <field name="okr_id" />
+                                        <field name="okr_type" />
                                         <field name="bubble_id" />
                                         <field name="bubble_role_id" />
                                         <field name="with_automation" invisible="1" />
@@ -36,6 +41,14 @@
                             <page string="Feedback">
                                 <field name="notes"/>
                             </page>
+                            <page string="Final Evaluation">
+                                <group>
+                                    <field name="result" widget="percentage"/>
+                                    <field name="result_char" />
+                                </group>
+                            </page>
+
+
                         </notebook>
                     </sheet>
                     <div class="oe_chatter">
