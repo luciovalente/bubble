@@ -12,6 +12,8 @@ import functools
 import logging
 import requests
 
+from pytz import timezone
+
 PROMPT = '''
     Devo creare degli il modello di valuazione della mia azieda. 
     Genera codice python Odoo per questa modello di valutazione . 
