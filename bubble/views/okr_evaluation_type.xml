@@ -11,13 +11,13 @@
 
                         <group>
                             <field name="name" />
-
+                            <field name="with_automation" />
                         </group>
                         <notebook>
                             <page string="Description">
                                 <field name="description" />
                             </page>
-                            <page string="Code">
+                            <page string="Code" attrs="{'invisible': [('with_automation','=',False)]}">
                                 <field name="code" widget="ace" options="{'mode': 'python'}" groups="bubble.group_bubble_administrator" />
                             </page>
                         </notebook>

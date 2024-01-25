@@ -45,6 +45,7 @@ class OkrEvaluationType(models.Model):
 
     name = fields.Char()
     description = fields.Char()
+    with_automation = fields.Boolean()
     code = fields.Text(string='Code')
     
     @api.constrains('code')
