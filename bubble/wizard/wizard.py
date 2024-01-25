@@ -21,7 +21,7 @@ class WizardStartOKREvaluation(models.TransientModel):
                 'user_id': member.id,
                 'date_from': self.date_from,
                 'date_to': self.date_to,
-                'evaluation_type_id':self.evaluation_type_id.id
+                'evaluation_type_id':self.evaluation_type_id.id,
                 'bubble_id':self.bubble_id.id
             })
 
