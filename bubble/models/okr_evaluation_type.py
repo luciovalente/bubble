@@ -44,7 +44,7 @@ class OkrEvaluationType(models.Model):
     _description = 'OKR Evaluation Type'
 
     name = fields.Char()
-    description = fields.Char()
+    description = fields.Text()
     with_automation = fields.Boolean()
     code = fields.Text(string='Code')
     
