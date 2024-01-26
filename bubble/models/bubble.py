@@ -268,7 +268,7 @@ class Bubble(models.Model):
                   'color': bubble.bubble_type_id.css_color,
                   'content': bubble.child_bubble_ids.get_bubble_json(),
                   'size': bubble.get_diameter(),
-                  'image': bubble.image128
+                  'image': bubble.image_128
                 }
             )
         return res
