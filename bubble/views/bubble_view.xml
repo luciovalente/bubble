@@ -44,8 +44,7 @@
                                     <field class="oe_inline" name="linked_object_name" />
                                 </span>
                                 <span attrs="{'invisible': [('linked_object_count','&lt;=', 1)]}">
-                                    <field class="oe_inline" name="linked_object_name" />
-s
+                                    <field class="oe_inline" name="linked_object_name" />s
                                 </span>
                             </button>
                             <button class="oe_stat_button" type="object" name="action_open_objective" attrs="{'invisible': [('objective_count', '=', 0)]}" icon="fa-bullseye">
