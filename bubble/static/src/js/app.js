@@ -57,7 +57,7 @@ function initializeBubbles(canvasElement, bubbleData) {
                 var texture = new BABYLON.Texture(base64ImageString, scene);
                 texture.hasAlpha = true; 
                 var plane = BABYLON.Mesh.CreatePlane("Image", 2, scene);
-                plane.position = new BABYLON.Vector3(position.x, position.y - 3, position.z); // Posizionare il piano del testo sotto la bolla
+                plane.position = new BABYLON.Vector3(position.x, position.y - 4, position.z); // Posizionare il piano del testo sotto la bolla
                 plane.material = new BABYLON.StandardMaterial("TextPlaneMaterial", scene);
                 plane.material.diffuseTexture = texture;
                 plane.material.specularColor = new BABYLON.Color3(0, 0, 0);
