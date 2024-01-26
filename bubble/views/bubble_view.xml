@@ -65,7 +65,7 @@ s
                         </div>
                         <group>
                             <field name="name" required="1"/>
-                            <field name="image" />
+                            <field name="image_128" widget="image" class="oe_avatar"/>
                             <field name="purpose"/>
                             <field name="bubble_type_id" required="1"/>
                             <field name="parent_bubble_id" />
