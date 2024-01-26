@@ -63,9 +63,9 @@ s
 
 
                         </div>
+                        <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
                         <group>
                             <field name="name" required="1"/>
-                            <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
                             <field name="purpose"/>
                             <field name="bubble_type_id" required="1"/>
                             <field name="parent_bubble_id" />
