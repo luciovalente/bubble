@@ -60,6 +60,9 @@ function initializeBubbles(canvasElement, bubbleData) {
                 plane.position = new BABYLON.Vector3(position.x, position.y - 3, position.z); // Posizionare il piano del testo sotto la bolla
                 plane.material = new BABYLON.StandardMaterial("TextPlaneMaterial", scene);
                 plane.material.diffuseTexture = texture;
+                plane.material.specularColor = new BABYLON.Color3(0, 0, 0);
+                plane.material.emissiveColor = new BABYLON.Color3(1, 1, 1);
+                plane.material.backFaceCulling = false;
 
             }
             if (!visible) {
