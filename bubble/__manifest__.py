@@ -2,7 +2,7 @@
     'name': 'Yorange',
     'version': '15.1.1.0',
     'summary': 'Bubble and OKR',
-    'author':'Lucio Valente'
+    'author':'Lucio Valente',
     'sequence': -100,
     'description': """Bubble and OKR Management""",
     'category': 'Hr',
