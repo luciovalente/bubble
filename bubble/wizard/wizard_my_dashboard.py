@@ -30,7 +30,6 @@ class WizardMyDashboard(models.TransientModel):
     @api.model
     def show_my_dashboard(self):
         wizard_id = self.sudo().create({})
-        self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
             'name': 'My Dashboard',
