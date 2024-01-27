@@ -1,9 +1,10 @@
 {
-    'name': 'Bubble and OKR',
+    'name': 'Yorange',
     'version': '15.1.1.0',
     'summary': 'Bubble and OKR',
+    'author':'Lucio Valente'
     'sequence': -100,
-    'description': """Buble and OKR Management""",
+    'description': """Bubble and OKR Management""",
     'category': 'Hr',
     'website': 'https://www.rapsodoo.com',
     'depends': ['mail','web'],
