@@ -17,7 +17,6 @@
                                     <tree>
                                         <field name="parent_bubble_id" />
                                         <field name="name"/>
-                                        <field name="purpose" />
                                     </tree>
                                 </field>
                             </page>
@@ -26,7 +25,6 @@
                                     <tree>
                                         <field name="role_id"/>
                                         <field name="bubble_id"/>
-                                        <field name="description"/>
                                     </tree>
                                     <form>
                                         <group>
