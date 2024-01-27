@@ -9,7 +9,7 @@ class WizardMyDashboard(models.TransientModel):
     okr_result_ids = fields.Many2many('okr.result', compute="_compute_dashboard")
     bubble_ids = fields.Many2many('bubble', compute="_compute_dashboard")
     user_id = fields.Many2one('res.users', compute="_compute_dashboard")
-
+    name = fields.Char(compute="_compute_dashboard")
     
     def _compute_dashboard(self):
         self.ensure_one()
@@ -23,7 +23,8 @@ class WizardMyDashboard(models.TransientModel):
                'bubble_ids':bubble_ids.ids,
                'role_bubble_ids':role_bubble_ids.ids,
                'okr_result_ids':okr_result_ids.ids,
-               'user_id':self.env.user.id
+               'user_id':self.env.user.id,
+               'name':'My Dashboard'
             }
         )
     
