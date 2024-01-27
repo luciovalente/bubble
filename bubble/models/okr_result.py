@@ -5,7 +5,8 @@ class OkrResult(models.Model):
     _description = 'OKR Result'
 
     active = fields.Boolean(default=True)
-    objective_id = fields.Many2one('objective', related="okr_id.objective_id",store=True)
+    objective_id = fields.Many2one('objective', related="okr_id.objective_id",
+                                   store=True) 
     okr_id = fields.Many2one('okr', string='OKR')
     okr_type = fields.Selection(related="okr_id.type")
     date = fields.Date(string='Date')
