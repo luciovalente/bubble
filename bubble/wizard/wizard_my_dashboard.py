@@ -26,3 +26,16 @@ class WizardMyDashboard(models.TransientModel):
                'user_id':self.env.user.id
             }
         )
+    
+    @api.model
+    def show_my_dashboard(self):
+        wizard_id = self.sudo().create({})
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'My Dashboard',
+            'res_model': 'wizard.bubble.dashboard',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_id':wizard_id.id
+        }

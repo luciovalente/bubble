@@ -19,6 +19,7 @@ class BubbleType(models.Model):
     _name = 'bubble.type'
     _description = 'Bubble Type'
 
+    active = fields.Boolean(default=True)
     name = fields.Char(string='Name')
     description = fields.Html(string='Description')
     company_id = fields.Many2one('res.company', string='Company')

@@ -5,45 +5,40 @@
         <field name="arch" type="xml">
 
             <form>
-                
-                <sheet>
-                    <h1>Welcome <field name="user_id" class="oe_inline" /></h1>    
-                    <field name="bubble_id" widget="bubble_chart"/>
-                    
-                    
-                    <notebook>
-                        <page string="My Bubbles">
-                            <field name="bubble_ids">
-                                <tree >
-                                    <field name="name" />
-                                </tree>
-                            </field>
-                        </page>
-                        <page string="My Roles">
-                            <field name="role_bubble_ids">
-                                <tree >
-                                    <field name="role_id" />
-                                </tree>
-                            </field>
-                        </page>
-                        <page string="My Bubbles">
-                            <field name="okr_result_ids">
-                                <tree >
-                                    <field name="okr_id" />
-                                </tree>
-                            </field>
-                        </page>
-                    </notebook>
-                </sheet>
-                
+
+                <h1>Welcome <field name="user_id" class="oe_inline" />
+                </h1>
+                <field name="bubble_id" widget="bubble_chart"/>
+
+
+                <notebook>
+                    <page string="My Bubbles">
+                        <field name="bubble_ids">
+                            <tree >
+                                <field name="name" />
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="My Roles">
+                        <field name="role_bubble_ids">
+                            <tree >
+                                <field name="role_id" />
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="My Bubbles">
+                        <field name="okr_result_ids">
+                            <tree >
+                                <field name="okr_id" />
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+
             </form>
         </field>
     </record>
 
 
-    <record id="action_my_dashboard" model="ir.actions.act_window">
-            <field name="name">My Dashboard</field>
-            <field name="res_model">wizard.bubble.dashboard</field>
-            <field name="view_mode">form</field>
-        </record>
+   
 </odoo>

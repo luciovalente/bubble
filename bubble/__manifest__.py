@@ -22,9 +22,8 @@
         'wizard/wizard_view_bubble.xml',
         'wizard/wizard_suggest_kr.xml',
         'wizard/wizard_my_dashboard.xml',
-        'views/menu.xml',
-        'data/data.xml'
-       # 'views/asset.xml'
+        'data/data.xml',
+        'views/menu.xml'
     ],
     'qweb': ['static/src/xml/bubble_widget.xml'],
     'assets': {

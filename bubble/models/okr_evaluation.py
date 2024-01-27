@@ -5,6 +5,7 @@ class OkrEvaluation(models.Model):
     _description = 'OKR Evaluation'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
+    active = fields.Boolean(default=True)
     name = fields.Char(store=True,compute="_compute_name")
     owner_id = fields.Many2one('res.users', string='Leader',store=True,related="bubble_id.owner_id")
     evaluation_type_id = fields.Many2one('okr.evaluation.type',required=True)

@@ -4,6 +4,8 @@ class BubbleRole(models.Model):
     _name = 'bubble.role'
     _description = 'Bubble Role'
 
+
+    active = fields.Boolean(default=True)
     name = fields.Char(string='Name')
     description = fields.Text(string='Description')
     mandatory = fields.Boolean(string='Mandatory')

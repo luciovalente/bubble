@@ -20,7 +20,7 @@ class Bubble(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin','image.mixin']
     _order = "sequence"
 
-    active = fields.Boolean()
+    active = fields.Boolean(default=True)
     sequence = fields.Integer('Sequence')
     name = fields.Char(string='Name')
     purpose = fields.Html(string='Purpose')
