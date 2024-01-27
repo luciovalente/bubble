@@ -18,10 +18,11 @@
         'views/okr_result.xml',
         'views/okr_evaluation.xml',
         'views/okr_evaluation_type.xml',
-        'views/menu.xml',
         'wizard/wizard.xml',
         'wizard/wizard_view_bubble.xml',
         'wizard/wizard_suggest_kr.xml',
+        'wizard/wizard_my_dashboard.xml',
+        'views/menu.xml',
         'data/data.xml'
        # 'views/asset.xml'
     ],
