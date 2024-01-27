@@ -23,12 +23,14 @@
                                 <field name="role_bubble_ids">
                                     <tree>
                                         <field name="role_id"/>
+                                        <field name="bubble_id"/>
                                     </tree>
                                 </field>
                             </page>
                             <page string="My OKRs">
                                 <field name="okr_result_ids">
                                     <tree>
+                                        <field name="objective_id"/>
                                         <field name="okr_id"/>
                                     </tree>
                                 </field>
