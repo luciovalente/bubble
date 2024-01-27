@@ -8,3 +8,4 @@ class RoleBubble(models.Model):
     bubble_id = fields.Many2one('bubble', string='Buble')
     role_id = fields.Many2one('bubble.role', string='Role')
     user_id = fields.Many2one('res.users', string='User')
+    role_description = fields.Text(related="role_id.description")
