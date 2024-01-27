@@ -69,7 +69,7 @@
         </record>
 
 
-        <record id="action_my_dashboard" model="ir.actions.server">
+        <record id="action_show_my_dashboard" model="ir.actions.server">
             <field name="name">My Dashboard</field>
             <field name="model_id" ref="model_wizard_bubble_dashboard"/>
             <field name="state">code</field>
