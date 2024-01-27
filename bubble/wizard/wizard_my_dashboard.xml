@@ -5,34 +5,37 @@
         <field name="arch" type="xml">
 
             <form>
-                <sheet>
-                    <notebook>
-                        <page string="My 3d View">
-                            <field name="bubble_id" widget="bubble_chart"/>
-                        </page>
-                        <page string="My Bubbles">
-                            <field name="bubble_ids">
-                                <tree >
-                                    <field name="name" />
-                                </tree>
-                            </field>
-                        </page>
-                        <page string="My Roles">
-                            <field name="role_bubble_ids">
-                                <tree >
-                                    <field name="role_id" />
-                                </tree>
-                            </field>
-                        </page>
-                        <page string="My OKRs">
-                            <field name="okr_result_ids">
-                                <tree >
-                                    <field name="okr_id" />
-                                </tree>
-                            </field>
-                        </page>
-                    </notebook>
-                </sheet>
+                <div class="row">
+                    <div class="col col-md-6">
+                        <field name="bubble_id" widget="bubble_chart"/>
+                    </div>
+
+                    <div class="col col-md-6">
+                        <notebook>
+                            <page string="My Bubbles">
+                                <field name="bubble_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="My Roles">
+                                <field name="role_bubble_ids">
+                                    <tree>
+                                        <field name="role_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="My OKRs">
+                                <field name="okr_result_ids">
+                                    <tree>
+                                        <field name="okr_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </div>
+                </div>
             </form>
         </field>
     </record>
