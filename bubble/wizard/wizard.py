@@ -26,10 +26,10 @@ class WizardStartOKREvaluation(models.TransientModel):
             })
 
             # Trova gli OKR personali, di bolla e di ruolo per il membro
-            personal_okrs = self.env['okr'].search([('user_id', '=', member.id)])
-            bubble_okrs = self.env['okr'].search([('bubble_id', '=', self.bubble_id.id)])
+            personal_okrs = self.env['okr'].search([('user_id', '=', member.id),('status','=','active')])
+            bubble_okrs = self.env['okr'].search([('bubble_id', '=', self.bubble_id.id),('status','=','active')])
             user_role_ids = self.env['role.bubble'].search([('user_id', '=', member.id),('bubble_id', '=', self.bubble_id.id)])
-            role_okrs = self.env['okr'].search([('bubble_role_id', 'in', user_role_ids.ids)])
+            role_okrs = self.env['okr'].search([('bubble_role_id', 'in', user_role_ids.ids),('status','=','active')])
 
             # Unisci tutti gli OKR unici
             all_okrs = personal_okrs | bubble_okrs | role_okrs

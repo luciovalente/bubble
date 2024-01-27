@@ -20,6 +20,7 @@ class Bubble(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin','image.mixin']
     _order = "sequence"
 
+    active = fields.Boolean()
     sequence = fields.Integer('Sequence')
     name = fields.Char(string='Name')
     purpose = fields.Html(string='Purpose')
@@ -249,11 +250,7 @@ class Bubble(models.Model):
         return action 
     
     def get_diameter(self):
-        if self.size > 200:
-            return 3
-        if self.size > 100:
-            return 3
-        if self.size > 40:
+        if self.size > 50:
             return 3
         if self.size > 15:
             return 2
@@ -261,7 +258,7 @@ class Bubble(models.Model):
         
     def get_bubble_json(self):
         res = []
-        for bubble in self:
+        for bubble in self.filtered(lambda x: x.status == 'running' ):
             res.append(
                 {
                   'name':'Bolla %s' % bubble.name,
