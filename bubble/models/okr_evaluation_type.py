@@ -48,6 +48,7 @@ class OkrEvaluationType(models.Model):
     _name = 'okr.evaluation.type'
     _description = 'OKR Evaluation Type'
 
+    active = fields.Boolean(default=True)
     name = fields.Char()
     description = fields.Text()
     with_automation = fields.Boolean()
