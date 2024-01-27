@@ -15,7 +15,9 @@
                             <page string="My Bubbles">
                                 <field name="bubble_ids">
                                     <tree>
+                                        <field name="parent_bubble_id" />
                                         <field name="name"/>
+                                        <field name="purpose" />
                                     </tree>
                                 </field>
                             </page>
@@ -24,7 +26,15 @@
                                     <tree>
                                         <field name="role_id"/>
                                         <field name="bubble_id"/>
+                                        <field name="description"/>
                                     </tree>
+                                    <form>
+                                        <group>
+                                            <field name="role_id"/>
+                                            <field name="bubble_id"/>
+                                            <field name="role_description"/>
+                                        </group>
+                                    </form>
                                 </field>
                             </page>
                             <page string="My OKRs">
@@ -33,6 +43,13 @@
                                         <field name="objective_id"/>
                                         <field name="okr_id"/>
                                     </tree>
+                                    <form>
+                                        <group>
+                                            <field name="objective_id"/>
+                                            <field name="okr_id"/>
+                                            <field name="okr_description"/>
+                                        </group>
+                                    </form>
                                 </field>
                             </page>
                         </notebook>
