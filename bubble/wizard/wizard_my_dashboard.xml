@@ -29,7 +29,7 @@
                         <page string="My Bubbles">
                             <field name="okr_result_ids">
                                 <tree >
-                                    <field name="okr_ids" />
+                                    <field name="okr_id" />
                                 </tree>
                             </field>
                         </page>
