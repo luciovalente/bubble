@@ -17,7 +17,7 @@ class WizardMyDashboard(models.TransientModel):
         bubble_id = bubble_ids.filtered(lambda x: x.parent_bubble_id.id == False)
         role_bubble_ids = self.env['role.bubble'].search([('user_id', '=', self.env.user.id)])
         okr_result_ids = self.env['okr.result'].search([('user_id', '=', self.env.user.id),('status','=','in_progress')])
-        self.write(
+        self.sudo().write(
             {
                'bubble_id':bubble_id[0].id if bubble_id else False,
                'bubble_ids':bubble_ids.ids,
