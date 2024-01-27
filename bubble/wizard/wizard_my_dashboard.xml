@@ -5,40 +5,38 @@
         <field name="arch" type="xml">
 
             <form>
-
-                <h1>Welcome <field name="user_id" class="oe_inline" />
-                </h1>
-                <field name="bubble_id" widget="bubble_chart"/>
-
-
-                <notebook>
-                    <page string="My Bubbles">
-                        <field name="bubble_ids">
-                            <tree >
-                                <field name="name" />
-                            </tree>
-                        </field>
-                    </page>
-                    <page string="My Roles">
-                        <field name="role_bubble_ids">
-                            <tree >
-                                <field name="role_id" />
-                            </tree>
-                        </field>
-                    </page>
-                    <page string="My Bubbles">
-                        <field name="okr_result_ids">
-                            <tree >
-                                <field name="okr_id" />
-                            </tree>
-                        </field>
-                    </page>
-                </notebook>
-
+                <sheet>
+                    <notebook>
+                        <page string="My 3d View">
+                            <field name="bubble_id" widget="bubble_chart"/>
+                        </page>
+                        <page string="My Bubbles">
+                            <field name="bubble_ids">
+                                <tree >
+                                    <field name="name" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="My Roles">
+                            <field name="role_bubble_ids">
+                                <tree >
+                                    <field name="role_id" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="My OKRs">
+                            <field name="okr_result_ids">
+                                <tree >
+                                    <field name="okr_id" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
             </form>
         </field>
     </record>
 
 
-   
+
 </odoo>
