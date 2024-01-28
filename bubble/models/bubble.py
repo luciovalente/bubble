@@ -110,6 +110,8 @@ class Bubble(models.Model):
         self.write({'status': 'dismiss','close_date':fields.Datetime.now()})
 
     def action_run(self):
+        if any([urole.user_id == False for urole in self.user_roles_ids]):
+            raise ValidationError('You have to specify each role to run')
         self.write({'status': 'running'})
 
     def action_draft(self):
