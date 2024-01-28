@@ -8,7 +8,9 @@
                 <sheet>
                     <group>
                         <field name="bubble_id"/>
+                        <field name="owner_id"/>
                         <field name="evaluation_type_id" required="1"/>
+
                         <field name="date_from"/>
                         <field name="date_to"/>
                     </group>

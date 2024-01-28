@@ -57,6 +57,17 @@ class Bubble(models.Model):
     size = fields.Float(compute="_compute_size")
     member_count = fields.Integer(compute="_compute_member_count",store=True,readonly=False)
 
+    @api.onchange('bubble_type_id')
+    def update_role_ids(self):
+        for bubble in self:
+            for role in bubble.bubble_type_id.role_ids:
+                if role.id not in bubble.user_roles_ids.mapped('role_id').ids:
+                    bubble.write({
+                        'user_roles_ids':[(0,0,{
+                            'role_id':role.id
+                        })]
+                    })
+
     @api.depends('member_ids')
     def _compute_member_count(self):
         for bubble in self:
@@ -206,6 +217,7 @@ class Bubble(models.Model):
         # Crea un record del wizard e pre-popola i campi
         wizard = self.env['wizard.start.okr.evaluation'].create({
             'bubble_id': self.id,
+            'owner_id':self.owner_id.id,
             'member_ids':self.member_ids.ids
             # Imposta eventuali altri valori di default per il wizard
         })
