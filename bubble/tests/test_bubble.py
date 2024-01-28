@@ -12,7 +12,7 @@ class TestBubble(TransactionCase):
 
     def test_compute_member_count(self):
         bubble = self.Bubble.create({'name': 'Test Bubble'})
-        # Inizialmente, il conteggio dei membri dovrebbe essere 0
+        # Inizialmente, il conteggio dei membri dovrebbe essere 0 
         self.assertEqual(bubble.member_count, 0, "Il conteggio iniziale dei membri non è corretto")
 
         # Aggiungere un membro e verificare il conteggio
