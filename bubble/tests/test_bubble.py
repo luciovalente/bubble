@@ -22,7 +22,7 @@ class TestBubble(TransactionCase):
     def test_action_freeze(self):
         bubble = self.Bubble.create({'name': 'Test Bubble'})
         bubble.action_freeze()
-        self.assertEqual(bubble.status, 'freeze2', "Il metodo action_freeze non ha aggiornato correttamente lo stato")
+        self.assertEqual(bubble.status, 'freeze', "Il metodo action_freeze non ha aggiornato correttamente lo stato")
 
     def test_check_python_code_valid(self):
         bubble = self.Bubble.create({'name': 'Test Bubble', 'code': 'print("hello world")'})
