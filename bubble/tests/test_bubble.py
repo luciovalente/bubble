@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 
@@ -45,7 +46,7 @@ class TestBubble(TransactionCase):
         bubble._check_python_code()
 
     def test_check_python_code_invalid(self):
-        bubble = self.Bubble.create({"name": "Test Bubble", "code": "import os"})
-        # Verifica che un ValidationError sia sollevato per il codice non sicuro
         with self.assertRaises(ValidationError):
+            bubble = self.Bubble.create({"name": "Test Bubble", "code": "import os"})
+            # Verifica che un ValidationError sia sollevato per il codice non sicuro
             bubble._check_python_code()

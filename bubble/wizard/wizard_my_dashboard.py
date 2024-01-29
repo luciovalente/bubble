@@ -9,7 +9,7 @@ class WizardMyDashboard(models.TransientModel):
     bubble_id = fields.Many2one("bubble", compute="_compute_dashboard")
     role_bubble_ids = fields.Many2many("role.bubble", compute="_compute_dashboard")
     okr_result_ids = fields.Many2many("okr.result", compute="_compute_dashboard")
-    bubble_ids = fields.Many2many("bubble", compute="_compute_dashboard")
+    bubble_ids = fields.Many2many("bubble", compute="_compute_dashboard",string="Bubbles")
     user_id = fields.Many2one("res.users", compute="_compute_dashboard")
     name = fields.Char(compute="_compute_dashboard")
 
