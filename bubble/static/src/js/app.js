@@ -2,7 +2,7 @@ function initializeBubbles(canvasElement, bubbleData) {
     var canvas = document.getElementById('renderCanvas');
     var engine = new BABYLON.Engine(canvasElement, true);
     var advancedTexture;
-
+    var bubbleNames = [];
     var currentLevelData = bubbleData; // Memorizza i dati del livello corrente
     var parentLevels = []; // Stack per memorizzare i livelli genitore
     var bubbleParent = [];
@@ -61,11 +61,11 @@ function initializeBubbles(canvasElement, bubbleData) {
             advancedTexture.addControl(container);
             
 
-            var button1 = BABYLON.GUI.Button.CreateSimpleButton("but", name);
+            var button1 = BABYLON.GUI.Button.CreateSimpleButton("but", "In " + name);
             button1.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
             button1.width ="128px";
             button1.height = "30px";
-            button1.fontSize = 12;
+            button1.fontSize = 10;
             button1.color = "white";
             button1.background = "grey";
             button1.onPointerClickObservable.add(function(){
@@ -104,9 +104,9 @@ function initializeBubbles(canvasElement, bubbleData) {
             if (link) {
                 var button2 = BABYLON.GUI.Button.CreateSimpleButton("but", "Link");
                 button2.width = "128px";
-                button2.fontSize = 9;
+                button2.fontSize = 10;
                 button2.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-                button2.height ="20px";
+                button2.height ="30px";
                 button2.color = "white";
                 button2.background = "grey";
                 button2.onPointerClickObservable.add(function() {
@@ -120,6 +120,7 @@ function initializeBubbles(canvasElement, bubbleData) {
         
         // Funzione per creare una bolla
         function createBubble(name, position, size, content,color,alpha=0, image=false) {
+            bubbleNames.push(name);
             var bubble = BABYLON.MeshBuilder.CreateSphere(name, {diameter: size}, scene);
             bubble.position = position;
             bubble.material = new BABYLON.StandardMaterial(name + "Material", scene);
@@ -163,7 +164,7 @@ function initializeBubbles(canvasElement, bubbleData) {
 
         // Gestione clic su una bolla
         scene.onPointerDown = function (evt, pickResult) {
-            if (pickResult.hit && pickResult.pickedMesh.name.startsWith("Bolla")) {
+            if (pickResult.hit && pickResult.pickedMesh.name in bubbleNames) {
                 var selectedBubbleData = currentLevelData.find(b => b.name === pickResult.pickedMesh.name);
                 if (selectedBubbleData && selectedBubbleData.content.length > 0) {
                     // Memorizza il livello genitore
