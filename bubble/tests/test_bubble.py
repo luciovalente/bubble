@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError
 class TestBubble(TransactionCase):
 
     def setUp(self):
-        super(TestBubble, self).setUp()
+        super(TestBubble, self).setUp() 
         self.Bubble = self.env['bubble']
         self.ResUsers = self.env['res.users']
         # Creazione di un utente di test (aggiungi i parametri necessari)
