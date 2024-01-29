@@ -22,7 +22,11 @@ class WizardStartOKREvaluation(models.TransientModel):
             # Creare una nuova valutazione OKR per il membro
             owner_id = self.owner_id
             if member.id == owner_id.id:
-                owner_id = self.bubble_id.parent_bubble_id.owner_id if self.bubble_id.parent_bubble_id else False
+                owner_id = (
+                    self.bubble_id.parent_bubble_id.owner_id
+                    if self.bubble_id.parent_bubble_id
+                    else False
+                )
             if owner_id:
                 evaluation = OkrEvaluation.create(
                     {
@@ -31,7 +35,7 @@ class WizardStartOKREvaluation(models.TransientModel):
                         "date_to": self.date_to,
                         "evaluation_type_id": self.evaluation_type_id.id,
                         "bubble_id": self.bubble_id.id,
-                        "owner_id":owner_id.id
+                        "owner_id": owner_id.id,
                     }
                 )
 
@@ -46,7 +50,10 @@ class WizardStartOKREvaluation(models.TransientModel):
                     [("user_id", "=", member.id), ("bubble_id", "=", self.bubble_id.id)]
                 )
                 role_okrs = self.env["okr"].search(
-                    [("bubble_role_id", "in", user_role_ids.ids), ("status", "=", "active")]
+                    [
+                        ("bubble_role_id", "in", user_role_ids.ids),
+                        ("status", "=", "active"),
+                    ]
                 )
 
                 # Unisci tutti gli OKR unici
