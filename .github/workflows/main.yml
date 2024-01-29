@@ -35,10 +35,10 @@ jobs:
 
     - name: Commit changes
       run: |
-        git config --global user.name 'luciovalente'
+        git config --global user.name 'Lucio'
         git config --global user.email 'luciovalente81@gmail.com'
         git add -A
         git commit -m "Apply auto-fixes" || echo "No changes to commit"
-        git push origin ${{ github.head_ref }}
+        git push 
       env:
         GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
