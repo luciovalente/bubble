@@ -140,7 +140,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             }
         }
         function showBubbles(bubblesData, parentPosition) {
-            clearScene(); 
+            clearScene(advancedTexture); 
 
             var startPosition = new BABYLON.Vector3(-2, 0, 0);
             bubblesData.forEach(function (bubbleData, index) {
