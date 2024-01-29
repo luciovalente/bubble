@@ -22,7 +22,6 @@ class TestBubble(TransactionCase):
         result = bubble._run_action_code()
         self.assertEqual(result, "Test Action")
 
-
     def test_compute_member_count(self):
         bubble = self.Bubble.create({"name": "Test Bubble"})
         # Inizialmente, il conteggio dei membri dovrebbe essere 0
