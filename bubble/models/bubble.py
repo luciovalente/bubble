@@ -304,12 +304,14 @@ class Bubble(models.Model):
         if self.size > 15:
             return 2
         return 1
-    
+
     @api.model
     def get_record_url(self, record_id):
-        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
         model_name = self._name
-        return url_join(base_url, f"web#id={record_id}&model={model_name}&view_type=form")
+        return url_join(
+            base_url, f"web#id={record_id}&model={model_name}&view_type=form"
+        )
 
     def get_bubble_json(self):
         res = []
@@ -321,8 +323,8 @@ class Bubble(models.Model):
                     "content": bubble.child_bubble_ids.get_bubble_json(),
                     "size": bubble.get_diameter(),
                     "image": bubble.image_128,
-                    "description":bubble.purpose,
-                    "link":self.get_record_url(bubble.id)
+                    "description": bubble.purpose,
+                    "link": self.get_record_url(bubble.id),
                 }
             )
         return res
