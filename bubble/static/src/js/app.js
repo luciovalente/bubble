@@ -159,12 +159,9 @@ function initializeBubbles(canvasElement, bubbleData) {
             });
             
         }
-
-        
-
         // Gestione clic su una bolla
         scene.onPointerDown = function (evt, pickResult) {
-            if (pickResult.hit && pickResult.pickedMesh.name in bubbleNames) {
+            if (pickResult.hit && bubbleNames.includes(pickResult.pickedMesh.name)) {
                 var selectedBubbleData = currentLevelData.find(b => b.name === pickResult.pickedMesh.name);
                 if (selectedBubbleData && selectedBubbleData.content.length > 0) {
                     // Memorizza il livello genitore
