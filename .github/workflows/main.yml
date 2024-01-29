@@ -34,10 +34,6 @@ jobs:
       run: |
         isort .
 
-    - name: Remove Unused Imports with autoflake
-      run: |
-        autoflake --remove-all-unused-imports --in-place --recursive .
-
     - name: Commit changes
       run: |
         git config --global user.name 'Lucio'
