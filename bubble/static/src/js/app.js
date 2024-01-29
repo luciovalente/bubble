@@ -91,13 +91,14 @@ function initializeBubbles(canvasElement, bubbleData) {
                 textBlock.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
                 textBlock.text = description;
                 textBlock.color = "black";
+                textBlock.textWrapping = true; 
                 textBlock.fontSize = 10;
                 textBlock.width ="200px";
-                textBlock.height ="300px";
+                textBlock.height ="200px";
                 container.addControl(textBlock);
             }
             if (link) {
-                var button2 = BABYLON.GUI.Button.CreateSimpleButton("but", name);
+                var button2 = BABYLON.GUI.Button.CreateSimpleButton("but", "Link");
                 button2.width = 0.2;
                 button2.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
                 button2.height = "40px";
