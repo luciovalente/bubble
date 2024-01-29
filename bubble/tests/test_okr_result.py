@@ -15,7 +15,6 @@ class TestOkrResult(TransactionCase):
         self.BubbleRole = self.env["bubble.role"]
         self.OkrEvaluationType = self.env["okr.evaluation.type"]
 
-
         # Creazione di record necessari per il test
         self.test_user = self.ResUsers.create(
             {"name": "Test User", "login": "test_user"}
@@ -37,8 +36,7 @@ class TestOkrResult(TransactionCase):
                 "objective_id": self.test_objective.id,
                 "description": "Test OKR",
                 "type": "normal",
-                "bubble_id": self.test_bubble.id
-                
+                "bubble_id": self.test_bubble.id,
             }
         )
 
