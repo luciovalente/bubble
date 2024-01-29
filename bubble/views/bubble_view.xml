@@ -64,26 +64,28 @@
                         </div>
                         <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
                         <group>
-                            <field name="name" required="1"/>
-                            
-                            <field name="bubble_type_id" required="1"/>
-                            <field name="parent_bubble_id" />
-                            <field name="close_date" readonly="1" attrs="{'invisible': [('status','!=','dismiss')]}"/>
-                            <field name="company_id"/>
-                        </group>
-                        <group>
-                            <field name="owner_id" required="1"/>
-                            <field name="with_okr_valuation"/>
-                            <field name="with_automation" groups="bubble.group_bubble_administrator"/>
-                            <field name="model_id" groups="bubble.group_bubble_administrator"/>
-                            <field name="res_ids" groups="bubble.group_bubble_administrator"/>
-                            <field name="member_count" groups="bubble.group_bubble_administrator"/>
+                            <group>
+                                <field name="name" required="1" attrs="{'readonly': [('status','!=','draft')]}"/>
+
+                                <field name="bubble_type_id" required="1" attrs="{'readonly': [('status','!=','draft')]}"/>
+                                <field name="parent_bubble_id" attrs="{'readonly': [('status','!=','draft')]}"/>
+                                <field name="close_date" readonly="1" attrs="{'invisible': [('status','!=','dismiss')]}"/>
+                                <field name="company_id" attrs="{'readonly': [('status','!=','draft')]}"/>
+                            </group>
+                            <group>
+                                <field name="owner_id" required="1" attrs="{'readonly': [('status','!=','draft')]}"/>
+                                <field name="with_okr_valuation" attrs="{'readonly': [('status','!=','draft')]}"/>
+                                <field name="with_automation" groups="bubble.group_bubble_administrator" attrs="{'readonly': [('status','!=','draft')]}"/>
+                                <field name="model_id" groups="bubble.group_bubble_administrator"/>
+                                <field name="res_ids" groups="bubble.group_bubble_administrator"/>
+                                <field name="member_count" groups="bubble.group_bubble_administrator"/>
+                            </group>
                         </group>
                         <field name="purpose"/>
                         <notebook>
                             <!-- Pagina per User Roles -->
                             <page string="User Roles">
-                                <field name="user_roles_ids">
+                                <field name="user_roles_ids" attrs="{'readonly': [('status','!=','draft')]}">
                                     <tree editable="bottom">
                                         <!-- Definisci i campi da mostrare per user_roles_ids -->
                                         <field name="role_id"/>

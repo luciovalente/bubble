@@ -7,7 +7,7 @@ class OkrEvaluation(models.Model):
 
     active = fields.Boolean(default=True)
     name = fields.Char(store=True,compute="_compute_name")
-    owner_id = fields.Many2one('res.users', string='Leader',store=True,related="bubble_id.owner_id")
+    owner_id = fields.Many2one('res.users', string='Leader',store=True)
     evaluation_type_id = fields.Many2one('okr.evaluation.type',required=True)
     with_automation = fields.Boolean(related="evaluation_type_id.with_automation")
     evaluation_description = fields.Text(related="evaluation_type_id.description")

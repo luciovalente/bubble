@@ -1,16 +1,11 @@
-import odoo
-from odoo import api, fields, models, tools, SUPERUSER_ID, _
-from odoo.exceptions import MissingError, UserError, ValidationError, AccessError
-from odoo.osv import expression
+from odoo import api, fields, models, tools, _
+from odoo.exceptions import ValidationError
 from odoo.tools.safe_eval import safe_eval, test_python_expr
 from odoo.tools.float_utils import float_compare
 import json
 
 import requests
 import base64
-from collections import defaultdict
-import functools
-import logging
 
 from pytz import timezone
 
@@ -56,6 +51,17 @@ class Bubble(models.Model):
     okr_count = fields.Integer(string='OKR Count', compute='_compute_okr_count')
     size = fields.Float(compute="_compute_size")
     member_count = fields.Integer(compute="_compute_member_count",store=True,readonly=False)
+
+    @api.onchange('bubble_type_id')
+    def update_role_ids(self):
+        for bubble in self:
+            for role in bubble.bubble_type_id.role_ids:
+                if role.id not in bubble.user_roles_ids.mapped('role_id').ids:
+                    bubble.write({
+                        'user_roles_ids':[(0,0,{
+                            'role_id':role.id
+                        })]
+                    })
 
     @api.depends('member_ids')
     def _compute_member_count(self):
@@ -104,6 +110,8 @@ class Bubble(models.Model):
         self.write({'status': 'dismiss','close_date':fields.Datetime.now()})
 
     def action_run(self):
+        if any([urole.user_id == False for urole in self.user_roles_ids]):
+            raise ValidationError('You have to specify each role to run')
         self.write({'status': 'running'})
 
     def action_draft(self):
@@ -206,6 +214,7 @@ class Bubble(models.Model):
         # Crea un record del wizard e pre-popola i campi
         wizard = self.env['wizard.start.okr.evaluation'].create({
             'bubble_id': self.id,
+            'owner_id':self.owner_id.id,
             'member_ids':self.member_ids.ids
             # Imposta eventuali altri valori di default per il wizard
         })

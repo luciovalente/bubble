@@ -1,15 +1,10 @@
-import odoo
-from odoo import api, fields, models, tools, SUPERUSER_ID, _
-from odoo.exceptions import MissingError, UserError, ValidationError, AccessError
-from odoo.osv import expression
+from odoo import api, fields, models, tools, _
+from odoo.exceptions import ValidationError
 from odoo.tools.safe_eval import safe_eval, test_python_expr
 from odoo.tools.float_utils import float_compare
 import json
 
 import base64
-from collections import defaultdict
-import functools
-import logging
 import requests
 
 
