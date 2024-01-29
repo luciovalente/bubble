@@ -2,9 +2,9 @@ name: Lint and Auto-fix Python Code
 
 on:
   push:
-    branches: [ fix_correction ]
+    branches: [ lint_branch ]
   pull_request:
-    branches: [ fix_correction ]
+    branches: [ lint_branch ]
 
 jobs:
   autofix:
