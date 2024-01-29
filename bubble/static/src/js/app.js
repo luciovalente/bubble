@@ -58,17 +58,18 @@ function initializeBubbles(canvasElement, bubbleData) {
             var container = new BABYLON.GUI.StackPanel();
             container.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
             container.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-            container.top = "10px";
-            container.left = "10px";
+            container.top = 10;
+            container.left = 10;
             advancedTexture.addControl(container);
-
-            // Crea un blocco di testo per il nome
-            var textBlock = new BABYLON.GUI.TextBlock();
-            textBlock.text = name;
-            textBlock.color = "black";
-            textBlock.fontSize = 24;
             
-            container.addControl(textBlock);
+
+            var button = BABYLON.GUI.Button.CreateSimpleButton("but", name);
+            button.width = 0.2;
+            button.height = "40px";
+            button.color = "white";
+            button.background = "green";
+            container.addControl(button);
+
         
             // Crea un pulsante o un blocco di testo per il link cliccabile
             var linkBlock = new BABYLON.GUI.TextBlock();
@@ -159,7 +160,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             if (pickResult.hit && pickResult.pickedMesh.name.startsWith("Bolla")) {
                 var selectedBubbleData = currentLevelData.find(b => b.name === pickResult.pickedMesh.name);
                 if (selectedBubbleData && selectedBubbleData.content.length > 0) {
-                     // Memorizza il livello genitore
+                    // Memorizza il livello genitore
                     
                     parentLevels.push(currentLevelData);
                     currentLevelData = selectedBubbleData.content;
