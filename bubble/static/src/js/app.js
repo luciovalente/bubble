@@ -52,7 +52,9 @@ function initializeBubbles(canvasElement, bubbleData) {
             }
         }
 
-        function createFirstText(name, visible, image = false) {
+        function createFirstText(name, image = false,description=false,link=false) {
+            link = 'https://google.com';
+            description = "<h1>Pippo</h1>";
             var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
             
             var container = new BABYLON.GUI.StackPanel();
@@ -74,7 +76,6 @@ function initializeBubbles(canvasElement, bubbleData) {
                 }
             });
             container.addControl(button1);
-
             if (image) {
                 var base64ImageString = "data:image/png;base64," + image;
                 var imageControl = new BABYLON.GUI.Image("image", base64ImageString);
@@ -84,19 +85,30 @@ function initializeBubbles(canvasElement, bubbleData) {
                 imageControl.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
                 container.addControl(imageControl);
             }
-
-            var button2 = BABYLON.GUI.Button.CreateSimpleButton("but", name);
-            button2.width = 0.2;
-            button2.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-            button2.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-            button2.height = "40px";
-            button2.color = "white";
-            button2.background = "grey";
-            button2.onPointerClickObservable.add(function() {
-                window.open("https://www.example.com");
-            });
-            container.addControl(button2);
-
+            if (description) {
+                var textBlock = new BABYLON.GUI.TextBlock();
+                textBlock.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+                textBlock.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+                textBlock.text = description;
+                textBlock.color = "black";
+                textBlock.fontSize = 10;
+                textBlock.width ="200px";
+                textBlock.height ="300px";
+                panel.addControl(textBlock);
+            }
+            if (link) {
+                var button2 = BABYLON.GUI.Button.CreateSimpleButton("but", name);
+                button2.width = 0.2;
+                button2.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+                button2.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+                button2.height = "40px";
+                button2.color = "white";
+                button2.background = "grey";
+                button2.onPointerClickObservable.add(function() {
+                    window.open("https://www.example.com");
+                });
+                container.addControl(button2);
+            }
             
             
             // Crea un'immagine se fornita
@@ -163,7 +175,7 @@ function initializeBubbles(canvasElement, bubbleData) {
                     currentLevelData = selectedBubbleData.content;
                     clearScene(advancedTexture); 
                     showBubbles(currentLevelData);
-                    advancedTexture = createFirstText(selectedBubbleData.name,true,selectedBubbleData.image);
+                    advancedTexture = createFirstText(selectedBubbleData.name,selectedBubbleData.image);
                     startAnimation();
                 }
             }
