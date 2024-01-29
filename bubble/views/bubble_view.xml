@@ -81,7 +81,9 @@
                                 <field name="member_count" groups="bubble.group_bubble_administrator"/>
                             </group>
                         </group>
-                        <field name="purpose"/>
+                        <group>
+                            <field name="purpose" attrs="{'readonly': [('status','!=','draft')]}"/>
+                        </group>
                         <notebook>
                             <!-- Pagina per User Roles -->
                             <page string="User Roles">
@@ -113,6 +115,11 @@
                             </page>
                             <page string="Code" groups="bubble.group_bubble_administrator" attrs="{'invisible': [('with_automation','=',False)]}">
                                 <field name="code" widget="ace" options="{'mode': 'python'}">
+
+                                </field>
+                            </page>
+                            <page string="Description">
+                                <field name="description" >
 
                                 </field>
                             </page>
