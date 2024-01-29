@@ -21,10 +21,12 @@ class TestOkrResult(TransactionCase):
         self.test_evaluation_type = self.OkrEvaluationType.create(
             {"name": "Test Evaluation Type", "code": "result = 0"}
         )
-        self.test_evaluation = self.OkrEvaluation.create({
+        self.test_evaluation = self.OkrEvaluation.create(
+            {
                 "user_id": self.test_user.id,
                 "evaluation_type_id": self.test_evaluation_type.id,
-            })
+            }
+        )
         self.test_objective = self.Objective.create({"name": "Test Objective"})
         self.test_bubble = self.Bubble.create({"name": "Test Bubble"})
         self.test_bubble_role = self.BubbleRole.create({"name": "Test Role"})
