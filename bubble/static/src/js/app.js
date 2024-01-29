@@ -65,6 +65,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             button1.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
             button1.width ="128px";
             button1.height = "30px";
+            button1.fontSize = 12;
             button1.color = "white";
             button1.background = "grey";
             button1.onPointerClickObservable.add(function(){
@@ -102,6 +103,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             if (link) {
                 var button2 = BABYLON.GUI.Button.CreateSimpleButton("but", "Link");
                 button2.width = "128px";
+                button2.fontSize = 9;
                 button2.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
                 button2.height ="12px";
                 button2.color = "white";
