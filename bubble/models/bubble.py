@@ -3,7 +3,7 @@ import base64
 import json
 
 import requests
-from odoo import api, fields, models, tools
+from odoo import api, fields, models, tools, _
 from odoo.exceptions import ValidationError
 from odoo.tools.float_utils import float_compare
 from odoo.tools.safe_eval import safe_eval, test_python_expr
@@ -318,7 +318,7 @@ class Bubble(models.Model):
         for bubble in self.filtered(lambda x: x.status == "running"):
             res.append(
                 {
-                    "name": "Bolla %s" % bubble.name,
+                    "name": _("Bubble %s") % bubble.name,
                     "color": bubble.bubble_type_id.css_color,
                     "content": bubble.child_bubble_ids.get_bubble_json(),
                     "size": bubble.get_diameter(),
