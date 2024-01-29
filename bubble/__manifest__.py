@@ -32,6 +32,7 @@
         "web.assets_backend": [
             "/bubble/static/src/xml/bubble_widget.xml",
             "/bubble/static/src/js/babylon.js",
+            "/bubble/static/src/js/babylon.gui.min.js",
             "/bubble/static/src/js/app.js",
             "/bubble/static/src/js/bubble_widget.js",
         ],

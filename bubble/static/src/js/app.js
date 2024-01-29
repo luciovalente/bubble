@@ -33,7 +33,26 @@ function initializeBubbles(canvasElement, bubbleData) {
             scene.beginAnimation(camera, 0, 100, false);
         }
         // Funzione per creare il testo sotto la bolla
-        function createBubbleText(name, position, visible, image = false) {
+        function createBubbleText(name, position, visible, image=false) {
+            var dynamicTexture = new BABYLON.DynamicTexture("DynamicTexture", 1028, scene, true);
+            dynamicTexture.hasAlpha = true; // Impostare la trasparenza della texture
+            
+            dynamicTexture.drawText(name, null, null, "bold 80px Arial", "black", "transparent", true);
+
+            var plane = BABYLON.Mesh.CreatePlane("TextPlane", 2, scene);
+            plane.position = new BABYLON.Vector3(position.x, position.y - 2.5, position.z); // Posizionare il piano del testo sotto la bolla
+            plane.material = new BABYLON.StandardMaterial("TextPlaneMaterial", scene);
+            plane.material.diffuseTexture = dynamicTexture;
+            plane.material.specularColor = new BABYLON.Color3(0, 0, 0);
+            plane.material.emissiveColor = new BABYLON.Color3(1, 1, 1);
+            plane.material.backFaceCulling = false;
+
+            if (!visible) {
+                plane.visibility = 0; // Rendi il testo invisibile se non è nel livello corrente
+            }
+        }
+
+        function createFirstText(name, position, visible, image = false) {
             var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
         
             // Crea un blocco di testo per il nome
@@ -41,8 +60,8 @@ function initializeBubbles(canvasElement, bubbleData) {
             textBlock.text = name;
             textBlock.color = "black";
             textBlock.fontSize = 24;
-            textBlock.top = position.y - 100; // Aggiusta la posizione
-            textBlock.left = position.x;
+            textBlock.top = 0; // Aggiusta la posizione
+            textBlock.left = 0;
             advancedTexture.addControl(textBlock);
         
             // Crea un pulsante o un blocco di testo per il link cliccabile
@@ -75,7 +94,6 @@ function initializeBubbles(canvasElement, bubbleData) {
                 imageControl.isVisible = visible;
             }
         }
-
         // Funzione per creare una bolla
         function createBubble(name, position, size, content,color,alpha=0, image=false) {
             var bubble = BABYLON.MeshBuilder.CreateSphere(name, {diameter: size}, scene);

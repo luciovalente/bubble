@@ -20,7 +20,7 @@ class Bubble(models.Model):
     sequence = fields.Integer("Sequence")
     name = fields.Char(string="Name")
     purpose = fields.Text(string="Purpose")
-    description = fields.Html(string="Purpose")
+    description = fields.Html(string="Description")
     bubble_type_id = fields.Many2one("bubble.type", string="Bubble Type")
     parent_bubble_id = fields.Many2one("bubble", string="Parent Bubble")
     child_bubble_ids = fields.One2many("bubble", "parent_bubble_id")
