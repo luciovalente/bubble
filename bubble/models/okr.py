@@ -1,15 +1,9 @@
 import base64
-import functools
 import json
-import logging
-from collections import defaultdict
 
-import odoo
 import requests
-from odoo import SUPERUSER_ID, _, api, fields, models, tools
-from odoo.exceptions import (AccessError, MissingError, UserError,
-                             ValidationError)
-from odoo.osv import expression
+from odoo import api, fields, models, tools
+from odoo.exceptions import ValidationError
 from odoo.tools.float_utils import float_compare
 from odoo.tools.safe_eval import safe_eval, test_python_expr
 from pytz import timezone
