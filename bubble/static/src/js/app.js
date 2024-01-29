@@ -75,11 +75,19 @@ function initializeBubbles(canvasElement, bubbleData) {
             linkBlock.left = "10px";
             linkBlock.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
             linkBlock.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-            linkBlock.onPointerDownObservable.add(function() {
-                window.open("https://www.example.com");
-            });
+            //linkBlock.onPointerDownObservable.add(function() {
+            //    window.open("https://www.example.com");
+            //});
             advancedTexture.addControl(linkBlock);
-        
+            
+            linkBlock.onPointerDownObservable.add(function(){
+                if (parentLevels.length > 0) {
+                    currentLevelData = parentLevels.pop(); // Torna al livello genitore
+                    showBubbles(currentLevelData);
+                    startAnimation();
+                }
+            });
+            
             // Crea un'immagine se fornita
             if (image) {
                 var base64ImageString = "data:image/png;base64," + image;
@@ -167,14 +175,7 @@ function initializeBubbles(canvasElement, bubbleData) {
         };
 
         
-        document.getElementById("backButton").addEventListener("click", function() {
-            if (parentLevels.length > 0) {
-                currentLevelData = parentLevels.pop(); // Torna al livello genitore
-                showBubbles(currentLevelData);
-                startAnimation();
-            }
-            this.style.display = parentLevels.length > 0 ? 'block' : 'none';
-        });
+        
 
         if (Array.isArray(currentLevelData) && currentLevelData.length > 0) {
             showBubbles(currentLevelData);
