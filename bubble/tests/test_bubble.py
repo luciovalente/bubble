@@ -14,6 +14,15 @@ class TestBubble(TransactionCase):
             {"name": "Test User", "login": "test_user"}
         )
 
+    def test_run_action_code(self):
+        # Creare un nuovo tipo di bolla con codice eseguibile
+        bubble = self.Bubble.create(
+            {"name": "Executable Code", "code": 'action = "Test Action"'}
+        )
+        result = bubble._run_action_code()
+        self.assertEqual(result, "Test Action")
+
+
     def test_compute_member_count(self):
         bubble = self.Bubble.create({"name": "Test Bubble"})
         # Inizialmente, il conteggio dei membri dovrebbe essere 0

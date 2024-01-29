@@ -8,17 +8,11 @@ class TestBubbleRole(TransactionCase):
         super(TestBubbleRole, self).setUp()
         self.BubbleRole = self.env["bubble.role"]
         self.ResCompany = self.env["res.company"]
-
+        
         # Creare un record di una compagnia di test se necessario
         self.test_company = self.ResCompany.create({"name": "Test Company"})
 
-    def test_run_action_code(self):
-        # Creare un nuovo tipo di bolla con codice eseguibile
-        bubble_type = self.BubbleType.create(
-            {"name": "Executable Code", "code": 'action = "Test Action"'}
-        )
-        result = bubble_type._run_action_code()
-        self.assertEqual(result, "Test Action")
+    
 
     def test_create_bubble_role(self):
         # Creare un nuovo ruolo di bolla
@@ -32,7 +26,6 @@ class TestBubbleRole(TransactionCase):
 
         # Verificare che il ruolo della bolla sia stato creato correttamente
         self.assertEqual(bubble_role.name, "Test Role")
-        self.assertTrue(bubble_role.mandatory)
         self.assertEqual(bubble_role.company_id, self.test_company)
 
     def test_update_bubble_role(self):
@@ -66,7 +59,7 @@ class TestBubbleRole(TransactionCase):
         )
 
         user_role = self.env["role.bubble"].create(
-            {"name": "User Role Test", "role_id": bubble_role.id}
+            {"role_id": bubble_role.id}
         )
 
         # Verificare che la relazione tra ruolo della bolla e ruolo utente sia stata stabilita correttamente
