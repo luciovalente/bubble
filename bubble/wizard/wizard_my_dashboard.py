@@ -17,10 +17,16 @@ class WizardMyDashboard(models.TransientModel):
 
     def _compute_dashboard(self):
         self.ensure_one()
+
+        def find_principal_bubble(bubble):
+            if bubble.parent_bubble_id:
+                return find_principal_bubble(bubble.parent_bubble_id)
+            return bubble
+        
         bubble_ids = self.env["bubble"].search(
             [("member_ids", "in", self.env.user.id), ("status", "=", "running")]
         )
-        bubble_id = bubble_ids.filtered(lambda x: x.parent_bubble_id.id == False)
+        bubble_id = find_principal_bubble(bubble_ids[0]) if bubble_ids else False
         role_bubble_ids = self.env["role.bubble"].search(
             [("user_id", "=", self.env.user.id)]
         )
