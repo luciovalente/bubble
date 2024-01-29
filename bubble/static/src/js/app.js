@@ -167,7 +167,6 @@ function initializeBubbles(canvasElement, bubbleData) {
                     currentLevelData = selectedBubbleData.content;
                     clearScene(advancedTexture); 
                     showBubbles(currentLevelData);
-                    document.getElementById("backButton").style.display = 'block';
                     advancedTexture = createFirstText(selectedBubbleData.name,true,selectedBubbleData.image);
                     startAnimation();
                 }
