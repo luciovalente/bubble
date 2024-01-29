@@ -56,56 +56,56 @@ function initializeBubbles(canvasElement, bubbleData) {
             var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
             
             var container = new BABYLON.GUI.StackPanel();
-            container.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-            container.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-            container.top = 10;
-            container.left = 10;
+            
+            container.top(10);
+            container.left(10);
             advancedTexture.addControl(container);
             
 
-            var button = BABYLON.GUI.Button.CreateSimpleButton("but", name);
-            button.width = 0.2;
-            button.height = "40px";
-            button.color = "white";
-            button.background = "green";
-            container.addControl(button);
-
-        
-            // Crea un pulsante o un blocco di testo per il link cliccabile
-            var linkBlock = new BABYLON.GUI.TextBlock();
-            linkBlock.text = "Clicca qui per maggiori informazioni";
-            linkBlock.color = "blue";
-            linkBlock.fontSize = 18;
-            
-            //linkBlock.onPointerDownObservable.add(function() {
-            //    window.open("https://www.example.com");
-            //});
-            container.addControl(linkBlock);
-            
-            linkBlock.onPointerDownObservable.add(function(){
+            var button1 = BABYLON.GUI.Button.CreateSimpleButton("but", name);
+            button1.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+            button1.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+            button1.width = 0.2;
+            button1.height = "40px";
+            button1.color = "white";
+            button1.background = "grey";
+            button1.onPointerClickObservable.add(function(){
                 if (parentLevels.length > 0) {
                     currentLevelData = parentLevels.pop(); // Torna al livello genitore
                     showBubbles(currentLevelData);
                     startAnimation();
                 }
             });
-            
-            // Crea un'immagine se fornita
+            container.addControl(button1);
+
             if (image) {
                 var base64ImageString = "data:image/png;base64," + image;
                 var imageControl = new BABYLON.GUI.Image("image", base64ImageString);
                 imageControl.width = "128px";
                 imageControl.height = "128px";
-                
+                imageControl.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+                imageControl.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
                 container.addControl(imageControl);
             }
+
+            var button2 = BABYLON.GUI.Button.CreateSimpleButton("but", name);
+            button2.width = 0.2;
+            button2.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+            button2.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+            button2.height = "40px";
+            button2.color = "white";
+            button2.background = "grey";
+            button2.onPointerClickObservable.add(function() {
+                window.open("https://www.example.com");
+            });
+            container.addControl(button2);
+
+            
+            
+            // Crea un'immagine se fornita
+            
         
-            // Imposta la visibilità
-            textBlock.isVisible = visible;
-            linkBlock.isVisible = visible;
-            if (image) {
-                imageControl.isVisible = visible;
-            }
+            
             return advancedTexture;
         }
         
