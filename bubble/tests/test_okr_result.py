@@ -35,10 +35,8 @@ class TestOkrResult(TransactionCase):
             {
                 "objective_id": self.test_objective.id,
                 "description": "Test OKR",
-                "type": "normal",
+                "type": "bubble",
                 "bubble_id": self.test_bubble.id,
-                "bubble_role_id": self.test_bubble_role.id,
-                "with_automation": True,
             }
         )
 
@@ -57,8 +55,7 @@ class TestOkrResult(TransactionCase):
         self.assertEqual(okr_result.okr_description, self.test_okr.description)
         self.assertEqual(okr_result.okr_type, self.test_okr.type)
         self.assertEqual(okr_result.bubble_id, self.test_bubble)
-        self.assertTrue(okr_result.with_automation)
-        self.assertEqual(okr_result.bubble_role_id, self.test_bubble_role)
+        self.assertFalse(okr_result.with_automation)
         self.assertEqual(okr_result.status, self.test_evaluation.status)
         self.assertEqual(okr_result.user_id, self.test_user)
 

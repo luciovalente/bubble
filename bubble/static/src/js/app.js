@@ -37,11 +37,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             var dynamicTexture = new BABYLON.DynamicTexture("DynamicTexture", 1028, scene, true);
             dynamicTexture.hasAlpha = true; // Impostare la trasparenza della texture
             
-            
-            
             dynamicTexture.drawText(name, null, null, "bold 80px Arial", "black", "transparent", true);
-
-            
 
             var plane = BABYLON.Mesh.CreatePlane("TextPlane", 2, scene);
             plane.position = new BABYLON.Vector3(position.x, position.y - 2.5, position.z); // Posizionare il piano del testo sotto la bolla
@@ -138,7 +134,9 @@ function initializeBubbles(canvasElement, bubbleData) {
             this.style.display = parentLevels.length > 0 ? 'block' : 'none';
         });
 
-        showBubbles(currentLevelData);
+        if (Array.isArray(currentLevelData) && currentLevelData.length > 0) {
+            showBubbles(currentLevelData);
+        }
 
         return scene;
     };
