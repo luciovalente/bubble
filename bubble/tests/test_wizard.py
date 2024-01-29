@@ -47,7 +47,7 @@ class TestWizardStartOKREvaluation(TransactionCase):
                 "member_ids": [(6, 0, [self.test_user.id])],
                 "date_from": date.today(),
                 "date_to": date.today(),
-                "owner_id":self.test_bubble.owner_id.id
+                "owner_id": self.test_bubble.owner_id.id,
             }
         )
 
