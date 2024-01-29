@@ -105,7 +105,7 @@ function initializeBubbles(canvasElement, bubbleData) {
                 button2.width = "128px";
                 button2.fontSize = 9;
                 button2.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-                button2.height ="12px";
+                button2.height ="20px";
                 button2.color = "white";
                 button2.background = "grey";
                 button2.onPointerClickObservable.add(function() {
@@ -166,9 +166,9 @@ function initializeBubbles(canvasElement, bubbleData) {
                 var selectedBubbleData = currentLevelData.find(b => b.name === pickResult.pickedMesh.name);
                 if (selectedBubbleData && selectedBubbleData.content.length > 0) {
                     // Memorizza il livello genitore
-                    if (parentLevels.length>0) {
-                        bubbleParent.push(selectedBubbleData);
-                    }
+                    
+                    bubbleParent.push(selectedBubbleData);
+                    
                     parentLevels.push(currentLevelData);
                     currentLevelData = selectedBubbleData.content;
                     clearScene(advancedTexture);
