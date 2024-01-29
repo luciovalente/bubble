@@ -4,3 +4,6 @@ from . import test_bubble_role
 from . import test_bubble_type
 from . import test_evaluation_type
 from . import test_objective
+from . import test_okr_result
+from . import test_wizard
+from . import test_evaluation
