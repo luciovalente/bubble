@@ -1,11 +1,11 @@
 function initializeBubbles(canvasElement, bubbleData) {
     var canvas = document.getElementById('renderCanvas');
     var engine = new BABYLON.Engine(canvasElement, true);
-
+    var advancedTexture;
 
     var currentLevelData = bubbleData; // Memorizza i dati del livello corrente
     var parentLevels = []; // Stack per memorizzare i livelli genitore
-
+    var bubbleParent = [];
     var createScene = function () {
         var scene = new BABYLON.Scene(engine);
         scene.clearColor = new BABYLON.Color4(1, 0.85, 0.90 ,1);
@@ -52,53 +52,70 @@ function initializeBubbles(canvasElement, bubbleData) {
             }
         }
 
-        function createFirstText(name, visible, image = false) {
+        function createFirstText(name, image = false,link=false,description=false) {
+            
             var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
-        
-            // Crea un blocco di testo per il nome
-            var textBlock = new BABYLON.GUI.TextBlock();
-            textBlock.text = name;
-            textBlock.color = "black";
-            textBlock.fontSize = 24;
-            textBlock.top = "10px"; // Posiziona in alto a destra
-            textBlock.left = "10px";
-            textBlock.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-            textBlock.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-            advancedTexture.addControl(textBlock);
-        
-            // Crea un pulsante o un blocco di testo per il link cliccabile
-            var linkBlock = new BABYLON.GUI.TextBlock();
-            linkBlock.text = "Clicca qui per maggiori informazioni";
-            linkBlock.color = "blue";
-            linkBlock.fontSize = 18;
-            linkBlock.top = "40px"; // Aggiusta la posizione
-            linkBlock.left = "10px";
-            linkBlock.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-            linkBlock.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-            linkBlock.onPointerDownObservable.add(function() {
-                window.open("https://www.example.com");
+            
+            var container = new BABYLON.GUI.StackPanel();
+            container.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+            advancedTexture.addControl(container);
+            
+
+            var button1 = BABYLON.GUI.Button.CreateSimpleButton("but", name);
+            button1.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+            button1.width ="128px";
+            button1.height = "30px";
+            button1.fontSize = 12;
+            button1.color = "white";
+            button1.background = "grey";
+            button1.onPointerClickObservable.add(function(){
+                if (parentLevels.length > 0) {
+                    clearScene(advancedTexture); 
+                    currentLevelData = parentLevels.pop(); // Torna al livello genitore
+                    bubbleParent.pop();
+                    parentBubble = bubbleParent.pop();
+                    if (parentBubble) {
+                        advancedTexture = createFirstText(parentBubble.name,parentBubble.image,parentBubble.link,parentBubble.description);
+                    }
+                    showBubbles(currentLevelData);
+                    startAnimation();
+                }
             });
-            advancedTexture.addControl(linkBlock);
-        
-            // Crea un'immagine se fornita
+            container.addControl(button1);
             if (image) {
                 var base64ImageString = "data:image/png;base64," + image;
                 var imageControl = new BABYLON.GUI.Image("image", base64ImageString);
                 imageControl.width = "128px";
                 imageControl.height = "128px";
-                imageControl.top = "128px"; // Aggiusta la posizione
-                imageControl.left = "10px";
                 imageControl.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-                imageControl.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-                advancedTexture.addControl(imageControl);
+                container.addControl(imageControl);
             }
-        
-            // Imposta la visibilità
-            textBlock.isVisible = visible;
-            linkBlock.isVisible = visible;
-            if (image) {
-                imageControl.isVisible = visible;
+            if (description) {
+                var textBlock = new BABYLON.GUI.TextBlock();
+                textBlock.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+                textBlock.text = description;
+                textBlock.color = "black";
+                textBlock.textWrapping = true; 
+                textBlock.fontSize = 10;
+                textBlock.width ="128px";
+                textBlock.height ="128px";
+                container.addControl(textBlock);
             }
+            if (link) {
+                var button2 = BABYLON.GUI.Button.CreateSimpleButton("but", "Link");
+                button2.width = "128px";
+                button2.fontSize = 9;
+                button2.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+                button2.height ="20px";
+                button2.color = "white";
+                button2.background = "grey";
+                button2.onPointerClickObservable.add(function() {
+                    location.href = link;
+                });
+                container.addControl(button2);
+            }   
+            
+            return advancedTexture;
         }
         
         // Funzione per creare una bolla
@@ -110,9 +127,6 @@ function initializeBubbles(canvasElement, bubbleData) {
             if (alpha == 0) {
                 bubble.material.alpha = 0.6; // Rendere la bolla trasparente
             }
-            createFirstText(name,true,image);
-
-
             // Calcolare la posizione delle bolle contenute
             var innerBubbleSize = size / 3; // Ridurre la dimensione delle bolle interne
             content.forEach(function (innerBubble, index) {
@@ -124,13 +138,16 @@ function initializeBubbles(canvasElement, bubbleData) {
                 }
             });
         }
-        function clearScene() {
+        function clearScene(advancedTexture) {
             while (scene.meshes.length > 0) {
                 scene.meshes[0].dispose();
             }
+            if (advancedTexture) {
+                advancedTexture.dispose();
+            }
         }
         function showBubbles(bubblesData, parentPosition) {
-            clearScene(); 
+            
 
             var startPosition = new BABYLON.Vector3(-2, 0, 0);
             bubblesData.forEach(function (bubbleData, index) {
@@ -139,6 +156,7 @@ function initializeBubbles(canvasElement, bubbleData) {
                 createBubbleText(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 3, 0, 0)), true,image);
 
             });
+            
         }
 
         
@@ -148,26 +166,22 @@ function initializeBubbles(canvasElement, bubbleData) {
             if (pickResult.hit && pickResult.pickedMesh.name.startsWith("Bolla")) {
                 var selectedBubbleData = currentLevelData.find(b => b.name === pickResult.pickedMesh.name);
                 if (selectedBubbleData && selectedBubbleData.content.length > 0) {
-                     // Memorizza il livello genitore
+                    // Memorizza il livello genitore
+                    
+                    bubbleParent.push(selectedBubbleData);
+                    
                     parentLevels.push(currentLevelData);
                     currentLevelData = selectedBubbleData.content;
-                    clearScene(); 
+                    clearScene(advancedTexture);
                     showBubbles(currentLevelData);
-                    document.getElementById("backButton").style.display = 'block';
+                    advancedTexture = createFirstText(selectedBubbleData.name,selectedBubbleData.image,selectedBubbleData.link,selectedBubbleData.description);
                     startAnimation();
                 }
             }
         };
 
         
-        document.getElementById("backButton").addEventListener("click", function() {
-            if (parentLevels.length > 0) {
-                currentLevelData = parentLevels.pop(); // Torna al livello genitore
-                showBubbles(currentLevelData);
-                startAnimation();
-            }
-            this.style.display = parentLevels.length > 0 ? 'block' : 'none';
-        });
+        
 
         if (Array.isArray(currentLevelData) && currentLevelData.length > 0) {
             showBubbles(currentLevelData);
