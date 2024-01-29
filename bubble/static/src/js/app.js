@@ -58,6 +58,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
             
             var container = new BABYLON.GUI.StackPanel();
+            container.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
             advancedTexture.addControl(container);
             
 
@@ -94,7 +95,7 @@ function initializeBubbles(canvasElement, bubbleData) {
                 textBlock.fontSize = 10;
                 textBlock.width ="200px";
                 textBlock.height ="300px";
-                panel.addControl(textBlock);
+                container.addControl(textBlock);
             }
             if (link) {
                 var button2 = BABYLON.GUI.Button.CreateSimpleButton("but", name);
