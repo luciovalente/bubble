@@ -54,31 +54,32 @@ function initializeBubbles(canvasElement, bubbleData) {
 
         function createFirstText(name, visible, image = false) {
             var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
-        
+            
+            var container = new BABYLON.GUI.StackPanel();
+            container.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+            container.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+            container.top = "10px";
+            container.left = "10px";
+            advancedTexture.addControl(container);
+
             // Crea un blocco di testo per il nome
             var textBlock = new BABYLON.GUI.TextBlock();
             textBlock.text = name;
             textBlock.color = "black";
             textBlock.fontSize = 24;
-            textBlock.top = "10px"; // Posiziona in alto a destra
-            textBlock.left = "10px";
-            textBlock.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-            textBlock.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-            advancedTexture.addControl(textBlock);
+            
+            container.addControl(textBlock);
         
             // Crea un pulsante o un blocco di testo per il link cliccabile
             var linkBlock = new BABYLON.GUI.TextBlock();
             linkBlock.text = "Clicca qui per maggiori informazioni";
             linkBlock.color = "blue";
             linkBlock.fontSize = 18;
-            linkBlock.top = "40px"; // Aggiusta la posizione
-            linkBlock.left = "10px";
-            linkBlock.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-            linkBlock.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+            
             //linkBlock.onPointerDownObservable.add(function() {
             //    window.open("https://www.example.com");
             //});
-            advancedTexture.addControl(linkBlock);
+            container.addControl(linkBlock);
             
             linkBlock.onPointerDownObservable.add(function(){
                 if (parentLevels.length > 0) {
@@ -94,11 +95,8 @@ function initializeBubbles(canvasElement, bubbleData) {
                 var imageControl = new BABYLON.GUI.Image("image", base64ImageString);
                 imageControl.width = "128px";
                 imageControl.height = "128px";
-                imageControl.top = "128px"; // Aggiusta la posizione
-                imageControl.left = "10px";
-                imageControl.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-                imageControl.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-                advancedTexture.addControl(imageControl);
+                
+                container.addControl(imageControl);
             }
         
             // Imposta la visibilità
