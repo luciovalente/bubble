@@ -3,7 +3,7 @@ import base64
 import json
 
 import requests
-from odoo import api, fields, models, tools, _
+from odoo import _, api, fields, models, tools
 from odoo.exceptions import ValidationError
 from odoo.tools.float_utils import float_compare
 from odoo.tools.safe_eval import safe_eval, test_python_expr

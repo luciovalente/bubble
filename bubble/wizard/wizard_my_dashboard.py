@@ -22,7 +22,7 @@ class WizardMyDashboard(models.TransientModel):
             if bubble.parent_bubble_id:
                 return find_principal_bubble(bubble.parent_bubble_id)
             return bubble
-        
+
         bubble_ids = self.env["bubble"].search(
             [("member_ids", "in", self.env.user.id), ("status", "=", "running")]
         )
