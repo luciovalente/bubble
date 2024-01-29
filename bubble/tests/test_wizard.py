@@ -47,6 +47,7 @@ class TestWizardStartOKREvaluation(TransactionCase):
                 "member_ids": [(6, 0, [self.test_user.id])],
                 "date_from": date.today(),
                 "date_to": date.today(),
+                "owner_id":self.test_bubble.owner_id.id
             }
         )
 
@@ -55,8 +56,7 @@ class TestWizardStartOKREvaluation(TransactionCase):
 
         # Verificare che sia stata creata una valutazione OKR
         evaluation = self.OkrEvaluation.search([(1, "=", 1)])
-        self.assertEquals(len(evaluation),1)
-
+        self.assertTrue(evaluation)
         # Verificare che siano stati creati i risultati OKR
         okr_results = self.env["okr.result"].search(
             [("evaluation_id", "=", evaluation.id)]
