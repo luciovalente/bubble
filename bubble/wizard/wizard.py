@@ -21,7 +21,7 @@ class WizardStartOKREvaluation(models.TransientModel):
         for member in self.member_ids:
             # Creare una nuova valutazione OKR per il membro
             owner_id = self.owner_id
-            if member.id == owner_id.id
+            if member.id == owner_id.id:
                 owner_id = self.bubble_id.parent_bubble_id.owner_id if self.bubble_id.parent_bubble_id else False
             if owner_id:
                 evaluation = OkrEvaluation.create(
