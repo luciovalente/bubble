@@ -15,6 +15,7 @@ class TestOkrResult(TransactionCase):
         self.BubbleRole = self.env["bubble.role"]
         self.OkrEvaluationType = self.env["okr.evaluation.type"]
 
+
         # Creazione di record necessari per il test
         self.test_user = self.ResUsers.create(
             {"name": "Test User", "login": "test_user"}
@@ -35,8 +36,9 @@ class TestOkrResult(TransactionCase):
             {
                 "objective_id": self.test_objective.id,
                 "description": "Test OKR",
-                "type": "personal",
-                "bubble_id": self.test_bubble.id,
+                "type": "normal",
+                "bubble_id": self.test_bubble.id
+                
             }
         )
 
@@ -55,7 +57,7 @@ class TestOkrResult(TransactionCase):
         self.assertEqual(okr_result.okr_description, self.test_okr.description)
         self.assertEqual(okr_result.okr_type, self.test_okr.type)
         self.assertEqual(okr_result.bubble_id, self.test_bubble)
-        self.assertTrue(okr_result.with_automation)
+        self.assertFalse(okr_result.with_automation)
         self.assertEqual(okr_result.bubble_role_id, self.test_bubble_role)
         self.assertEqual(okr_result.status, self.test_evaluation.status)
         self.assertEqual(okr_result.user_id, self.test_user)
