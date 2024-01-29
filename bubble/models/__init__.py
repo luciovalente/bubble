@@ -1,9 +1,3 @@
-from . import bubble
-from . import bubble_role
-from . import bubble_type
-from . import role_bubble
-from . import okr
-from . import okr_evaluation
-from . import okr_result
-from . import objective
-from . import okr_evaluation_type
+# -*- coding: utf-8 -*-
+from . import (bubble, bubble_role, bubble_type, objective, okr,
+               okr_evaluation, okr_evaluation_type, okr_result, role_bubble)
