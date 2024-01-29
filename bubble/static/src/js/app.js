@@ -53,8 +53,7 @@ function initializeBubbles(canvasElement, bubbleData) {
         }
 
         function createFirstText(name, image = false,link=false,description=false) {
-            link = 'https://google.com';
-            description = "<h1>Pippo</h1>";
+            
             var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
             
             var container = new BABYLON.GUI.StackPanel();
@@ -64,7 +63,6 @@ function initializeBubbles(canvasElement, bubbleData) {
 
             var button1 = BABYLON.GUI.Button.CreateSimpleButton("but", name);
             button1.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-            button1.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
             button1.width = 0.2;
             button1.height = "40px";
             button1.color = "white";
@@ -86,13 +84,11 @@ function initializeBubbles(canvasElement, bubbleData) {
                 imageControl.width = "128px";
                 imageControl.height = "128px";
                 imageControl.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-                imageControl.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
                 container.addControl(imageControl);
             }
             if (description) {
                 var textBlock = new BABYLON.GUI.TextBlock();
-                textBlock.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
-                textBlock.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+                textBlock.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
                 textBlock.text = description;
                 textBlock.color = "black";
                 textBlock.fontSize = 10;
@@ -104,7 +100,6 @@ function initializeBubbles(canvasElement, bubbleData) {
                 var button2 = BABYLON.GUI.Button.CreateSimpleButton("but", name);
                 button2.width = 0.2;
                 button2.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-                button2.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
                 button2.height = "40px";
                 button2.color = "white";
                 button2.background = "grey";
@@ -169,7 +164,7 @@ function initializeBubbles(canvasElement, bubbleData) {
                     bubbleParent.push(selectedBubbleData);
                     parentLevels.push(currentLevelData);
                     currentLevelData = selectedBubbleData.content;
-                    clearScene(advancedTexture); 
+                    clearScene(advancedTexture);
                     showBubbles(currentLevelData);
                     advancedTexture = createFirstText(selectedBubbleData.name,selectedBubbleData.image,selectedBubbleData.link,selectedBubbleData.description);
                     startAnimation();
