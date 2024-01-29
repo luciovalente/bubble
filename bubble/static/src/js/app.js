@@ -5,7 +5,7 @@ function initializeBubbles(canvasElement, bubbleData) {
 
     var currentLevelData = bubbleData; // Memorizza i dati del livello corrente
     var parentLevels = []; // Stack per memorizzare i livelli genitore
-
+    var bubbleParent = [];
     var createScene = function () {
         var scene = new BABYLON.Scene(engine);
         scene.clearColor = new BABYLON.Color4(1, 0.85, 0.90 ,1);
@@ -52,7 +52,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             }
         }
 
-        function createFirstText(name, image = false,description=false,link=false) {
+        function createFirstText(name, image = false,link=false,description=false) {
             link = 'https://google.com';
             description = "<h1>Pippo</h1>";
             var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
@@ -71,7 +71,10 @@ function initializeBubbles(canvasElement, bubbleData) {
             button1.background = "grey";
             button1.onPointerClickObservable.add(function(){
                 if (parentLevels.length > 0) {
+                    clearScene(advancedTexture); 
                     currentLevelData = parentLevels.pop(); // Torna al livello genitore
+                    parentBubble = bubbleParent.pop();
+                    advancedTexture = createFirstText(parentBubble.name,parentBubble.image,parentBubble.link,parentBubble.description);
                     showBubbles(currentLevelData);
                     startAnimation();
                 }
@@ -109,12 +112,7 @@ function initializeBubbles(canvasElement, bubbleData) {
                     location.href = link;
                 });
                 container.addControl(button2);
-            }
-            
-            
-            // Crea un'immagine se fornita
-            
-        
+            }   
             
             return advancedTexture;
         }
@@ -128,9 +126,6 @@ function initializeBubbles(canvasElement, bubbleData) {
             if (alpha == 0) {
                 bubble.material.alpha = 0.6; // Rendere la bolla trasparente
             }
-            
-
-
             // Calcolare la posizione delle bolle contenute
             var innerBubbleSize = size / 3; // Ridurre la dimensione delle bolle interne
             content.forEach(function (innerBubble, index) {
@@ -151,7 +146,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             }
         }
         function showBubbles(bubblesData, parentPosition) {
-            clearScene(advancedTexture); 
+            
 
             var startPosition = new BABYLON.Vector3(-2, 0, 0);
             bubblesData.forEach(function (bubbleData, index) {
@@ -171,12 +166,12 @@ function initializeBubbles(canvasElement, bubbleData) {
                 var selectedBubbleData = currentLevelData.find(b => b.name === pickResult.pickedMesh.name);
                 if (selectedBubbleData && selectedBubbleData.content.length > 0) {
                     // Memorizza il livello genitore
-                    
+                    bubbleParent.push(selectedBubbleData);
                     parentLevels.push(currentLevelData);
                     currentLevelData = selectedBubbleData.content;
                     clearScene(advancedTexture); 
                     showBubbles(currentLevelData);
-                    advancedTexture = createFirstText(selectedBubbleData.name,selectedBubbleData.image);
+                    advancedTexture = createFirstText(selectedBubbleData.name,selectedBubbleData.image,selectedBubbleData.link,selectedBubbleData.description);
                     startAnimation();
                 }
             }
