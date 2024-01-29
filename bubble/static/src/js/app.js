@@ -52,7 +52,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             }
         }
 
-        function createFirstText(name, position, visible, image = false) {
+        function createFirstText(name, visible, image = false) {
             var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
         
             // Crea un blocco di testo per il nome
@@ -60,8 +60,10 @@ function initializeBubbles(canvasElement, bubbleData) {
             textBlock.text = name;
             textBlock.color = "black";
             textBlock.fontSize = 24;
-            textBlock.top = 0; // Aggiusta la posizione
-            textBlock.left = 0;
+            textBlock.top = "10px"; // Posiziona in alto a destra
+            textBlock.left = "10px";
+            textBlock.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+            textBlock.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
             advancedTexture.addControl(textBlock);
         
             // Crea un pulsante o un blocco di testo per il link cliccabile
@@ -69,10 +71,12 @@ function initializeBubbles(canvasElement, bubbleData) {
             linkBlock.text = "Clicca qui per maggiori informazioni";
             linkBlock.color = "blue";
             linkBlock.fontSize = 18;
-            linkBlock.top = position.y - 130; // Aggiusta la posizione
-            linkBlock.left = position.x;
+            linkBlock.top = "40px"; // Aggiusta la posizione
+            linkBlock.left = "10px";
+            linkBlock.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+            linkBlock.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
             linkBlock.onPointerDownObservable.add(function() {
-                window.open("https://www.example.com", "_blank");
+                window.open("https://www.example.com");
             });
             advancedTexture.addControl(linkBlock);
         
@@ -80,10 +84,12 @@ function initializeBubbles(canvasElement, bubbleData) {
             if (image) {
                 var base64ImageString = "data:image/png;base64," + image;
                 var imageControl = new BABYLON.GUI.Image("image", base64ImageString);
-                imageControl.width = "100px";
-                imageControl.height = "100px";
-                imageControl.top = position.y - 170; // Aggiusta la posizione
-                imageControl.left = position.x;
+                imageControl.width = "128px";
+                imageControl.height = "128px";
+                imageControl.top = "128px"; // Aggiusta la posizione
+                imageControl.left = "10px";
+                imageControl.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+                imageControl.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
                 advancedTexture.addControl(imageControl);
             }
         
@@ -94,6 +100,7 @@ function initializeBubbles(canvasElement, bubbleData) {
                 imageControl.isVisible = visible;
             }
         }
+        
         // Funzione per creare una bolla
         function createBubble(name, position, size, content,color,alpha=0, image=false) {
             var bubble = BABYLON.MeshBuilder.CreateSphere(name, {diameter: size}, scene);
@@ -103,7 +110,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             if (alpha == 0) {
                 bubble.material.alpha = 0.6; // Rendere la bolla trasparente
             }
-            
+            createFirstText(name,true,image);
 
 
             // Calcolare la posizione delle bolle contenute
