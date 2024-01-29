@@ -26,7 +26,7 @@ class WizardToSuggestKR(models.TransientModel):
 
     objective_id = fields.Many2one("objective", string="Objective")
     bubble_id = fields.Many2one("bubble", string="Bubble")
-    bubble_purpose = fields.Html("Bubble Purpose", related="bubble_id.purpose")
+    bubble_purpose = fields.Text("Bubble Purpose", related="bubble_id.purpose")
     role_description = fields.Text(
         "Role Description", related="bubble_role_id.description"
     )
