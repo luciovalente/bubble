@@ -56,9 +56,6 @@ function initializeBubbles(canvasElement, bubbleData) {
             var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
             
             var container = new BABYLON.GUI.StackPanel();
-            
-            container.top(10);
-            container.left(10);
             advancedTexture.addControl(container);
             
 
