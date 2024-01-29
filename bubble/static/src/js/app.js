@@ -1,7 +1,7 @@
 function initializeBubbles(canvasElement, bubbleData) {
     var canvas = document.getElementById('renderCanvas');
     var engine = new BABYLON.Engine(canvasElement, true);
-
+    var advancedTexture;
 
     var currentLevelData = bubbleData; // Memorizza i dati del livello corrente
     var parentLevels = []; // Stack per memorizzare i livelli genitore
@@ -124,9 +124,12 @@ function initializeBubbles(canvasElement, bubbleData) {
                 }
             });
         }
-        function clearScene() {
+        function clearScene(advancedTexture) {
             while (scene.meshes.length > 0) {
                 scene.meshes[0].dispose();
+            }
+            if (advancedTexture) {
+                advancedTexture.dispose();
             }
         }
         function showBubbles(bubblesData, parentPosition) {
@@ -153,10 +156,10 @@ function initializeBubbles(canvasElement, bubbleData) {
                     
                     parentLevels.push(currentLevelData);
                     currentLevelData = selectedBubbleData.content;
-                    clearScene(); 
+                    clearScene(advancedTexture); 
                     showBubbles(currentLevelData);
                     document.getElementById("backButton").style.display = 'block';
-                    createFirstText(selectedBubbleData.name,true,selectedBubbleData.image);
+                    advancedTexture = createFirstText(selectedBubbleData.name,true,selectedBubbleData.image);
                     startAnimation();
                 }
             }
