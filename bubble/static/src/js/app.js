@@ -72,6 +72,7 @@ function initializeBubbles(canvasElement, bubbleData) {
                 if (parentLevels.length > 0) {
                     clearScene(advancedTexture); 
                     currentLevelData = parentLevels.pop(); // Torna al livello genitore
+                    bubbleParent.pop();
                     parentBubble = bubbleParent.pop();
                     if (parentBubble) {
                         advancedTexture = createFirstText(parentBubble.name,parentBubble.image,parentBubble.link,parentBubble.description);
