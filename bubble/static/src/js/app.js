@@ -99,6 +99,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             if (image) {
                 imageControl.isVisible = visible;
             }
+            return advancedTexture;
         }
         
         // Funzione per creare una bolla
