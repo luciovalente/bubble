@@ -35,7 +35,7 @@ class TestOkrResult(TransactionCase):
             {
                 "objective_id": self.test_objective.id,
                 "description": "Test OKR",
-                "type": "normal",
+                "type": "bubble",
                 "bubble_id": self.test_bubble.id,
             }
         )
