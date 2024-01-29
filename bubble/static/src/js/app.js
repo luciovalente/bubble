@@ -59,8 +59,6 @@ function initializeBubbles(canvasElement, bubbleData) {
             var container = new BABYLON.GUI.StackPanel();
             container.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
             advancedTexture.addControl(container);
-            
-
             var button1 = BABYLON.GUI.Button.CreateSimpleButton("but", "In " + name);
             button1.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
             button1.width ="128px";
@@ -113,11 +111,9 @@ function initializeBubbles(canvasElement, bubbleData) {
                     location.href = link;
                 });
                 container.addControl(button2);
-            }   
-            
+            }     
             return advancedTexture;
         }
-        
         // Funzione per creare una bolla
         function createBubble(name, position, size, content,color,alpha=0, image=false) {
             bubbleNames.push(name);
@@ -148,8 +144,6 @@ function initializeBubbles(canvasElement, bubbleData) {
             }
         }
         function showBubbles(bubblesData, parentPosition) {
-            
-
             var startPosition = new BABYLON.Vector3(-2, 0, 0);
             bubblesData.forEach(function (bubbleData, index) {
                 var image = bubbleData.image ? bubbleData.image : false;
@@ -165,9 +159,7 @@ function initializeBubbles(canvasElement, bubbleData) {
                 var selectedBubbleData = currentLevelData.find(b => b.name === pickResult.pickedMesh.name);
                 if (selectedBubbleData && selectedBubbleData.content.length > 0) {
                     // Memorizza il livello genitore
-                    
                     bubbleParent.push(selectedBubbleData);
-                    
                     parentLevels.push(currentLevelData);
                     currentLevelData = selectedBubbleData.content;
                     clearScene(advancedTexture);
@@ -177,14 +169,9 @@ function initializeBubbles(canvasElement, bubbleData) {
                 }
             }
         };
-
-        
-        
-
         if (Array.isArray(currentLevelData) && currentLevelData.length > 0) {
             showBubbles(currentLevelData);
         }
-
         return scene;
     };
 
