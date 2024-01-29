@@ -20,7 +20,10 @@ class TestWizardStartOKREvaluation(TransactionCase):
         self.test_user = self.ResUsers.create(
             {"name": "Test User", "login": "test_user"}
         )
-        self.test_bubble = self.Bubble.create({"name": "Test Bubble"})
+        self.test_owner = self.ResUsers.create(
+            {"name": "Test Owner", "login": "test_owner"}
+        )
+        self.test_bubble = self.Bubble.create({"name": "Test Bubble","owner_id":self.test_owner.id})
         self.test_evaluation_type = self.OkrEvaluationType.create(
             {"name": "Test Evaluation Type"}
         )
