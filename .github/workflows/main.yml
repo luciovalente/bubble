@@ -39,6 +39,7 @@ jobs:
         git config --global user.email 'luciovalente81@gmail.com'
         git add -A
         git commit -m "Apply auto-fixes" || echo "No changes to commit"
+        echo ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         git push 
       env:
         GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
