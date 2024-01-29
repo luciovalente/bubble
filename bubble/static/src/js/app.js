@@ -105,7 +105,7 @@ function initializeBubbles(canvasElement, bubbleData) {
                 button2.color = "white";
                 button2.background = "grey";
                 button2.onPointerClickObservable.add(function() {
-                    window.open("https://www.example.com");
+                    location.href = link;
                 });
                 container.addControl(button2);
             }
