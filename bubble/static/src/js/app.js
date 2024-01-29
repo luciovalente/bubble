@@ -33,36 +33,46 @@ function initializeBubbles(canvasElement, bubbleData) {
             scene.beginAnimation(camera, 0, 100, false);
         }
         // Funzione per creare il testo sotto la bolla
-        function createBubbleText(name, position, visible, image=false) {
-            var dynamicTexture = new BABYLON.DynamicTexture("DynamicTexture", 1028, scene, true);
-            dynamicTexture.hasAlpha = true; // Impostare la trasparenza della texture
-            
-            dynamicTexture.drawText(name, null, null, "bold 80px Arial", "black", "transparent", true);
-
-            var plane = BABYLON.Mesh.CreatePlane("TextPlane", 2, scene);
-            plane.position = new BABYLON.Vector3(position.x, position.y - 2.5, position.z); // Posizionare il piano del testo sotto la bolla
-            plane.material = new BABYLON.StandardMaterial("TextPlaneMaterial", scene);
-            plane.material.diffuseTexture = dynamicTexture;
-            plane.material.specularColor = new BABYLON.Color3(0, 0, 0);
-            plane.material.emissiveColor = new BABYLON.Color3(1, 1, 1);
-            plane.material.backFaceCulling = false;
-
-
+        function createBubbleText(name, position, visible, image = false) {
+            var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+        
+            // Crea un blocco di testo per il nome
+            var textBlock = new BABYLON.GUI.TextBlock();
+            textBlock.text = name;
+            textBlock.color = "black";
+            textBlock.fontSize = 24;
+            textBlock.top = position.y - 100; // Aggiusta la posizione
+            textBlock.left = position.x;
+            advancedTexture.addControl(textBlock);
+        
+            // Crea un pulsante o un blocco di testo per il link cliccabile
+            var linkBlock = new BABYLON.GUI.TextBlock();
+            linkBlock.text = "Clicca qui per maggiori informazioni";
+            linkBlock.color = "blue";
+            linkBlock.fontSize = 18;
+            linkBlock.top = position.y - 130; // Aggiusta la posizione
+            linkBlock.left = position.x;
+            linkBlock.onPointerDownObservable.add(function() {
+                window.open("https://www.example.com", "_blank");
+            });
+            advancedTexture.addControl(linkBlock);
+        
+            // Crea un'immagine se fornita
             if (image) {
-                var base64ImageString = "data:image/png;base64,"+image;
-                var texture = new BABYLON.Texture(base64ImageString, scene);
-                texture.hasAlpha = true; 
-                var plane = BABYLON.Mesh.CreatePlane("Image", 2, scene);
-                plane.position = new BABYLON.Vector3(position.x, position.y - 3.5, position.z); // Posizionare il piano del testo sotto la bolla
-                plane.material = new BABYLON.StandardMaterial("TextPlaneMaterial", scene);
-                plane.material.diffuseTexture = texture;
-                plane.material.specularColor = new BABYLON.Color3(0, 0, 0);
-                plane.material.emissiveColor = new BABYLON.Color3(1, 1, 1);
-                plane.material.backFaceCulling = false;
-
+                var base64ImageString = "data:image/png;base64," + image;
+                var imageControl = new BABYLON.GUI.Image("image", base64ImageString);
+                imageControl.width = "100px";
+                imageControl.height = "100px";
+                imageControl.top = position.y - 170; // Aggiusta la posizione
+                imageControl.left = position.x;
+                advancedTexture.addControl(imageControl);
             }
-            if (!visible) {
-                plane.visibility = 0; // Rendi il testo invisibile se non è nel livello corrente
+        
+            // Imposta la visibilità
+            textBlock.isVisible = visible;
+            linkBlock.isVisible = visible;
+            if (image) {
+                imageControl.isVisible = visible;
             }
         }
 
