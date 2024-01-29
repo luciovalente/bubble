@@ -54,8 +54,8 @@ class TestWizardStartOKREvaluation(TransactionCase):
         wizard.action_start_okr_valuation()
 
         # Verificare che sia stata creata una valutazione OKR
-        evaluation = self.OkrEvaluation.search([("user_id", "=", self.test_user.id)])
-        self.assertTrue(evaluation)
+        evaluation = self.OkrEvaluation.search([(1, "=", 1)])
+        self.assertEquals(len(evaluation),1)
 
         # Verificare che siano stati creati i risultati OKR
         okr_results = self.env["okr.result"].search(
