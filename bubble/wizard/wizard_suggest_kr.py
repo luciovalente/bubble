@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
-import json
 import re
 
 import requests
-from odoo import api, fields, models
-from odoo.exceptions import UserError, ValidationError
+from odoo import fields, models
 
 PROMPT = """
     Devo creare degli OKR per la mia azienza. 
