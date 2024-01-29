@@ -321,7 +321,7 @@ class Bubble(models.Model):
                     "content": bubble.child_bubble_ids.get_bubble_json(),
                     "size": bubble.get_diameter(),
                     "image": bubble.image_128,
-                    "description":bubble.description,
+                    "description":bubble.purpose,
                     "link":self.get_record_url(bubble.id)
                 }
             )
