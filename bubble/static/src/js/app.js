@@ -110,7 +110,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             if (alpha == 0) {
                 bubble.material.alpha = 0.6; // Rendere la bolla trasparente
             }
-            createFirstText(name,true,image);
+            
 
 
             // Calcolare la posizione delle bolle contenute
@@ -139,6 +139,7 @@ function initializeBubbles(canvasElement, bubbleData) {
                 createBubbleText(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 3, 0, 0)), true,image);
 
             });
+            
         }
 
         
@@ -149,11 +150,13 @@ function initializeBubbles(canvasElement, bubbleData) {
                 var selectedBubbleData = currentLevelData.find(b => b.name === pickResult.pickedMesh.name);
                 if (selectedBubbleData && selectedBubbleData.content.length > 0) {
                      // Memorizza il livello genitore
+                    
                     parentLevels.push(currentLevelData);
                     currentLevelData = selectedBubbleData.content;
                     clearScene(); 
                     showBubbles(currentLevelData);
                     document.getElementById("backButton").style.display = 'block';
+                    createFirstText(selectedBubbleData.name,true,selectedBubbleData.image);
                     startAnimation();
                 }
             }

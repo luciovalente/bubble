@@ -6,11 +6,11 @@
 
             <form>
                 <div class="row">
-                    <div class="col col-md-6">
+                    <div class="col col-lg-6">
                         <field name="bubble_id" widget="bubble_chart"/>
                     </div>
 
-                    <div class="col col-md-6">
+                    <div class="col col-lg-6">
                         <notebook>
                             <page string="My Bubbles">
                                 <field name="bubble_ids">
