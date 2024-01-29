@@ -63,8 +63,8 @@ function initializeBubbles(canvasElement, bubbleData) {
 
             var button1 = BABYLON.GUI.Button.CreateSimpleButton("but", name);
             button1.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-            button1.width = 0.2;
-            button1.height = "40px";
+            button1.width ="128px";
+            button1.height = "30px";
             button1.color = "white";
             button1.background = "grey";
             button1.onPointerClickObservable.add(function(){
@@ -93,15 +93,15 @@ function initializeBubbles(canvasElement, bubbleData) {
                 textBlock.color = "black";
                 textBlock.textWrapping = true; 
                 textBlock.fontSize = 10;
-                textBlock.width ="200px";
-                textBlock.height ="200px";
+                textBlock.width ="128px";
+                textBlock.height ="128px";
                 container.addControl(textBlock);
             }
             if (link) {
                 var button2 = BABYLON.GUI.Button.CreateSimpleButton("but", "Link");
-                button2.width = 0.2;
+                button2.width = "128px";
                 button2.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-                button2.height = "40px";
+                button2.height ="12px";
                 button2.color = "white";
                 button2.background = "grey";
                 button2.onPointerClickObservable.add(function() {
@@ -162,7 +162,9 @@ function initializeBubbles(canvasElement, bubbleData) {
                 var selectedBubbleData = currentLevelData.find(b => b.name === pickResult.pickedMesh.name);
                 if (selectedBubbleData && selectedBubbleData.content.length > 0) {
                     // Memorizza il livello genitore
-                    bubbleParent.push(selectedBubbleData);
+                    if (parentLevels.length>0) {
+                        bubbleParent.push(selectedBubbleData);
+                    }
                     parentLevels.push(currentLevelData);
                     currentLevelData = selectedBubbleData.content;
                     clearScene(advancedTexture);
