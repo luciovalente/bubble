@@ -9,9 +9,13 @@ class OkrEvaluation(models.Model):
 
     active = fields.Boolean(default=True)
     name = fields.Char(store=True, compute="_compute_name")
-    owner_id = fields.Many2one("res.users", string="Leader", store=True)
-    evaluation_type_id = fields.Many2one("okr.evaluation.type", required=True)
-    with_automation = fields.Boolean(related="evaluation_type_id.with_automation")
+    owner_id = fields.Many2one("res.users", string="Leader", store=True, tracking=True)
+    evaluation_type_id = fields.Many2one(
+        "okr.evaluation.type", required=True, tracking=True
+    )
+    with_automation = fields.Boolean(
+        related="evaluation_type_id.with_automation", tracking=True
+    )
     evaluation_description = fields.Text(related="evaluation_type_id.description")
 
     user_id = fields.Many2one("res.users", string="User")
