@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 {
     "name": "Yorange",
     "version": "15.1.1.0",

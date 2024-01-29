@@ -1,5 +1,5 @@
+# -*- coding: utf-8 -*-
 import base64
-import functools
 import json
 import logging
 from collections import defaultdict
