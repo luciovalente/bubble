@@ -15,7 +15,6 @@ class TestOkrResult(TransactionCase):
         self.BubbleRole = self.env["bubble.role"]
         self.OkrEvaluationType = self.env["okr.evaluation.type"]
 
-
         # Creazione di record necessari per il test
         self.test_user = self.ResUsers.create(
             {"name": "Test User", "login": "test_user"}
