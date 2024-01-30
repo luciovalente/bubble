@@ -37,7 +37,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             var dynamicTexture = new BABYLON.DynamicTexture("DynamicTexture", 1028, scene, true);
             dynamicTexture.hasAlpha = true; // Impostare la trasparenza della texture
             
-            dynamicTexture.drawText(name, null, null, "bold 80px Arial", "black", "transparent", true);
+            dynamicTexture.drawText(name, null, null, "bold 60px Arial", "black", "transparent", true);
 
             var plane = BABYLON.Mesh.CreatePlane("TextPlane", 2, scene);
             plane.position = new BABYLON.Vector3(position.x, position.y - 2.5, position.z); // Posizionare il piano del testo sotto la bolla
@@ -128,7 +128,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             var innerBubbleSize = size / 3; // Ridurre la dimensione delle bolle interne
             content.forEach(function (innerBubble, index) {
                 if (index<=4) {
-                    var angle = Math.PI * 2 * index / content.length; // Angolo per distribuire le bolle internamente
+                    var angle = Math.PI * 2 * index / (content.length < 5 ? content.length : 5); // Angolo per distribuire le bolle internamente
                     var innerPosition = position.add(new BABYLON.Vector3(Math.cos(angle) * size / 4, Math.sin(angle) * size / 4, 0));
                     var image = innerBubble.image ? innerBubble.image : false;
                     createBubble(innerBubble.name, innerPosition, innerBubbleSize, innerBubble.content,innerBubble.color,0.8,image);
