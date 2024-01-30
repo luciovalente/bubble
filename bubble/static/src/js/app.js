@@ -34,22 +34,34 @@ function initializeBubbles(canvasElement, bubbleData) {
         }
         // Funzione per creare il testo sotto la bolla
         function createBubbleText(name, position, visible, image=false) {
-            var dynamicTexture = new BABYLON.DynamicTexture("DynamicTexture", 1028, scene, true);
-            dynamicTexture.hasAlpha = true; // Impostare la trasparenza della texture
+            var textureSize = 2048; // Aumentare la dimensione della texture
+            var dynamicTexture = new BABYLON.DynamicTexture("DynamicTexture", textureSize, scene, true);
+            dynamicTexture.hasAlpha = true;
             
-            dynamicTexture.drawText(name, null, null, "bold 60px Arial", "black", "transparent", true);
-
-            var plane = BABYLON.Mesh.CreatePlane("TextPlane", 2, scene);
-            plane.position = new BABYLON.Vector3(position.x, position.y - 2.5, position.z); // Posizionare il piano del testo sotto la bolla
+            var textSize = "bold 200px Arial"; // Regolare la dimensione del testo se necessario
+            var lineHeight = 200; // Altezza della linea (deve essere maggiore o uguale alla dimensione del font)
+            var words = name.split(" "); // Splittare il testo in parole
+            var y = 200; // Iniziare da questa posizione Y
+        
+            // Disegnare ogni parola su una nuova linea
+            words.forEach(function(word) {
+                dynamicTexture.drawText(word, 200, y, textSize, "black", "transparent", true);
+                y += lineHeight; // Spostare giù per la prossima linea
+            });
+        
+            var planeSize = 2; // Ajustare la dimensione del piano se necessario
+            var plane = BABYLON.Mesh.CreatePlane("TextPlane", planeSize, scene);
+            plane.position = new BABYLON.Vector3(position.x, position.y - 2.5, position.z);
             plane.material = new BABYLON.StandardMaterial("TextPlaneMaterial", scene);
             plane.material.diffuseTexture = dynamicTexture;
             plane.material.specularColor = new BABYLON.Color3(0, 0, 0);
             plane.material.emissiveColor = new BABYLON.Color3(1, 1, 1);
             plane.material.backFaceCulling = false;
-
+        
             if (!visible) {
-                plane.visibility = 0; // Rendi il testo invisibile se non è nel livello corrente
+                plane.visibility = 0;
             }
+        
         }
 
         function createFirstText(name, image = false,link=false,description=false) {
