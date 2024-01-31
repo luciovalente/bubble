@@ -8,10 +8,11 @@ function initializeBubbles(canvasElement, bubbleData) {
     var bubbleParent = [];
     var bubbleHighlight = [];
     var highlightActive = false;
-    var hl = new BABYLON.HighlightLayer("hl1", scene);
+    var hl;
     var createScene = function () {
         var scene = new BABYLON.Scene(engine);
         scene.clearColor = new BABYLON.Color4(1, 0.85, 0.90 ,1);
+        hl = new BABYLON.HighlightLayer("hl1", scene);
         var camera = new BABYLON.UniversalCamera("TouchCamera", new BABYLON.Vector3(0, 1, -5), scene);
         camera.setTarget(BABYLON.Vector3.Zero());
         camera.attachControl(canvas, true);
