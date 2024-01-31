@@ -1,0 +1,114 @@
+### Ignore generic temp file, undo files, etc...
+.~lock.*
+*.*~
+*.autosave
+*.sw[po]
+*.b[ac]k
+ssh_key
+*.tar.gz
+logs/
+
+# Odoo specific
+odoo.cfg
+odoo.conf
+
+### Eclipse specific
+.settings/
+.properties
+.classpath
+bin/
+build/
+.pydevproject
+.project
+
+# IntelliJ
+.idea/
+
+### Sublime Specific
+# Cache files for Sublime Text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+# Workspace files are user-specific
+*.sublime-workspace
+# Sublime-github package stores a github token in this file
+# https://packagecontrol.io/packages/sublime-github
+GitHub.sublime-settings
+
+### VSCode specific
+.vscode/
+# Local History for Visual Studio Code
+.history/
+# Built Visual Studio Code Extensions
+*.vsix
+
+### Ansible specific
+*.retry
+
+### Pyton specific
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+# setup.py egg_info
+*.egg-info
+# various virtualenv
+[.]venv/
+/bin/
+/build/
+/dist/
+/include/
+/lib/
+/man/
+/share/
+/src/
+
+### MacOS specific
+
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+# Icon must end with two \r
+Icon
+
+
+# Thumbnails
+._*
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+
+### WIndows Specific
+# Windows thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+# Dump file
+*.stackdump
+# Folder config file
+[Dd]esktop.ini
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+# Windows shortcuts
+*.lnk

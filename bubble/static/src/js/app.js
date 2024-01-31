@@ -6,6 +6,7 @@ function initializeBubbles(canvasElement, bubbleData) {
     var currentLevelData = bubbleData; // Memorizza i dati del livello corrente
     var parentLevels = []; // Stack per memorizzare i livelli genitore
     var bubbleParent = [];
+    var highlightActive = false;
     var createScene = function () {
         var scene = new BABYLON.Scene(engine);
         scene.clearColor = new BABYLON.Color4(1, 0.85, 0.90 ,1);
@@ -34,22 +35,79 @@ function initializeBubbles(canvasElement, bubbleData) {
         }
         // Funzione per creare il testo sotto la bolla
         function createBubbleText(name, position, visible, image=false) {
-            var dynamicTexture = new BABYLON.DynamicTexture("DynamicTexture", 1028, scene, true);
-            dynamicTexture.hasAlpha = true; // Impostare la trasparenza della texture
+            var textureSize = 2048; // Dimensione della texture
+            var dynamicTexture = new BABYLON.DynamicTexture("DynamicTexture", textureSize, scene, true);
+            dynamicTexture.hasAlpha = true;
             
-            dynamicTexture.drawText(name, null, null, "bold 80px Arial", "black", "transparent", true);
-
-            var plane = BABYLON.Mesh.CreatePlane("TextPlane", 2, scene);
-            plane.position = new BABYLON.Vector3(position.x, position.y - 2.5, position.z); // Posizionare il piano del testo sotto la bolla
+            var textSize = "bold 200px Arial"; // Dimensione del testo
+            var lineHeight = 200; // Altezza della linea
+            var words = name.split(" "); // Split the text into words
+            var y = 200; // Posizione Y iniziale per il testo
+            var imageWidth = 800; // Larghezza dell'immagine
+            var imageHeight = 800; // Altezza dell'immagine
+            var textX = 200 + imageWidth; // X position for text, after the image
+        
+            // Disegnare l'immagine dal codice Base64, se fornita
+            if (image) {
+                var imageSrc = "data:image/png;base64," + image;
+                var img = new Image();
+                img.onload = function() {
+                    // Disegnare l'immagine sulla texture
+                    dynamicTexture.getContext().drawImage(this, 0, 0, imageWidth, imageHeight);
+                    dynamicTexture.update();
+                    
+                    // Disegnare il testo dopo che l'immagine è stata caricata
+                    var yText = 200; // Y position for text
+                    words.forEach(function(word) {
+                        dynamicTexture.drawText(word, textX, yText, textSize, "black", "transparent", true);
+                        yText += lineHeight; // Spostare giù per la prossima linea
+                    });
+                };
+                img.src = imageSrc;
+            } else {
+                // Se non c'è immagine, disegna solo il testo
+                words.forEach(function(word) {
+                    dynamicTexture.drawText(word, 200, y, textSize, "black", "transparent", true);
+                    y += lineHeight; // Spostare giù per la prossima linea
+                });
+            }
+        
+            var planeSize = 2; // Dimensione del piano
+            var plane = BABYLON.Mesh.CreatePlane("TextPlane", planeSize, scene);
+            plane.position = new BABYLON.Vector3(position.x, position.y - 2.5, position.z);
             plane.material = new BABYLON.StandardMaterial("TextPlaneMaterial", scene);
             plane.material.diffuseTexture = dynamicTexture;
             plane.material.specularColor = new BABYLON.Color3(0, 0, 0);
             plane.material.emissiveColor = new BABYLON.Color3(1, 1, 1);
             plane.material.backFaceCulling = false;
-
+            
             if (!visible) {
-                plane.visibility = 0; // Rendi il testo invisibile se non è nel livello corrente
+                plane.visibility = 0;
             }
+        
+        }
+        function activateHighlightButton() {
+            var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+            
+            var container = new BABYLON.GUI.StackPanel();
+            container.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+            advancedTexture.addControl(container);
+            var button1 = BABYLON.GUI.Button.CreateSimpleButton("but", "My Bubble");
+            button1.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+            button1.width ="128px";
+            button1.height = "30px";
+            button1.fontSize = 10;
+            button1.color = "white";
+            button1.background = "grey";
+            button1.onPointerClickObservable.add(function(){
+                if (highlightActive) {
+                    highlightActive = true;
+                }
+                else {
+                    highlightActive = false;
+                }
+            });
+            container.addControl(button1);
         }
 
         function createFirstText(name, image = false,link=false,description=false) {
@@ -115,7 +173,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             return advancedTexture;
         }
         // Funzione per creare una bolla
-        function createBubble(name, position, size, content,color,alpha=0, image=false) {
+        function createBubble(name, position, size, content,color,alpha=0, image=false,highlight=false) {
             bubbleNames.push(name);
             var bubble = BABYLON.MeshBuilder.CreateSphere(name, {diameter: size}, scene);
             bubble.position = position;
@@ -124,14 +182,18 @@ function initializeBubbles(canvasElement, bubbleData) {
             if (alpha == 0) {
                 bubble.material.alpha = 0.6; // Rendere la bolla trasparente
             }
+            if (highlight && highlightActive) {
+                var hl = new BABYLON.HighlightLayer("hl1", scene);
+                hl.addMesh(bubble, BABYLON.Color3.White());
+            }
             // Calcolare la posizione delle bolle contenute
             var innerBubbleSize = size / 3; // Ridurre la dimensione delle bolle interne
             content.forEach(function (innerBubble, index) {
                 if (index<=4) {
-                    var angle = Math.PI * 2 * index / content.length; // Angolo per distribuire le bolle internamente
+                    var angle = Math.PI * 2 * index / (content.length < 5 ? content.length : 5); // Angolo per distribuire le bolle internamente
                     var innerPosition = position.add(new BABYLON.Vector3(Math.cos(angle) * size / 4, Math.sin(angle) * size / 4, 0));
                     var image = innerBubble.image ? innerBubble.image : false;
-                    createBubble(innerBubble.name, innerPosition, innerBubbleSize, innerBubble.content,innerBubble.color,0.8,image);
+                    createBubble(innerBubble.name, innerPosition, innerBubbleSize, innerBubble.content,innerBubble.color,0.8,image,innerBubble.highlight);
                 }
             });
         }
@@ -147,7 +209,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             var startPosition = new BABYLON.Vector3(-2, 0, 0);
             bubblesData.forEach(function (bubbleData, index) {
                 var image = bubbleData.image ? bubbleData.image : false;
-                createBubble(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 3, 0, 0)), bubbleData.size, bubbleData.content,bubbleData.color,0,image);
+                createBubble(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 3, 0, 0)), bubbleData.size, bubbleData.content,bubbleData.color,0,image,bubbleData.highlight);
                 createBubbleText(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 3, 0, 0)), true,image);
 
             });
@@ -171,6 +233,7 @@ function initializeBubbles(canvasElement, bubbleData) {
         };
         if (Array.isArray(currentLevelData) && currentLevelData.length > 0) {
             showBubbles(currentLevelData);
+            activateHighlightButton();
         }
         return scene;
     };
