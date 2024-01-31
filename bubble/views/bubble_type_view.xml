@@ -33,7 +33,7 @@
 
 
         <record id="action_buble_type" model="ir.actions.act_window">
-            <field name="name">Buble Types</field>
+            <field name="name">Bubble Types</field>
             <field name="res_model">bubble.type</field>
             <field name="view_mode">tree,form</field>
         </record>
