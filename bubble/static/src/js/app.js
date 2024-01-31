@@ -6,10 +6,13 @@ function initializeBubbles(canvasElement, bubbleData) {
     var currentLevelData = bubbleData; // Memorizza i dati del livello corrente
     var parentLevels = []; // Stack per memorizzare i livelli genitore
     var bubbleParent = [];
+    var bubbleHighlight = [];
     var highlightActive = false;
+    var hl;
     var createScene = function () {
         var scene = new BABYLON.Scene(engine);
         scene.clearColor = new BABYLON.Color4(1, 0.85, 0.90 ,1);
+        hl = new BABYLON.HighlightLayer("hl1", scene);
         var camera = new BABYLON.UniversalCamera("TouchCamera", new BABYLON.Vector3(0, 1, -5), scene);
         camera.setTarget(BABYLON.Vector3.Zero());
         camera.attachControl(canvas, true);
@@ -92,7 +95,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             var container = new BABYLON.GUI.StackPanel();
             container.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
             advancedTexture.addControl(container);
-            var button1 = BABYLON.GUI.Button.CreateSimpleButton("but", "My Bubble");
+            var button1 = BABYLON.GUI.Button.CreateSimpleButton("but", "My Bubbles");
             button1.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
             button1.width ="128px";
             button1.height = "30px";
@@ -101,10 +104,16 @@ function initializeBubbles(canvasElement, bubbleData) {
             button1.background = "grey";
             button1.onPointerClickObservable.add(function(){
                 if (highlightActive) {
-                    highlightActive = true;
+                    highlightActive = false;
+                    bubbleHighlight.forEach(function (bubble, index) {
+                        hl.removeMesh(bubble);
+                    });
                 }
                 else {
-                    highlightActive = false;
+                    highlightActive = true;
+                    bubbleHighlight.forEach(function (bubble, index) {
+                        hl.addMesh(bubble, BABYLON.Color3.White());
+                    });
                 }
             });
             container.addControl(button1);
@@ -182,9 +191,8 @@ function initializeBubbles(canvasElement, bubbleData) {
             if (alpha == 0) {
                 bubble.material.alpha = 0.6; // Rendere la bolla trasparente
             }
-            if (highlight && highlightActive) {
-                var hl = new BABYLON.HighlightLayer("hl1", scene);
-                hl.addMesh(bubble, BABYLON.Color3.White());
+            if (highlight ) {
+                bubbleHighlight.push(bubble);
             }
             // Calcolare la posizione delle bolle contenute
             var innerBubbleSize = size / 3; // Ridurre la dimensione delle bolle interne
