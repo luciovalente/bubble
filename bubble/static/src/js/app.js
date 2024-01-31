@@ -6,7 +6,9 @@ function initializeBubbles(canvasElement, bubbleData) {
     var currentLevelData = bubbleData; // Memorizza i dati del livello corrente
     var parentLevels = []; // Stack per memorizzare i livelli genitore
     var bubbleParent = [];
+    var bubbleHighlight = [];
     var highlightActive = false;
+    var hl = new BABYLON.HighlightLayer("hl1", scene);
     var createScene = function () {
         var scene = new BABYLON.Scene(engine);
         scene.clearColor = new BABYLON.Color4(1, 0.85, 0.90 ,1);
@@ -101,10 +103,16 @@ function initializeBubbles(canvasElement, bubbleData) {
             button1.background = "grey";
             button1.onPointerClickObservable.add(function(){
                 if (highlightActive) {
-                    highlightActive = true;
+                    highlightActive = false;
+                    bubbleHighlight.forEach(function (bubble, index) {
+                        hl.removeMesh(bubble);
+                    });
                 }
                 else {
-                    highlightActive = false;
+                    highlightActive = true;
+                    bubbleHighlight.forEach(function (bubble, index) {
+                        hl.addMesh(bubble, BABYLON.Color3.White());
+                    });
                 }
             });
             container.addControl(button1);
@@ -182,9 +190,8 @@ function initializeBubbles(canvasElement, bubbleData) {
             if (alpha == 0) {
                 bubble.material.alpha = 0.6; // Rendere la bolla trasparente
             }
-            if (highlight && highlightActive) {
-                var hl = new BABYLON.HighlightLayer("hl1", scene);
-                hl.addMesh(bubble, BABYLON.Color3.White());
+            if (highlight ) {
+                bubbleHighlight.push(bubble);
             }
             // Calcolare la posizione delle bolle contenute
             var innerBubbleSize = size / 3; // Ridurre la dimensione delle bolle interne
