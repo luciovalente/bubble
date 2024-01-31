@@ -26,7 +26,7 @@
         "wizard/wizard_my_dashboard.xml",
         "data/data.xml",
         "views/menu.xml",
-        "views/asset.xml"
+        "views/asset.xml",
     ],
     "qweb": ["static/src/xml/bubble_widget.xml"],
     "demo": [],

@@ -320,6 +320,7 @@ class Bubble(models.Model):
             if bubble.child_bubble_ids:
                 return any(is_highlight(child) for child in bubble.child_bubble_ids)
             return False
+
         res = []
         for bubble in self.filtered(lambda x: x.status == "running"):
             res.append(
@@ -331,7 +332,7 @@ class Bubble(models.Model):
                     "image": bubble.image_128,
                     "description": bubble.purpose,
                     "link": self.get_record_url(bubble.id),
-                    "highlight": is_highlight(bubble)
+                    "highlight": is_highlight(bubble),
                 }
             )
         return res
