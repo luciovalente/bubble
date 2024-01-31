@@ -95,7 +95,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             var container = new BABYLON.GUI.StackPanel();
             container.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
             advancedTexture.addControl(container);
-            var button1 = BABYLON.GUI.Button.CreateSimpleButton("but", "My Bubble");
+            var button1 = BABYLON.GUI.Button.CreateSimpleButton("but", "My Bubbles");
             button1.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
             button1.width ="128px";
             button1.height = "30px";
