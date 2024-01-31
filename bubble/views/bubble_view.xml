@@ -119,7 +119,7 @@
                                 </field>
                             </page>
                             <page string="Description">
-                                <field name="description" >
+                                <field name="description">
 
                                 </field>
                             </page>
@@ -143,10 +143,15 @@
                     <!-- Campi di ricerca e filtri possono essere aggiunti qui -->
                     <field name="name" />
                     <field name="owner_id" />
+                    <field name="bubble_type_id" />
+                    <field name="parent_bubble_id" />
+                    <field name="company_id" />
                     <!-- Filtro My Bubble -->
                     <filter string="My Bubbles" name="my_bubble" domain="[('member_ids', 'in', uid)]"/>
                     <group expand="0" string="Group By" colspan="16">
                         <filter string="Parent" name="parent" context="{'group_by':'parent_bubble_id'}"/>
+                        <filter string="Type" name="type" context="{'group_by':'bubble_type_id'}"/>
+
                     </group>
                 </search>
             </field>
