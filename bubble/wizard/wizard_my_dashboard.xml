@@ -18,16 +18,16 @@
                             <page string="My Bubbles">
                                 <field name="bubble_ids">
                                     <tree>
-                                        <field name="parent_bubble_id" />
                                         <field name="name"/>
+                                        <field name="parent_bubble_id" />
                                     </tree>
                                 </field>
                             </page>
                             <page string="My Bubbles as Leader" attrs="{'invisible':[('leader_bubble_count','=',0)]}">
                                 <field name="leader_bubble_ids">
                                     <tree>
-                                        <field name="parent_bubble_id" />
                                         <field name="name"/>
+                                        <field name="parent_bubble_id" />
                                     </tree>
                                 </field>
                             </page>
