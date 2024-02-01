@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 {
     "name": "Yorange",
-    "version": "15.1.1.1",
+    "version": "14.1.1.0",
     "summary": "Bubble and OKR",
     "author": "Lucio Valente",
     "sequence": -100,
@@ -26,20 +25,9 @@
         "wizard/wizard_my_dashboard.xml",
         "data/data.xml",
         "views/menu.xml",
+        "views/asset.xml"
     ],
     "qweb": ["static/src/xml/bubble_widget.xml"],
-    "assets": {
-        "web.assets_backend": [
-            "/bubble/static/src/xml/bubble_widget.xml",
-            "/bubble/static/src/js/babylon.js",
-            "/bubble/static/src/js/babylon.gui.min.js",
-            "/bubble/static/src/js/app.js",
-            "/bubble/static/src/js/bubble_widget.js",
-        ],
-        "web.assets_qweb": [
-            "/bubble/static/src/xml/bubble_widget.xml",
-        ],
-    },
     "demo": [],
     "installable": True,
     "application": True,
