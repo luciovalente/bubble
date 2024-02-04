@@ -231,7 +231,7 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
                 createBubbleText(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 3, 0, 0)), true,image);
 
             });
-            camera.setTarget(BABYLON.Vector3(0,0,-7));
+            camera.setTarget(new BABYLON.Vector3(xPosition,0,-7));
             
         }
         // Gestione clic su una bolla
