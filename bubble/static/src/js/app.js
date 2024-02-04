@@ -126,7 +126,7 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
             var container = new BABYLON.GUI.StackPanel();
             container.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
             advancedTexture.addControl(container);
-            var button1 = BABYLON.GUI.Button.CreateSimpleButton("but", "In " + name);
+            var button1 = BABYLON.GUI.Button.CreateSimpleButton("but", name);
             button1.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
             button1.width ="128px";
             button1.height = "30px";
@@ -137,7 +137,6 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
                 if (parentLevels.length > 0) {
                     clearScene(advancedTexture); 
                     currentLevelData = parentLevels.pop(); // Torna al livello genitore
-                    bubbleParent.pop();
                     parentBubble = bubbleParent.pop();
                     if (parentBubble) {
                         advancedTexture = createFirstText(parentBubble.name,parentBubble.image,parentBubble.link,parentBubble.description,parentBubble.id);
@@ -155,7 +154,7 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
                 imageControl.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
                 container.addControl(imageControl);
             }
-            if (description) {
+            /*if (description) {
                 var textBlock = new BABYLON.GUI.TextBlock();
                 textBlock.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
                 textBlock.text = description;
@@ -165,7 +164,7 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
                 textBlock.width ="128px";
                 textBlock.height ="128px";
                 container.addControl(textBlock);
-            }
+            }*/
             if (link) {
                 var button2 = BABYLON.GUI.Button.CreateSimpleButton("but", "Open");
                 button2.width = "128px";
@@ -240,7 +239,7 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
                     currentLevelData = selectedBubbleData.content;
                     clearScene(advancedTexture);
                     showBubbles(currentLevelData);
-                    advancedTexture = createFirstText(selectedBubbleData.name,selectedBubbleData.image,selectedBubbleData.link,selectedBubbleData.description);
+                    advancedTexture = createFirstText(selectedBubbleData.name,selectedBubbleData.image,selectedBubbleData.link,selectedBubbleData.description,selectedBubbleData.id);
                     startAnimation();
                 }
                 if (selectedBubbleData && selectedBubbleData.content.length == 0) {
@@ -256,6 +255,9 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
         };
         if (Array.isArray(currentLevelData) && currentLevelData.length > 0) {
             showBubbles(currentLevelData);
+            if (currentLevelData.length == 1) {
+                advancedTexture = createFirstText(currentLevelData[0].name,urrentLevelData[0].image,urrentLevelData[0].link,urrentLevelData[0].description,urrentLevelData[0].id);
+            }
             activateHighlightButton();
         }
         return scene;
