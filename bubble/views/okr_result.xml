@@ -9,7 +9,6 @@
                     <field name="date_from" readonly="1"/>
                     <field name="date_to" readonly="1" />
                     <field name="okr_id"/>
-                    <field name="date"/>
                     <field name="okr_type" />
                     <field name="evaluation_id"/>
                     <field name="result"/>
