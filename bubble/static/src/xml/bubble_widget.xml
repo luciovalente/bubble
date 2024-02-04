@@ -2,8 +2,8 @@
 
 <templates id="template" xml:space="preserve">
     <t t-name="BubbleChartWidgetTemplate">
-        <div class="o_field_bubble_chart" style="width: 100%;padding-top: 66.67%;display: block;">
-            <canvas id="renderCanvas" style="width: 100%;padding-top: 66.67%;display: block;"></canvas>
+        <div class="o_field_bubble_chart" style="width: 100%;">
+            <canvas id="renderCanvas" style="width: 100%;"></canvas>
         </div>
     </t>
 </templates>
