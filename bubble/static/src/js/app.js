@@ -135,17 +135,14 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
             button1.color = "white";
             button1.background = "grey";
             button1.onPointerClickObservable.add(function(){
-                    
-                    
                         clearScene(advancedTexture); 
                         var parentBubble = bubbleParent.pop();
                         currentLevelData = parentLevels.pop(); // Torna al livello genitore
-                        if (bubbleParent) {
+                        if (bubbleParent.length>0) {
                             advancedTexture = createFirstText(parentBubble.name,parentBubble.image,parentBubble.link,parentBubble.description,parentBubble.id);
                         }
                         showBubbles(currentLevelData);
-                        startAnimation();
-                    
+                        startAnimation(); 
             });
           
             container.addControl(button1);
