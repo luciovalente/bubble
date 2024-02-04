@@ -21,7 +21,6 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
         camera.angularSensibilityY = 1000; // Valore più alto per ridurre la sensibilità sull'asse Y
         camera.speed = 1;
         // Keyframes per l'animazione
-        startAnimation();
         var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0), scene);
         function startAnimation() {
             var animation = new BABYLON.Animation("cameraAnimation", "position.z", 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
@@ -262,6 +261,7 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
         if (Array.isArray(currentLevelData) && currentLevelData.length > 0) {
             showBubbles(currentLevelData);
             activateHighlightButton();
+            startAnimation();
         }
         return scene;
     };
