@@ -1,4 +1,4 @@
-function initializeBubbles(canvasElement, bubbleData) {
+function initializeBubbles(canvasElement, bubbleData,odooContext) {
     var canvas = document.getElementById('renderCanvas');
     var engine = new BABYLON.Engine(canvasElement, true);
     var advancedTexture;
@@ -9,25 +9,25 @@ function initializeBubbles(canvasElement, bubbleData) {
     var bubbleHighlight = [];
     var highlightActive = false;
     var hl;
+    var camera;
     var createScene = function () {
         var scene = new BABYLON.Scene(engine);
         scene.clearColor = new BABYLON.Color4(1, 0.85, 0.90 ,1);
         hl = new BABYLON.HighlightLayer("hl1", scene);
-        var camera = new BABYLON.UniversalCamera("TouchCamera", new BABYLON.Vector3(0, 1, -5), scene);
-        camera.setTarget(BABYLON.Vector3.Zero());
+        camera = new BABYLON.UniversalCamera("TouchCamera", new BABYLON.Vector3(0, 1, -5), scene);
+        camera.setTarget(new BABYLON.Vector3(0,0,0));
         camera.attachControl(canvas, true);
         camera.angularSensibilityX = 1000; // Valore più alto per ridurre la sensibilità sull'asse X
         camera.angularSensibilityY = 1000; // Valore più alto per ridurre la sensibilità sull'asse Y
         camera.speed = 1;
         // Keyframes per l'animazione
-        startAnimation();
         var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0), scene);
         function startAnimation() {
             var animation = new BABYLON.Animation("cameraAnimation", "position.z", 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
 
             var keys = []; 
-            keys.push({ frame: 0, value: -7 }); // Posizione iniziale della telecamera
-            keys.push({ frame: 100, value: -9}); // Telecamera si allontana
+            keys.push({ frame: 0, value: -8 }); // Posizione iniziale della telecamera
+            keys.push({ frame: 100, value: -11}); // Telecamera si allontana
             animation.setKeys(keys);
 
             // Applicazione dell'animazione alla telecamera
@@ -48,7 +48,7 @@ function initializeBubbles(canvasElement, bubbleData) {
             var y = 200; // Posizione Y iniziale per il testo
             var imageWidth = 800; // Larghezza dell'immagine
             var imageHeight = 800; // Altezza dell'immagine
-            var textX = 200 + imageWidth; // X position for text, after the image
+            var textX = 10 + imageWidth; // X position for text, after the image
         
             // Disegnare l'immagine dal codice Base64, se fornita
             if (image) {
@@ -119,14 +119,14 @@ function initializeBubbles(canvasElement, bubbleData) {
             container.addControl(button1);
         }
 
-        function createFirstText(name, image = false,link=false,description=false) {
+        function createFirstText(name, image = false,link=false,description=false,id=false) {
             
             var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
             
             var container = new BABYLON.GUI.StackPanel();
             container.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
             advancedTexture.addControl(container);
-            var button1 = BABYLON.GUI.Button.CreateSimpleButton("but", "In " + name);
+            var button1 = BABYLON.GUI.Button.CreateSimpleButton("but", name);
             button1.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
             button1.width ="128px";
             button1.height = "30px";
@@ -134,18 +134,13 @@ function initializeBubbles(canvasElement, bubbleData) {
             button1.color = "white";
             button1.background = "grey";
             button1.onPointerClickObservable.add(function(){
-                if (parentLevels.length > 0) {
-                    clearScene(advancedTexture); 
-                    currentLevelData = parentLevels.pop(); // Torna al livello genitore
-                    bubbleParent.pop();
-                    parentBubble = bubbleParent.pop();
-                    if (parentBubble) {
-                        advancedTexture = createFirstText(parentBubble.name,parentBubble.image,parentBubble.link,parentBubble.description);
-                    }
-                    showBubbles(currentLevelData);
-                    startAnimation();
-                }
+                        clearScene(advancedTexture); 
+                        bubbleParent.pop();
+                        currentLevelData = parentLevels.pop(); // Torna al livello genitore 
+                        showBubbles(currentLevelData);
+                        startAnimation(); 
             });
+          
             container.addControl(button1);
             if (image) {
                 var base64ImageString = "data:image/png;base64," + image;
@@ -155,7 +150,7 @@ function initializeBubbles(canvasElement, bubbleData) {
                 imageControl.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
                 container.addControl(imageControl);
             }
-            if (description) {
+            /*if (description) {
                 var textBlock = new BABYLON.GUI.TextBlock();
                 textBlock.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
                 textBlock.text = description;
@@ -165,9 +160,9 @@ function initializeBubbles(canvasElement, bubbleData) {
                 textBlock.width ="128px";
                 textBlock.height ="128px";
                 container.addControl(textBlock);
-            }
+            }*/
             if (link) {
-                var button2 = BABYLON.GUI.Button.CreateSimpleButton("but", "Link");
+                var button2 = BABYLON.GUI.Button.CreateSimpleButton("but", "Open");
                 button2.width = "128px";
                 button2.fontSize = 10;
                 button2.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
@@ -175,7 +170,13 @@ function initializeBubbles(canvasElement, bubbleData) {
                 button2.color = "white";
                 button2.background = "grey";
                 button2.onPointerClickObservable.add(function() {
-                    location.href = link;
+                    odooContext.do_action({
+                        type: 'ir.actions.act_window',
+                        res_model: 'bubble', // Replace with your model
+                        res_id: id, // ID of the record to open
+                        views: [[false, 'form']],
+                        target: 'new'
+                    });
                 });
                 container.addControl(button2);
             }     
@@ -213,14 +214,23 @@ function initializeBubbles(canvasElement, bubbleData) {
                 advancedTexture.dispose();
             }
         }
-        function showBubbles(bubblesData, parentPosition) {
-            var startPosition = new BABYLON.Vector3(-2, 0, 0);
+        function showBubbles(bubblesData) {
+            var startPosition = new BABYLON.Vector3(0, 0, 0);
+            var xPosition = ((bubblesData.length-1) * 3) / 2;
+            camera.position = new BABYLON.Vector3(xPosition,0,-7);
+            camera.setTarget(new BABYLON.Vector3(xPosition,0,0));
+            // Sono all'interno di una bolla?
+            if (bubbleParent.length>0) {
+                var last = bubbleParent.length-1;
+                advancedTexture = createFirstText(bubbleParent[last].name,bubbleParent[last].image,bubbleParent[last].link,bubbleParent[last].description,bubbleParent[last].id);
+            }
             bubblesData.forEach(function (bubbleData, index) {
                 var image = bubbleData.image ? bubbleData.image : false;
                 createBubble(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 3, 0, 0)), bubbleData.size, bubbleData.content,bubbleData.color,0,image,bubbleData.highlight);
                 createBubbleText(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 3, 0, 0)), true,image);
 
             });
+            
             
         }
         // Gestione clic su una bolla
@@ -229,19 +239,29 @@ function initializeBubbles(canvasElement, bubbleData) {
                 var selectedBubbleData = currentLevelData.find(b => b.name === pickResult.pickedMesh.name);
                 if (selectedBubbleData && selectedBubbleData.content.length > 0) {
                     // Memorizza il livello genitore
-                    bubbleParent.push(selectedBubbleData);
                     parentLevels.push(currentLevelData);
                     currentLevelData = selectedBubbleData.content;
+                    bubbleParent.push(selectedBubbleData);
                     clearScene(advancedTexture);
                     showBubbles(currentLevelData);
-                    advancedTexture = createFirstText(selectedBubbleData.name,selectedBubbleData.image,selectedBubbleData.link,selectedBubbleData.description);
+                    
                     startAnimation();
+                }
+                if (selectedBubbleData && selectedBubbleData.content.length == 0) {
+                    odooContext.do_action({
+                        type: 'ir.actions.act_window',
+                        res_model: 'bubble', // Replace with your model
+                        res_id: selectedBubbleData.id, // ID of the record to open
+                        views: [[false, 'form']],
+                        target: 'new'
+                    });
                 }
             }
         };
         if (Array.isArray(currentLevelData) && currentLevelData.length > 0) {
             showBubbles(currentLevelData);
             activateHighlightButton();
+            startAnimation();
         }
         return scene;
     };
@@ -254,6 +274,11 @@ function initializeBubbles(canvasElement, bubbleData) {
 
     window.addEventListener('resize', function () {
         engine.resize();
+    });
+    window.addEventListener("mousewheel", function(event) {
+        var delta = event.wheelDelta;
+        var zoomAmount = delta * 0.01; // Regola questo valore per controllare la velocità dello zooms
+        camera.position.z += zoomAmount;
     });
 }
 window.initializeBubbles = initializeBubbles;

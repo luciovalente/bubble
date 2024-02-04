@@ -2,9 +2,8 @@
 
 <templates id="template" xml:space="preserve">
     <t t-name="BubbleChartWidgetTemplate">
-        <div class="o_field_bubble_chart">
-            <canvas id="renderCanvas" width="900" height="600"></canvas>
-            <button id="backButton" style="position: absolute; top: 10px; left: 10px; display: block;display:none;">Back</button>
+        <div class="o_field_bubble_chart" style="width: 100%;">
+            <canvas id="renderCanvas" style="width: 100%;aspect-ratio: 4 / 3;"></canvas>
         </div>
     </t>
 </templates>

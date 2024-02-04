@@ -11,9 +11,9 @@ class OkrResult(models.Model):
         "objective", related="okr_id.objective_id", store=True
     )
     okr_id = fields.Many2one("okr", string="OKR")
+    okr_type = fields.Selection(related="okr_id.type")
     okr_description = fields.Text(related="okr_id.description")
     okr_type = fields.Selection(related="okr_id.type")
-    date = fields.Date(string="Date")
     result = fields.Float(string="Result")
     result_char = fields.Char(string="Result Char")
     evaluation_id = fields.Many2one("okr.evaluation", string="OKR Evaluation")
@@ -22,6 +22,8 @@ class OkrResult(models.Model):
     bubble_role_id = fields.Many2one(
         "bubble.role", string="Role", related="okr_id.bubble_role_id"
     )
+    date_from = fields.Date(related="evaluation_id.date_from")
+    date_to = fields.Date(related="evaluation_id.date_to")
     status = fields.Selection(related="evaluation_id.status", store=True)
     user_id = fields.Many2one("res.users", related="evaluation_id.user_id", store=True)
     owner_id = fields.Many2one(

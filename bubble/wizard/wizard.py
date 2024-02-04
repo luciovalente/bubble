@@ -61,10 +61,4 @@ class WizardStartOKREvaluation(models.TransientModel):
 
                 # Creare OkrResult per ogni Okr unico
                 for okr in all_okrs.filtered(lambda x: x.status == "active"):
-                    OkrResult.create(
-                        {
-                            "okr_id": okr.id,
-                            "evaluation_id": evaluation.id,
-                            "date": fields.Date.today(),
-                        }
-                    )
+                    OkrResult.create({"okr_id": okr.id, "evaluation_id": evaluation.id})
