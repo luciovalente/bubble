@@ -41,7 +41,7 @@
                     
                     <sheet>
                         <group>
-                            <field name="okr_objective_id" />
+                            <field name="objective_id" />
                             <field name="okr_id"/>
                             <field name="okr_type" />
                             <field name="okr_description" />

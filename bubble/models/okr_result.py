@@ -11,7 +11,6 @@ class OkrResult(models.Model):
         "objective", related="okr_id.objective_id", store=True
     )
     okr_id = fields.Many2one("okr", string="OKR")
-    okr_objective_id = fields.Many2one("objective",related="okr_id.objective_id")
     okr_type = fields.Selection(related="okr_id.type")
     okr_description = fields.Text(related="okr_id.description")
     okr_type = fields.Selection(related="okr_id.type")
