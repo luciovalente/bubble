@@ -3,7 +3,7 @@
 <templates id="template" xml:space="preserve">
     <t t-name="BubbleChartWidgetTemplate">
         <div class="o_field_bubble_chart" style="width: 100%;">
-            <canvas id="renderCanvas" style="width: 100%;aspect-ratio: 1 / 1;"></canvas>
+            <canvas id="renderCanvas" style="width: 100%;aspect-ratio: 5 / 4;"></canvas>
         </div>
     </t>
 </templates>
