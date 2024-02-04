@@ -43,6 +43,7 @@
                         <group>
                             <field name="okr_objective_id" />
                             <field name="okr_id"/>
+                            <field name="okr_type" />
                             <field name="okr_description" />
                             <field name="owner_id"/>
                             <field name="evaluation_id"/>
