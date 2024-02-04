@@ -36,7 +36,7 @@
         <record id="bubble_user_rule" model="ir.rule">
             <field name="name">Bubble User</field>
             <field name="model_id" ref="model_bubble"/>
-            <field name="domain_force">[]</field>
+            <field name="domain_force">[('status','=','running')]</field>
             <field name="groups" eval="[(4, ref('group_bubble_user'))]"/> <!-- Sostituisci con il vero ID esterno del gruppo Bubble Administrator -->
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
