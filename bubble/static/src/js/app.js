@@ -134,7 +134,9 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
             button1.color = "white";
             button1.background = "grey";
             button1.onPointerClickObservable.add(function(){
-                clearScene(advancedTexture); 
+                if (parentBubble.length>0) {
+                    clearScene(advancedTexture); 
+                }
                 if (parentLevels.length > 0) {
                     currentLevelData = parentLevels.pop(); // Torna al livello genitore
                     parentBubble = bubbleParent.pop();
