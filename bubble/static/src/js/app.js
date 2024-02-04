@@ -222,14 +222,13 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
                 advancedTexture.dispose();
             }
         }
-        function showBubbles(bubblesData, parentPosition) {
-            var startPosition = new BABYLON.Vector3(-2, 0, 0);
+        function showBubbles(bubblesData) {
+            var startPosition = new BABYLON.Vector3(0, 0, 0);
             var xPosition = ((bubblesData.length-1) * 3) / 2;
             camera.position = new BABYLON.Vector3(xPosition,0,-7);
             camera.setTarget(new BABYLON.Vector3(xPosition,0,0));
             bubblesData.forEach(function (bubbleData, index) {
                 var image = bubbleData.image ? bubbleData.image : false;
-                xPosition+=(index * 3);
                 createBubble(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 3, 0, 0)), bubbleData.size, bubbleData.content,bubbleData.color,0,image,bubbleData.highlight);
                 createBubbleText(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 3, 0, 0)), true,image);
 
@@ -243,12 +242,13 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
                 var selectedBubbleData = currentLevelData.find(b => b.name === pickResult.pickedMesh.name);
                 if (selectedBubbleData && selectedBubbleData.content.length > 0) {
                     // Memorizza il livello genitore
-                    bubbleParent.push(selectedBubbleData);
-                    parentLevels.push(currentLevelData);
+                    
                     currentLevelData = selectedBubbleData.content;
                     clearScene(advancedTexture);
                     showBubbles(currentLevelData);
                     advancedTexture = createFirstText(selectedBubbleData.name,selectedBubbleData.image,selectedBubbleData.link,selectedBubbleData.description,selectedBubbleData.id);
+                    bubbleParent.push(selectedBubbleData);
+                    parentLevels.push(currentLevelData);
                     startAnimation();
                 }
                 if (selectedBubbleData && selectedBubbleData.content.length == 0) {
