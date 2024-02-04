@@ -3,11 +3,11 @@
     <menuitem id="menu_bubble_main" name="Yorange" sequence="1" web_icon="bubble,static/description/icon.png">
         <menuitem id="menu_my_dashboard" name="My Dashboard" action="action_show_my_dashboard" sequence="1"/>
         <menuitem id="menu_bubble" name="Bubbles" action="action_bubble" sequence="2"/>
-        <menuitem id="menu_evaluation" name="Evaluations" sequence="4">
+        <menuitem id="menu_evaluation" name="Evaluations" sequence="3">
             <menuitem id="menu_action_evaluation" name="Evaluation" action="action_okr_evaluation" sequence="2" />
             <menuitem id="menu_okr_result" name="OKR Result" action="action_okr_result" sequence="6"/>
         </menuitem>
-        <menuitem id="menu_objective_main" groups="bubble.group_bubble_manager" name="Objectives and OKRs" sequence="3">
+        <menuitem id="menu_objective_main" groups="bubble.group_bubble_manager" name="Objectives and OKRs" sequence="4">
             <menuitem id="menu_objective" name="Objectives" action="action_objective" sequence="4"/>
             <menuitem id="menu_okr" name="OKR" action="action_okr" sequence="5"/>
         </menuitem>

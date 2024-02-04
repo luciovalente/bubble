@@ -5,13 +5,16 @@
             <field name="name">okr.result.tree</field>
             <field name="model">okr.result</field>
             <field name="arch" type="xml">
-                <tree >
+                <tree>
+                    <field name="date_from" readonly="1"/>
+                    <field name="date_to" readonly="1" />
                     <field name="okr_id"/>
                     <field name="date"/>
                     <field name="okr_type" />
                     <field name="evaluation_id"/>
                     <field name="result"/>
                     <field name="result_char"/>
+                    <field name="status" readonly="1" />
                 </tree>
             </field>
         </record>
@@ -41,14 +44,17 @@
                     
                     <sheet>
                         <group>
-                            <field name="objective_id" />
-                            <field name="okr_id"/>
-                            <field name="okr_type" />
-                            <field name="okr_description" />
-                            <field name="owner_id"/>
-                            <field name="evaluation_id"/>
+                            <field name="date_from" readonly="1"/>
+                            <field name="date_to" readonly="1" />
+                            <field name="objective_id" readonly="1"/>
+                            <field name="okr_id" readonly="1"/>
+                            <field name="okr_type" readonly="1"/>
+                            <field name="okr_description" readonly="1"/>
+                            <field name="owner_id" widget="many2one_avatar_user" readonly="1"/>
+                            <field name="evaluation_id" readonly="1"/>
                             <field name="result"/>
                             <field name="result_char"/>
+                            <field name="status" readonly="1" />
                         </group>
                         
                     </sheet>
