@@ -134,21 +134,17 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
             button1.fontSize = 10;
             button1.color = "white";
             button1.background = "grey";
-            if (bubbleParent.length>0) {
-                button1.onPointerClickObservable.add(function(){
-
-                    if (parentLevels.length > 0) {
+            button1.onPointerClickObservable.add(function(){
+                    var parentBubble = bubbleParent.pop();
+                    if (parentLevels.length > 0 && parentBubble) {
                         clearScene(advancedTexture); 
                         currentLevelData = parentLevels.pop(); // Torna al livello genitore
-                        parentBubble = bubbleParent.pop();
-                        if (parentBubble) {
-                            advancedTexture = createFirstText(parentBubble.name,parentBubble.image,parentBubble.link,parentBubble.description,parentBubble.id);
-                        }
+                        advancedTexture = createFirstText(parentBubble.name,parentBubble.image,parentBubble.link,parentBubble.description,parentBubble.id);
                         showBubbles(currentLevelData);
                         startAnimation();
                     }
-                });
-            }
+            });
+          
             container.addControl(button1);
             if (image) {
                 var base64ImageString = "data:image/png;base64," + image;
