@@ -100,7 +100,7 @@
                                     <tree editable="bottom">
                                         <!-- Definisci i campi da mostrare per user_roles_ids -->
                                         <field name="role_id"/>
-                                        <field name="user_id"/>
+                                        <field name="user_id" widget="many2one_avatar_user"/>
                                     </tree>
                                 </field>
                             </page>
