@@ -9,11 +9,12 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
     var bubbleHighlight = [];
     var highlightActive = false;
     var hl;
+    var camera;
     var createScene = function () {
         var scene = new BABYLON.Scene(engine);
         scene.clearColor = new BABYLON.Color4(1, 0.85, 0.90 ,1);
         hl = new BABYLON.HighlightLayer("hl1", scene);
-        var camera = new BABYLON.UniversalCamera("TouchCamera", new BABYLON.Vector3(0, 1, -5), scene);
+        camera = new BABYLON.UniversalCamera("TouchCamera", new BABYLON.Vector3(0, 1, -5), scene);
         camera.setTarget(BABYLON.Vector3.Zero());
         camera.attachControl(canvas, true);
         camera.angularSensibilityX = 1000; // Valore più alto per ridurre la sensibilità sull'asse X
@@ -134,7 +135,7 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
             button1.color = "white";
             button1.background = "grey";
             button1.onPointerClickObservable.add(function(){
-                if (parentBubble.length>0) {
+                if (bubbleParent.length>0) {
                     clearScene(advancedTexture); 
                 }
                 if (parentLevels.length > 0) {
@@ -273,6 +274,11 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
 
     window.addEventListener('resize', function () {
         engine.resize();
+    });
+    window.addEventListener("mousewheel", function(event) {
+        var delta = event.wheelDelta;
+        var zoomAmount = delta * 0.01; // Regola questo valore per controllare la velocità dello zooms
+        camera.position.z += zoomAmount;
     });
 }
 window.initializeBubbles = initializeBubbles;
