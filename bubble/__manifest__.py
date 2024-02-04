@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Yorange",
-    "version": "15.1.2.0",
+    "version": "15.1.2.1",
     "summary": "Bubble and OKR",
     "author": "Lucio Valente",
     "sequence": -100,
