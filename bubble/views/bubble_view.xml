@@ -85,7 +85,16 @@
                             <field name="purpose" attrs="{'readonly': [('status','!=','draft')]}"/>
                         </group>
                         <notebook>
-                            <!-- Pagina per User Roles -->
+                            <page string="Members">
+                                <field name="member_ids">
+                                    <tree editable="bottom">
+                                        <!-- Definisci i campi da mostrare per user_roles_ids -->
+                                        <field name="image_128"/>
+                                        <field name="name"/>
+                                        <field name="email"/>
+                                    </tree>
+                                </field>
+                            </page>
                             <page string="User Roles">
                                 <field name="user_roles_ids" attrs="{'readonly': [('status','!=','draft')]}">
                                     <tree editable="bottom">
@@ -95,16 +104,8 @@
                                     </tree>
                                 </field>
                             </page>
-                            <!-- Pagina per Members -->
-                            <page string="Members">
-                                <field name="member_ids">
-                                    <tree editable="bottom">
-                                        <!-- Definisci i campi da mostrare per user_roles_ids -->
-                                        <field name="name"/>
-                                        <field name="email"/>
-                                    </tree>
-                                </field>
-                            </page>
+                            
+                            
                             <page string="Child Bubbles">
                                 <field name="child_bubble_ids" readonly="1">
                                     <tree>
