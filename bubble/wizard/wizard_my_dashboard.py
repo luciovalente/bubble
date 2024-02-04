@@ -47,12 +47,12 @@ class WizardMyDashboard(models.TransientModel):
                 "bubble_id": bubble_id[0].id if bubble_id else False,
                 "bubble_ids": bubble_ids.ids,
                 "role_bubble_ids": role_bubble_ids.ids,
-                "role_bubble_count":len(role_bubble_ids),
+                "role_bubble_count": len(role_bubble_ids),
                 "okr_result_ids": okr_result_ids.ids,
-                "okr_result_count":len(okr_result_ids),
+                "okr_result_count": len(okr_result_ids),
                 "user_id": self.env.user.id,
-                "leader_bubble_ids":leader_bubble_ids.ids,
-                "leader_bubble_count":len(leader_bubble_ids),
+                "leader_bubble_ids": leader_bubble_ids.ids,
+                "leader_bubble_count": len(leader_bubble_ids),
                 "name": "My Dashboard",
             }
         )
