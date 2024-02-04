@@ -119,7 +119,7 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
             container.addControl(button1);
         }
 
-        function createFirstText(name, image = false,link=false,description=false) {
+        function createFirstText(name, image = false,link=false,description=false,id=false) {
             
             var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
             
@@ -140,7 +140,7 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
                     bubbleParent.pop();
                     parentBubble = bubbleParent.pop();
                     if (parentBubble) {
-                        advancedTexture = createFirstText(parentBubble.name,parentBubble.image,parentBubble.link,parentBubble.description);
+                        advancedTexture = createFirstText(parentBubble.name,parentBubble.image,parentBubble.link,parentBubble.description,parentBubble.id);
                     }
                     showBubbles(currentLevelData);
                     startAnimation();
@@ -167,7 +167,7 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
                 container.addControl(textBlock);
             }
             if (link) {
-                var button2 = BABYLON.GUI.Button.CreateSimpleButton("but", "Link");
+                var button2 = BABYLON.GUI.Button.CreateSimpleButton("but", "Open");
                 button2.width = "128px";
                 button2.fontSize = 10;
                 button2.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
@@ -178,7 +178,7 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
                     odooContext.do_action({
                         type: 'ir.actions.act_window',
                         res_model: 'bubble', // Replace with your model
-                        res_id: 1, // ID of the record to open
+                        res_id: id, // ID of the record to open
                         views: [[false, 'form']],
                         target: 'new'
                     });
@@ -242,6 +242,15 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
                     showBubbles(currentLevelData);
                     advancedTexture = createFirstText(selectedBubbleData.name,selectedBubbleData.image,selectedBubbleData.link,selectedBubbleData.description);
                     startAnimation();
+                }
+                if (selectedBubbleData && selectedBubbleData.content.length == 0) {
+                    odooContext.do_action({
+                        type: 'ir.actions.act_window',
+                        res_model: 'bubble', // Replace with your model
+                        res_id: selectedBubbleData.id, // ID of the record to open
+                        views: [[false, 'form']],
+                        target: 'new'
+                    });
                 }
             }
         };

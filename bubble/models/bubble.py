@@ -333,6 +333,7 @@ class Bubble(models.Model):
                     "description": bubble.purpose,
                     "link": self.get_record_url(bubble.id),
                     "highlight": is_highlight(bubble),
+                    "id":bubble.id
                 }
             )
         return res
