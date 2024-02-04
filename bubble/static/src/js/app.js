@@ -134,20 +134,21 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
             button1.fontSize = 10;
             button1.color = "white";
             button1.background = "grey";
-            button1.onPointerClickObservable.add(function(){
-                if (bubbleParent.length>0) {
-                    clearScene(advancedTexture); 
-                }
-                if (parentLevels.length > 0) {
-                    currentLevelData = parentLevels.pop(); // Torna al livello genitore
-                    parentBubble = bubbleParent.pop();
-                    if (parentBubble) {
-                        advancedTexture = createFirstText(parentBubble.name,parentBubble.image,parentBubble.link,parentBubble.description,parentBubble.id);
+            if (bubbleParent.length>0) {
+                button1.onPointerClickObservable.add(function(){
+
+                    if (parentLevels.length > 0) {
+                        clearScene(advancedTexture); 
+                        currentLevelData = parentLevels.pop(); // Torna al livello genitore
+                        parentBubble = bubbleParent.pop();
+                        if (parentBubble) {
+                            advancedTexture = createFirstText(parentBubble.name,parentBubble.image,parentBubble.link,parentBubble.description,parentBubble.id);
+                        }
+                        showBubbles(currentLevelData);
+                        startAnimation();
                     }
-                    showBubbles(currentLevelData);
-                    startAnimation();
-                }
-            });
+                });
+            }
             container.addControl(button1);
             if (image) {
                 var base64ImageString = "data:image/png;base64," + image;
@@ -223,7 +224,7 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
         }
         function showBubbles(bubblesData, parentPosition) {
             var startPosition = new BABYLON.Vector3(-2, 0, 0);
-            var xPosition = (bubblesData.length * 3) / 2;
+            var xPosition = ((bubblesData.length-1) * 3) / 2;
             camera.position = new BABYLON.Vector3(xPosition,0,-7);
             bubblesData.forEach(function (bubbleData, index) {
                 var image = bubbleData.image ? bubbleData.image : false;
