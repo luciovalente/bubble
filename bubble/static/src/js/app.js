@@ -223,7 +223,8 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
         }
         function showBubbles(bubblesData, parentPosition) {
             var startPosition = new BABYLON.Vector3(-2, 0, 0);
-            var xPosition = 0
+            var xPosition = (bubblesData.length * 3) / 2;
+            camera.setTarget(new BABYLON.Vector3(xPosition,0,-7));
             bubblesData.forEach(function (bubbleData, index) {
                 var image = bubbleData.image ? bubbleData.image : false;
                 xPosition+=(index * 3);
@@ -231,7 +232,7 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
                 createBubbleText(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 3, 0, 0)), true,image);
 
             });
-            //camera.setTarget(new BABYLON.Vector3(xPosition,0,-7));
+            
             
         }
         // Gestione clic su una bolla
