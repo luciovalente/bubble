@@ -315,7 +315,7 @@ class Bubble(models.Model):
 
     def get_bubble_json(self):
         def is_highlight(bubble):
-            if self.env.user.id in bubble.member_ids:
+            if self.env.user.id in bubble.member_ids.ids:
                 return True
             if bubble.child_bubble_ids:
                 return any(is_highlight(child) for child in bubble.child_bubble_ids)
@@ -333,6 +333,7 @@ class Bubble(models.Model):
                     "description": bubble.purpose,
                     "link": self.get_record_url(bubble.id),
                     "highlight": is_highlight(bubble),
+                    "id":bubble.id
                 }
             )
         return res

@@ -6,21 +6,32 @@
 
             <form>
                 <div class="row">
-                    <div class="col col-xxl-6">
+                    <div class="col col-lg-8 col-md-12 col-sm-12 col-12">
                         <field name="bubble_id" widget="bubble_chart"/>
                     </div>
 
-                    <div class="col col-xxl-6">
+                    <div class="col col-lg-4 col-md-12 col-sm-12 col-12">
                         <notebook>
+                            <field name="leader_bubble_count" invisible="1" />
+                            <field name="role_bubble_count" invisible="1" />
+                            <field name="okr_result_count" invisible="1" />
                             <page string="My Bubbles">
                                 <field name="bubble_ids">
                                     <tree>
-                                        <field name="parent_bubble_id" />
                                         <field name="name"/>
+                                        <field name="parent_bubble_id" />
                                     </tree>
                                 </field>
                             </page>
-                            <page string="My Roles">
+                            <page string="My Bubbles as Leader" attrs="{'invisible':[('leader_bubble_count','=',0)]}">
+                                <field name="leader_bubble_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="parent_bubble_id" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="My Roles" attrs="{'invisible':[('role_bubble_count','=',0)]}">
                                 <field name="role_bubble_ids">
                                     <tree>
                                         <field name="role_id"/>
@@ -35,7 +46,7 @@
                                     </form>
                                 </field>
                             </page>
-                            <page string="My OKRs">
+                            <page string="My OKRs" attrs="{'invisible':[('okr_result_count','=',0)]}">
                                 <field name="okr_result_ids">
                                     <tree>
                                         <field name="objective_id"/>
