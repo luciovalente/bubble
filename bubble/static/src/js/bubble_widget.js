@@ -17,7 +17,7 @@ odoo.define('bubble_chart_widget.BubbleChartWidget', function (require) {
                 .then(function (bubbleData) {
                     var canvas = self.$el.find('#renderCanvas')[0];
                     if (canvas) {
-                        window.initializeBubbles(canvas, bubbleData, this);
+                        window.initializeBubbles(canvas, bubbleData, self);
                     }
                 })
                 
