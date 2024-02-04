@@ -49,7 +49,7 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
             var y = 200; // Posizione Y iniziale per il testo
             var imageWidth = 800; // Larghezza dell'immagine
             var imageHeight = 800; // Altezza dell'immagine
-            var textX = 200 + imageWidth; // X position for text, after the image
+            var textX = 10 + imageWidth; // X position for text, after the image
         
             // Disegnare l'immagine dal codice Base64, se fornita
             if (image) {
@@ -222,7 +222,8 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
             camera.setTarget(new BABYLON.Vector3(xPosition,0,0));
             // Sono all'interno di una bolla?
             if (bubbleParent.length>0) {
-                advancedTexture = createFirstText(bubbleParent[0].name,bubbleParent[0].image,bubbleParent[0].link,bubbleParent[0].description,bubbleParent[0].id);
+                var last = bubbleParent.length-1;
+                advancedTexture = createFirstText(bubbleParent[last].name,bubbleParent[last].image,bubbleParent[last].link,bubbleParent[last].description,bubbleParent[last].id);
             }
             bubblesData.forEach(function (bubbleData, index) {
                 var image = bubbleData.image ? bubbleData.image : false;
