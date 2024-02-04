@@ -1,4 +1,4 @@
-function initializeBubbles(canvasElement, bubbleData) {
+function initializeBubbles(canvasElement, bubbleData,odooContext) {
     var canvas = document.getElementById('renderCanvas');
     var engine = new BABYLON.Engine(canvasElement, true);
     var advancedTexture;
@@ -175,7 +175,13 @@ function initializeBubbles(canvasElement, bubbleData) {
                 button2.color = "white";
                 button2.background = "grey";
                 button2.onPointerClickObservable.add(function() {
-                    location.href = link;
+                    odooContext.do_action({
+                        type: 'ir.actions.act_window',
+                        res_model: 'bubble', // Replace with your model
+                        res_id: 1, // ID of the record to open
+                        views: [[false, 'form']],
+                        target: 'new'
+                    });
                 });
                 container.addControl(button2);
             }     
