@@ -1,6 +1,6 @@
 {
     "name": "Yorange",
-    "version": "15.1.2.1",
+    "version": "14.1.2.0",
     "summary": "Bubble and OKR",
     "author": "Lucio Valente",
     "sequence": -100,
