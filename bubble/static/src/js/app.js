@@ -244,11 +244,12 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
                     // Memorizza il livello genitore
                     
                     currentLevelData = selectedBubbleData.content;
+                    bubbleParent.push(selectedBubbleData);
+                    parentLevels.push(currentLevelData);
                     clearScene(advancedTexture);
                     showBubbles(currentLevelData);
                     advancedTexture = createFirstText(selectedBubbleData.name,selectedBubbleData.image,selectedBubbleData.link,selectedBubbleData.description,selectedBubbleData.id);
-                    bubbleParent.push(selectedBubbleData);
-                    parentLevels.push(currentLevelData);
+                    
                     startAnimation();
                 }
                 if (selectedBubbleData && selectedBubbleData.content.length == 0) {
