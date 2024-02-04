@@ -135,11 +135,14 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
             button1.color = "white";
             button1.background = "grey";
             button1.onPointerClickObservable.add(function(){
-                    var parentBubble = bubbleParent.pop();
-                    if (parentLevels.length > 0 && parentBubble) {
+                    
+                    if (parentLevels.length > 0) {
                         clearScene(advancedTexture); 
+                        var parentBubble = bubbleParent.pop();
                         currentLevelData = parentLevels.pop(); // Torna al livello genitore
-                        advancedTexture = createFirstText(parentBubble.name,parentBubble.image,parentBubble.link,parentBubble.description,parentBubble.id);
+                        if (bubbleParent) {
+                            advancedTexture = createFirstText(parentBubble.name,parentBubble.image,parentBubble.link,parentBubble.description,parentBubble.id);
+                        }
                         showBubbles(currentLevelData);
                         startAnimation();
                     }
@@ -238,10 +241,9 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
                 var selectedBubbleData = currentLevelData.find(b => b.name === pickResult.pickedMesh.name);
                 if (selectedBubbleData && selectedBubbleData.content.length > 0) {
                     // Memorizza il livello genitore
-                    
+                    parentLevels.push(currentLevelData);
                     currentLevelData = selectedBubbleData.content;
                     bubbleParent.push(selectedBubbleData);
-                    parentLevels.push(currentLevelData);
                     clearScene(advancedTexture);
                     showBubbles(currentLevelData);
                     advancedTexture = createFirstText(selectedBubbleData.name,selectedBubbleData.image,selectedBubbleData.link,selectedBubbleData.description,selectedBubbleData.id);
@@ -261,9 +263,6 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
         };
         if (Array.isArray(currentLevelData) && currentLevelData.length > 0) {
             showBubbles(currentLevelData);
-            if (currentLevelData.length == 1) {
-                advancedTexture = createFirstText(currentLevelData[0].name,currentLevelData[0].image,currentLevelData[0].link,currentLevelData[0].description,currentLevelData[0].id);
-            }
             activateHighlightButton();
         }
         return scene;
