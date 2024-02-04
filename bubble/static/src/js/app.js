@@ -256,7 +256,7 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
         if (Array.isArray(currentLevelData) && currentLevelData.length > 0) {
             showBubbles(currentLevelData);
             if (currentLevelData.length == 1) {
-                advancedTexture = createFirstText(currentLevelData[0].name,urrentLevelData[0].image,urrentLevelData[0].link,urrentLevelData[0].description,urrentLevelData[0].id);
+                advancedTexture = createFirstText(currentLevelData[0].name,currentLevelData[0].image,currentLevelData[0].link,currentLevelData[0].description,currentLevelData[0].id);
             }
             activateHighlightButton();
         }
