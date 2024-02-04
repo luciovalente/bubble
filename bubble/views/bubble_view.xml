@@ -73,7 +73,7 @@
                                 <field name="company_id" attrs="{'readonly': [('status','!=','draft')]}"/>
                             </group>
                             <group>
-                                <field name="owner_id" required="1" attrs="{'readonly': [('status','!=','draft')]}"/>
+                                <field name="owner_id" widget="many2one_avatar_user" required="1" attrs="{'readonly': [('status','!=','draft')]}"/>
                                 <field name="with_okr_valuation" attrs="{'readonly': [('status','!=','draft')]}"/>
                                 <field name="with_automation" groups="bubble.group_bubble_administrator" attrs="{'readonly': [('status','!=','draft')]}"/>
                                 <field name="model_id" groups="bubble.group_bubble_administrator"/>
@@ -100,7 +100,7 @@
                                     <tree editable="bottom">
                                         <!-- Definisci i campi da mostrare per user_roles_ids -->
                                         <field name="role_id"/>
-                                        <field name="user_id"/>
+                                        <field name="user_id" widget="many2one_avatar_user"/>
                                     </tree>
                                 </field>
                             </page>
