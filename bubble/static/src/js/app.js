@@ -15,7 +15,7 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
         scene.clearColor = new BABYLON.Color4(1, 0.85, 0.90 ,1);
         hl = new BABYLON.HighlightLayer("hl1", scene);
         camera = new BABYLON.UniversalCamera("TouchCamera", new BABYLON.Vector3(0, 1, -5), scene);
-        camera.setTarget(new BABYLON.Vector3(0,0,-3));
+        camera.setTarget(new BABYLON.Vector3(0,0,0));
         camera.attachControl(canvas, true);
         camera.angularSensibilityX = 1000; // Valore più alto per ridurre la sensibilità sull'asse X
         camera.angularSensibilityY = 1000; // Valore più alto per ridurre la sensibilità sull'asse Y
@@ -226,6 +226,7 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
             var startPosition = new BABYLON.Vector3(-2, 0, 0);
             var xPosition = ((bubblesData.length-1) * 3) / 2;
             camera.position = new BABYLON.Vector3(xPosition,0,-7);
+            camera.setTarget(new BABYLON.Vector3(xPosition,0,0));
             bubblesData.forEach(function (bubbleData, index) {
                 var image = bubbleData.image ? bubbleData.image : false;
                 xPosition+=(index * 3);
