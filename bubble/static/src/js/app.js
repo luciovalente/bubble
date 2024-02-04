@@ -136,11 +136,8 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
             button1.background = "grey";
             button1.onPointerClickObservable.add(function(){
                         clearScene(advancedTexture); 
-                        var parentBubble = bubbleParent.pop();
-                        currentLevelData = parentLevels.pop(); // Torna al livello genitore
-                        if (bubbleParent.length>0) {
-                            advancedTexture = createFirstText(parentBubble.name,parentBubble.image,parentBubble.link,parentBubble.description,parentBubble.id);
-                        }
+                        bubbleParent.pop();
+                        currentLevelData = parentLevels.pop(); // Torna al livello genitore 
                         showBubbles(currentLevelData);
                         startAnimation(); 
             });
@@ -223,6 +220,10 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
             var xPosition = ((bubblesData.length-1) * 3) / 2;
             camera.position = new BABYLON.Vector3(xPosition,0,-7);
             camera.setTarget(new BABYLON.Vector3(xPosition,0,0));
+            // Sono all'interno di una bolla?
+            if (bubbleParent.length>0) {
+                advancedTexture = createFirstText(bubbleParent[0].name,bubbleParent[0].image,bubbleParent[0].link,bubbleParent[0].description,bubbleParent[0].id);
+            }
             bubblesData.forEach(function (bubbleData, index) {
                 var image = bubbleData.image ? bubbleData.image : false;
                 createBubble(bubbleData.name, startPosition.add(new BABYLON.Vector3(index * 3, 0, 0)), bubbleData.size, bubbleData.content,bubbleData.color,0,image,bubbleData.highlight);
@@ -243,7 +244,6 @@ function initializeBubbles(canvasElement, bubbleData,odooContext) {
                     bubbleParent.push(selectedBubbleData);
                     clearScene(advancedTexture);
                     showBubbles(currentLevelData);
-                    advancedTexture = createFirstText(selectedBubbleData.name,selectedBubbleData.image,selectedBubbleData.link,selectedBubbleData.description,selectedBubbleData.id);
                     
                     startAnimation();
                 }
