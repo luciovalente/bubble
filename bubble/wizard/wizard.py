@@ -64,7 +64,6 @@ class WizardStartOKREvaluation(models.TransientModel):
                     OkrResult.create(
                         {
                             "okr_id": okr.id,
-                            "evaluation_id": evaluation.id,
-                            "date": fields.Date.today(),
+                            "evaluation_id": evaluation.id
                         }
                     )
