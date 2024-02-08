@@ -115,12 +115,18 @@
                                 </field>
                             </page>
                             <page string="Code" groups="bubble.group_bubble_administrator" attrs="{'invisible': ['|',('with_automation','=',False),('run_bubble_type_code','=',True)]}">
+                                <field name="bubble_kpi_ids" widget="many2many_tags" />
                                 <field name="code" widget="ace" options="{'mode': 'python'}" attrs="{'required': [('with_automation','=',True),('run_bubble_type_code','=',False)]}">
 
                                 </field>
                             </page>
                             <page string="Description">
                                 <field name="description">
+
+                                </field>
+                            </page>
+                            <page string="KPI">
+                                <field name="kpi_result">
 
                                 </field>
                             </page>

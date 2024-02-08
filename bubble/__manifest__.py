@@ -18,6 +18,7 @@
         "views/objective_view.xml",
         "views/okr_view.xml",
         "views/kpi.xml",
+        "views/bubble_kpi.xml",
         "views/okr_result.xml",
         "views/okr_evaluation.xml",
         "views/okr_evaluation_type.xml",

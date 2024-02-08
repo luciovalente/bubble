@@ -39,8 +39,6 @@
                             <field name="bubble_role_id" attrs="{'invisible': [('type','!=','role')]}"/>
                             <field name="company_id" />
                             <field name="with_automation" groups="bubble.group_bubble_manager"/>
-                            <field name="okr_kpi_ids" groups="bubble.group_bubble_manager" attrs="{'invisible': [('with_automation','=',False)]}"/>
-                            <field name="code" widget="ace" options="{'mode': 'python'}" groups="bubble.group_bubble_manager" attrs="{'invisible': [('with_automation','=',False)],'required': [('with_automation','=',True)]}"/>
 
                         </group>
                         <notebook>
@@ -52,6 +50,13 @@
                                         <field name="bubble_id" />
                                     </tree>
                                 </field>
+                            </page>
+                            <page string="Code" groups="bubble.group_bubble_manager" attrs="{'invisible': [('with_automation','=',False)]}">
+                                <group>
+                                    <field name="okr_kpi_ids" widget="many2many_tags" />
+                                </group>
+                                <field name="code" widget="ace" options="{'mode': 'python'}" groups="bubble.group_bubble_manager" attrs="{'invisible': [('with_automation','=',False)],'required': [('with_automation','=',True)]}"/>
+
                             </page>
 
 
