@@ -99,7 +99,7 @@ class Okr(models.Model):
         }
         kpi_results = ""
         for kpi in self.okr_kpi_ids:
-            kpi_result = kpi._run_action_code(self)
+            kpi_result = kpi._run_action_code(okr_result)
             context.update({kpi.name: kpi_result})
             kpi_results += "%s:%f\n" % (kpi.name, kpi_result)
         if okr_result:
