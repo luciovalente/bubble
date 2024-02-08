@@ -13,8 +13,18 @@ class Okr(models.Model):
     _name = "okr"
     _description = "OKR"
 
+    @api.model
+    def _default_code(self):
+        return """ 
+        # you can use
+        # - datetime, requests, json_dumps, json_load
+        # - all the kpi addedd. Use the name in the code
+        # put your calculation in the result variable (must be a float between 0 and 1)
+        # example: result = kpi1 / kpi2
+    """
+
     okr_code = fields.Char("Unique Code")
-    objective_id = fields.Many2one("objective", string="Objective")
+    objective_id = fields.Many2one("objective", string="Objective", ondelete = "restrict")
     name = fields.Char(string="Name")
     type = fields.Selection(
         [("personal", "Personal"), ("bubble", "Bubble"), ("role", "Role")],
@@ -32,9 +42,11 @@ class Okr(models.Model):
         string="Status",
         default="active",
     )
-    code = fields.Text(string="Code", groups="bubble.group_bubble_administrator")
+    code = fields.Text(string="Code", groups="bubble.group_bubble_administrator",default=_default_code)
     with_automation = fields.Boolean()
     child_objective_ids = fields.One2many("objective", "parent_okr_id")
+    okr_kpi_ids = fields.Many2many("okr.kpi")
+    weight = fields.Float(default=1.0)
 
     @api.constrains("code")
     def _check_python_code(self):
@@ -64,9 +76,7 @@ class Okr(models.Model):
                         self.name,
                     ),
                 )
-
-        """ evaluation context to pass to safe_eval """
-        return {
+        context = {
             "uid": self._uid,
             "user": self.env.user,
             "time": tools.safe_eval.time,
@@ -84,10 +94,19 @@ class Okr(models.Model):
             "json_load": json.load,
             "log": log,
         }
+        kpi_results = ""
+        for kpi in self.okr_kpi_ids:
+            kpi_result = kpi._run_action_code(self)
+            context.update({kpi.name: kpi_result })
+            kpi_results += "%s:%f\n"%(kpi.name,kpi_result)
+        okr_result.kpi_result = kpi_results
+        return context
 
     def _run_action_code(self, okr_result):
         eval_context = self._get_eval_context(okr_result)
         safe_eval(
             self.code.strip(), eval_context, mode="exec", nocopy=True
         )  # nocopy allows to return 'action'
-        return eval_context.get("action")
+        result = eval_context.get("result",False)
+        if result and isinstance(result, (float,int)):
+            okr_result.result = result

@@ -22,8 +22,8 @@ class Bubble(models.Model):
     name = fields.Char(string="Name")
     purpose = fields.Text(string="Purpose")
     description = fields.Html(string="Description")
-    bubble_type_id = fields.Many2one("bubble.type", string="Bubble Type")
-    parent_bubble_id = fields.Many2one("bubble", string="Parent Bubble")
+    bubble_type_id = fields.Many2one("bubble.type", string="Bubble Type", ondelete = "restrict")
+    parent_bubble_id = fields.Many2one("bubble", string="Parent Bubble",ondelete = "restrict")
     child_bubble_ids = fields.One2many("bubble", "parent_bubble_id")
     status = fields.Selection(
         [
@@ -46,6 +46,7 @@ class Bubble(models.Model):
     member_ids = fields.Many2many("res.users", string="Members")
     user_roles_ids = fields.One2many("role.bubble", "bubble_id", string="User Roles")
     with_automation = fields.Boolean(groups="bubble.group_bubble_administrator")
+    run_bubble_type_code = fields.Boolean(groups="bubble.group_bubble_administrator")
     model_id = fields.Many2one("ir.model", string="Model")
     res_ids = fields.Char("Res Ids")
     code = fields.Text(string="Code", groups="bubble.group_bubble_administrator")
@@ -192,11 +193,19 @@ class Bubble(models.Model):
         }
 
     def _run_action_code(self):
-        eval_context = self._get_eval_context()
-        safe_eval(
-            self.code.strip(), eval_context, mode="exec", nocopy=True
-        )  # nocopy allows to return 'action'
-        return eval_context.get("action")
+        if self.with_automation:
+            if self.run_bubble_type_code and self.bubble_type_id and self.bubble_type_id.with_automation:
+                eval_context = self.bubble_type_id._get_eval_context(action=None, bubble_id=self)
+                safe_eval(
+                    self.bubble_type_id.code.strip(), eval_context, mode="exec", nocopy=True
+                )  # nocopy allows to return 'action'
+                return eval_context.get("action")
+            else:
+                eval_context = self._get_eval_context()
+                safe_eval(
+                    self.code.strip(), eval_context, mode="exec", nocopy=True
+                )  # nocopy allows to return 'action'
+                return eval_context.get("action")
 
     def action_open_okr_evaluation(self):
         self.ensure_one()
