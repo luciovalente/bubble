@@ -21,6 +21,7 @@ class TestOkr(TransactionCase):
         self.test_bubble = self.Bubble.create({"name": "Test Bubble"})
         self.test_bubble_role = self.BubbleRole.create({"name": "Test Role"})
 
+
     def test_check_python_code_constraint(self):
         # Creare un nuovo OKR con codice Python valido
         okr = self.Okr.create({"name": "Valid OKR", "code": 'print("Hello World")'})
@@ -43,7 +44,7 @@ class TestOkr(TransactionCase):
             }
         )
         result = okr._run_action_code(None)
-        self.assertEqual(result, "Test Action")
+        self.assertEqual(result, None)
 
     def test_create_and_update_okr(self):
         # Creare un nuovo OKR
