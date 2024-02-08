@@ -24,7 +24,7 @@ class Okr(models.Model):
     """
 
     okr_code = fields.Char("Unique Code")
-    objective_id = fields.Many2one("objective", string="Objective", ondelete = "restrict")
+    objective_id = fields.Many2one("objective", string="Objective", ondelete="restrict")
     name = fields.Char(string="Name")
     type = fields.Selection(
         [("personal", "Personal"), ("bubble", "Bubble"), ("role", "Role")],
@@ -42,7 +42,9 @@ class Okr(models.Model):
         string="Status",
         default="active",
     )
-    code = fields.Text(string="Code", groups="bubble.group_bubble_administrator",default=_default_code)
+    code = fields.Text(
+        string="Code", groups="bubble.group_bubble_administrator", default=_default_code
+    )
     with_automation = fields.Boolean()
     child_objective_ids = fields.One2many("objective", "parent_okr_id")
     okr_kpi_ids = fields.Many2many("okr.kpi")
@@ -76,6 +78,7 @@ class Okr(models.Model):
                         self.name,
                     ),
                 )
+
         context = {
             "uid": self._uid,
             "user": self.env.user,
@@ -97,8 +100,8 @@ class Okr(models.Model):
         kpi_results = ""
         for kpi in self.okr_kpi_ids:
             kpi_result = kpi._run_action_code(self)
-            context.update({kpi.name: kpi_result })
-            kpi_results += "%s:%f\n"%(kpi.name,kpi_result)
+            context.update({kpi.name: kpi_result})
+            kpi_results += "%s:%f\n" % (kpi.name, kpi_result)
         okr_result.kpi_result = kpi_results
         return context
 
@@ -107,6 +110,6 @@ class Okr(models.Model):
         safe_eval(
             self.code.strip(), eval_context, mode="exec", nocopy=True
         )  # nocopy allows to return 'action'
-        result = eval_context.get("result",False)
-        if result and isinstance(result, (float,int)):
+        result = eval_context.get("result", False)
+        if result and isinstance(result, (float, int)):
             okr_result.result = result
