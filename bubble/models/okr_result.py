@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from odoo import fields, models
-from odoo.tools.safe_eval import safe_eval
 
 class OkrResult(models.Model):
     _name = "okr.result"
@@ -37,7 +36,5 @@ class OkrResult(models.Model):
 
     def _run_action_code(self):
         for okr_result in self.filtered(lambda x: x.okr_id.with_automation):
-            eval_context = self.okr_id._get_eval_context(okr_result)
-            safe_eval(
-                self.okr_id.code.strip(), eval_context, mode="exec", nocopy=True
-            )  # nocopy allows to return 'action'
+            okr_result.okr_id._run_action_code(okr_result)
+            
