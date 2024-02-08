@@ -16,8 +16,8 @@ class OkrResult(models.Model):
     okr_description = fields.Text(related="okr_id.description")
     okr_type = fields.Selection(related="okr_id.type")
     auto_result = fields.Float(string="Automatic Result")
-    result = fields.Float(string="Result",tracking=True)
-    result_char = fields.Char(string="Result Char",tracking=True)
+    result = fields.Float(string="Result", tracking=True)
+    result_char = fields.Char(string="Result Char", tracking=True)
     evaluation_id = fields.Many2one(
         "okr.evaluation", string="OKR Evaluation", ondelete="restrict"
     )

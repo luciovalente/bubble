@@ -55,7 +55,7 @@
                             <field name="result" attrs="{'readonly': [('status','=','done')]}" widget="percentage"/>
                             <field name="result_char" attrs="{'readonly': [('status','=','done')]}" />
                             <field name="status" readonly="1" />
-                            <field name="kpi_results" readonly="1" />
+                            <field name="kpi_result" readonly="1" />
                         </group>
 
                     </sheet>
