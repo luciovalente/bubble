@@ -6,7 +6,7 @@ access_role_bubble_user,role.bubble,model_role_bubble,bubble.group_bubble_user,1
 access_bubble_role,bubble.role,model_bubble_role,bubble.group_bubble_administrator,1,1,1,1
 access_bubble_type,bubble.type,model_bubble_type,bubble.group_bubble_administrator,1,1,1,1
 access_bubble,bubble,model_bubble,bubble.group_bubble_manager,1,1,1,0
-access_bubble,bubble,model_bubble,bubble.group_bubble_administrator,1,1,1,1
+access_bubble_admin,bubble,model_bubble,bubble.group_bubble_administrator,1,1,1,1
 access_role_bubble,role.bubble,model_role_bubble,bubble.group_bubble_manager,1,1,1,1
 access_objective_user,objective_user,model_objective,group_bubble_user,1,0,0,0
 access_objective_manager,objective_manager,model_objective,group_bubble_manager,1,1,1,1
