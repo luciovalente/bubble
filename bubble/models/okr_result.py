@@ -38,4 +38,3 @@ class OkrResult(models.Model):
     def _run_action_code(self):
         for okr_result in self.filtered(lambda x: x.okr_id.with_automation):
             okr_result.okr_id._run_action_code(okr_result)
-            
