@@ -29,6 +29,7 @@
                                 <field name="okr_result_ids" attrs="{'readonly': [('status','=','done')]}">
                                     <tree editable="bottom">
                                         <field name="okr_id" />
+                                        <field name="status" invisible="1" />
                                         <field name="okr_type" />
                                         <field name="bubble_id" />
                                         <field name="bubble_role_id" />
