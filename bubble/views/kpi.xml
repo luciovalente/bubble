@@ -1,0 +1,37 @@
+<odoo>
+    <data>
+        <record id="view_okr_kpi_tree" model="ir.ui.view">
+            <field name="name">okr.kpi.tree</field>
+            <field name="model">okr.kpi</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_okr_kpi_form" model="ir.ui.view">
+            <field name="name">okr.kpi.tree</field>
+            <field name="model">okr.kpi</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="description"/>  
+                            <field name="code" widget="ace" options="{'mode': 'python'}" groups="bubble.group_bubble_administrator" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_okr_kpi" model="ir.actions.act_window">
+            <field name="name">Okr Kpi</field>
+            <field name="res_model">okr.kpi</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>
