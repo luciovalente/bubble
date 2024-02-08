@@ -112,5 +112,5 @@ class Okr(models.Model):
             self.code.strip(), eval_context, mode="exec", nocopy=True
         )  # nocopy allows to return 'action'
         result = eval_context.get("result", False)
-        if result and isinstance(result, (float, int)):
+        if result and isinstance(result, (float, int)) and okr_result:
             okr_result.auto_result = result

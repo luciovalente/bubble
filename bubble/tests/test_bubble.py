@@ -17,7 +17,7 @@ class TestBubble(TransactionCase):
     def test_run_action_code(self):
         # Creare un nuovo tipo di bolla con codice eseguibile
         bubble = self.Bubble.create(
-            {"name": "Executable Code", "code": 'action = "Test Action"'}
+            {"name": "Executable Code", "with_automation":True,"run_bubble_type_code":False, "code": 'action = "Test Action"'}
         )
         result = bubble._run_action_code()
         self.assertEqual(result, "Test Action")
