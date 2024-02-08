@@ -117,6 +117,7 @@
                             <page string="Code" groups="bubble.group_bubble_administrator" attrs="{'invisible': ['|',('with_automation','=',False),('run_bubble_type_code','=',True)]}">
                                 <group>
                                     <field name="bubble_kpi_ids" widget="many2many_tags" />
+                                    <field name="bubble_kpi_count" invisible="1" />
                                 </group>
                                 <field name="code" widget="ace" options="{'mode': 'python'}" attrs="{'required': [('with_automation','=',True),('run_bubble_type_code','=',False)]}">
 
@@ -127,7 +128,7 @@
 
                                 </field>
                             </page>
-                            <page string="KPI">
+                            <page string="KPI" attrs="{'invisible': [('bubble_kpi_count','=',0)]}">
                                 <field name="kpi_result" readonly="1">
 
                                 </field>
