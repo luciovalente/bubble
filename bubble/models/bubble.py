@@ -210,8 +210,11 @@ class Bubble(models.Model):
             kpi_results = ""
             for kpi in self.bubble_kpi_ids:
                 kpi_result = kpi._run_action_code(self)
-                kpi_results += "<tr><th>%s</th><td>%s</td></tr>" % (kpi.description, kpi_result)
-            self.kpi_result = "<table>"+kpi_results+"</table>"
+                kpi_results += "<tr><th>%s</th><td>%s</td></tr>" % (
+                    kpi.description,
+                    kpi_result,
+                )
+            self.kpi_result = "<table>" + kpi_results + "</table>"
             if (
                 self.run_bubble_type_code
                 and self.bubble_type_id
