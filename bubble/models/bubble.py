@@ -22,8 +22,12 @@ class Bubble(models.Model):
     name = fields.Char(string="Name")
     purpose = fields.Text(string="Purpose")
     description = fields.Html(string="Description")
-    bubble_type_id = fields.Many2one("bubble.type", string="Bubble Type", ondelete = "restrict")
-    parent_bubble_id = fields.Many2one("bubble", string="Parent Bubble",ondelete = "restrict")
+    bubble_type_id = fields.Many2one(
+        "bubble.type", string="Bubble Type", ondelete="restrict"
+    )
+    parent_bubble_id = fields.Many2one(
+        "bubble", string="Parent Bubble", ondelete="restrict"
+    )
     child_bubble_ids = fields.One2many("bubble", "parent_bubble_id")
     status = fields.Selection(
         [
@@ -194,10 +198,19 @@ class Bubble(models.Model):
 
     def _run_action_code(self):
         if self.with_automation:
-            if self.run_bubble_type_code and self.bubble_type_id and self.bubble_type_id.with_automation:
-                eval_context = self.bubble_type_id._get_eval_context(action=None, bubble_id=self)
+            if (
+                self.run_bubble_type_code
+                and self.bubble_type_id
+                and self.bubble_type_id.with_automation
+            ):
+                eval_context = self.bubble_type_id._get_eval_context(
+                    action=None, bubble_id=self
+                )
                 safe_eval(
-                    self.bubble_type_id.code.strip(), eval_context, mode="exec", nocopy=True
+                    self.bubble_type_id.code.strip(),
+                    eval_context,
+                    mode="exec",
+                    nocopy=True,
                 )  # nocopy allows to return 'action'
                 return eval_context.get("action")
             else:
