@@ -74,14 +74,15 @@ class Bubble(models.Model):
     member_count = fields.Integer(
         compute="_compute_member_count", store=True, readonly=False
     )
-    bubble_kpi_ids = fields.Many2many('bubble.kpi',domain="['|',('model_id','=',False),('model_id','=',model_id)]")
     kpi_result = fields.Html()
+    bubble_kpi_ids = fields.Many2many(
+        "bubble.kpi", domain="['|',('model_id','=',False),('model_id','=',model_id)]"
+    )
     bubble_kpi_count = fields.Integer(compute="_compute_count_kpi_ids")
 
     def _compute_count_kpi_ids(self):
         for bubble in self:
             bubble.bubble_kpi_count = len(bubble.bubble_kpi_ids)
-
 
     @api.onchange("bubble_type_id")
     def update_role_ids(self):
@@ -209,8 +210,11 @@ class Bubble(models.Model):
             kpi_results = ""
             for kpi in self.bubble_kpi_ids:
                 kpi_result = kpi._run_action_code(self)
-                kpi_results += "<tr><th>%s</th><td>%s</td></tr>" % (kpi.description, kpi_result)
-            self.kpi_result = "<table>"+kpi_results+"</table>"
+                kpi_results += "<tr><th>%s</th><td>%s</td></tr>" % (
+                    kpi.description,
+                    kpi_result,
+                )
+            self.kpi_result = "<table>" + kpi_results + "</table>"
             if (
                 self.run_bubble_type_code
                 and self.bubble_type_id

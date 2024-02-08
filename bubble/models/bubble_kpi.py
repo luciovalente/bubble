@@ -19,7 +19,6 @@ class BubbleKpi(models.Model):
     description = fields.Char(string="Description")
     code = fields.Text(string="Code")
     model_id = fields.Many2one("ir.model", string="Model")
-    
 
     @api.constrains("code")
     def _check_python_code(self):
@@ -66,7 +65,7 @@ class BubbleKpi(models.Model):
             "request": requests.request,
             "json_dumps": json.dumps,
             "json_load": json.load,
-            "log": log
+            "log": log,
         }
 
     def _run_action_code(self, bubble):
