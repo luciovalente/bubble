@@ -5,6 +5,7 @@ from odoo import fields, models
 class OkrResult(models.Model):
     _name = "okr.result"
     _description = "OKR Result"
+    _inherit = ["mail.thread"]
 
     active = fields.Boolean(default=True)
     objective_id = fields.Many2one(
@@ -14,8 +15,9 @@ class OkrResult(models.Model):
     okr_type = fields.Selection(related="okr_id.type")
     okr_description = fields.Text(related="okr_id.description")
     okr_type = fields.Selection(related="okr_id.type")
-    result = fields.Float(string="Result")
-    result_char = fields.Char(string="Result Char")
+    auto_result = fields.Float(string="Automatic Result")
+    result = fields.Float(string="Result",tracking=True)
+    result_char = fields.Char(string="Result Char",tracking=True)
     evaluation_id = fields.Many2one(
         "okr.evaluation", string="OKR Evaluation", ondelete="restrict"
     )

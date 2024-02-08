@@ -112,4 +112,4 @@ class Okr(models.Model):
         )  # nocopy allows to return 'action'
         result = eval_context.get("result", False)
         if result and isinstance(result, (float, int)):
-            okr_result.result = result
+            okr_result.auto_result = result
