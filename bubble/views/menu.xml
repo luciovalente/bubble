@@ -13,9 +13,11 @@
         </menuitem>
         <menuitem id="menu_bubble_configuration" name="Configuration" sequence="7" groups="bubble.group_bubble_administrator">
             <menuitem id="menu_bubble_role" name="Bubble Roles" sequence="8" action="action_bubble_role" />
-            <menuitem id="menu_okr_kpi" name="KPI" sequence="9" action="action_okr_kpi" />
-            <menuitem id="menu_buble_type" name="Bubble Types" action="action_buble_type" sequence="10"/>
-            <menuitem id="menu_bubble_evaluation_type" name="Evaluation Type" sequence="11" action="action_okr_evaluation_type" />
+            <menuitem id="menu_okr_kpi" name="Okr KPI" sequence="9" action="action_okr_kpi" />
+            <menuitem id="menu_bubble_kpi" name="Bubble KPI" sequence="10" action="action_bubble_kpi" />
+
+            <menuitem id="menu_buble_type" name="Bubble Types" action="action_buble_type" sequence="11"/>
+            <menuitem id="menu_bubble_evaluation_type" name="Evaluation Type" sequence="12" action="action_okr_evaluation_type" />
 
         </menuitem>
 
