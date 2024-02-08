@@ -102,7 +102,8 @@ class Okr(models.Model):
             kpi_result = kpi._run_action_code(self)
             context.update({kpi.name: kpi_result})
             kpi_results += "%s:%f\n" % (kpi.name, kpi_result)
-        okr_result.kpi_result = kpi_results
+        if okr_result:
+            okr_result.kpi_result = kpi_results
         return context
 
     def _run_action_code(self, okr_result):
