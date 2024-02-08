@@ -26,6 +26,8 @@ access_my_dashboard,wizard_bubble_dashboard,model_wizard_bubble_dashboard,group_
 access_my_dashboard_admin,wizard_bubble_dashboard_admin,model_wizard_bubble_dashboard,base.group_system,1,1,1,1
 access_okr_kpi_admin,okr_kpi_admin,model_okr_kpi,group_bubble_administrator,1,1,1,1
 access_okr_kpi,okr_kpi,model_okr_kpi,group_bubble_user,1,0,0,0
+access_bubble_kpi_admin,bubble_kpi_admin,model_bubble_kpi,group_bubble_administrator,1,1,1,1
+access_bubble_kpi,bubble_kpi,model_bubble_kpi,group_bubble_user,1,0,0,0
 
 
 
