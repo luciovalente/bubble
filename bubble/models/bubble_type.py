@@ -71,7 +71,7 @@ class BubbleType(models.Model):
             "json_dumps": json.dumps,
             "json_load": json.load,
             "log": log,
-            "bubble_id": bubble_id
+            "bubble_id": bubble_id,
         }
 
     def _run_action_code(self):

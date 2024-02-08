@@ -65,10 +65,10 @@ class OkrKpi(models.Model):
             "json_dumps": json.dumps,
             "json_load": json.load,
             "log": log,
-            "okr_result": okr_result
+            "okr_result": okr_result,
         }
 
-    def _run_action_code(self,okr_result):
+    def _run_action_code(self, okr_result):
         eval_context = self._get_eval_context(okr_result)
         safe_eval(
             self.code.strip(), eval_context, mode="exec", nocopy=True

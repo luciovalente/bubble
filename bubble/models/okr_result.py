@@ -10,13 +10,15 @@ class OkrResult(models.Model):
     objective_id = fields.Many2one(
         "objective", related="okr_id.objective_id", store=True
     )
-    okr_id = fields.Many2one("okr", string="OKR", ondelete = "restrict")
+    okr_id = fields.Many2one("okr", string="OKR", ondelete="restrict")
     okr_type = fields.Selection(related="okr_id.type")
     okr_description = fields.Text(related="okr_id.description")
     okr_type = fields.Selection(related="okr_id.type")
     result = fields.Float(string="Result")
     result_char = fields.Char(string="Result Char")
-    evaluation_id = fields.Many2one("okr.evaluation", string="OKR Evaluation", ondelete = "restrict")
+    evaluation_id = fields.Many2one(
+        "okr.evaluation", string="OKR Evaluation", ondelete="restrict"
+    )
     bubble_id = fields.Many2one("bubble", string="Bubble", related="okr_id.bubble_id")
     with_automation = fields.Boolean(related="okr_id.with_automation")
     bubble_role_id = fields.Many2one(
@@ -37,4 +39,3 @@ class OkrResult(models.Model):
             safe_eval(
                 self.okr_id.code.strip(), eval_context, mode="exec", nocopy=True
             )  # nocopy allows to return 'action'
-        
