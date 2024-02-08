@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import fields, models
-
+from odoo.tools.safe_eval import safe_eval
 
 class OkrResult(models.Model):
     _name = "okr.result"
