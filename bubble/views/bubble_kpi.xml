@@ -20,7 +20,7 @@
                         <group>
                             <field name="name" required="1"/>
                             <field name="model_id"/>  
-                            <field name="description"/>  
+                            <field name="description" required="1" />  
                             <field name="code" widget="ace" options="{'mode': 'python'}" groups="bubble.group_bubble_administrator" />
                         </group>
                     </sheet>
