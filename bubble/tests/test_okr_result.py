@@ -14,13 +14,13 @@ class TestOkrResult(TransactionCase):
         self.Bubble = self.env["bubble"]
         self.BubbleRole = self.env["bubble.role"]
         self.OkrEvaluationType = self.env["okr.evaluation.type"]
-        self.OkrKpi = self.env['okr.kpi']
+        self.OkrKpi = self.env["okr.kpi"]
 
         # Creazione di record necessari per il test
         self.test_user = self.ResUsers.create(
             {"name": "Test User", "login": "test_user"}
         )
-        
+
         self.test_evaluation_type = self.OkrEvaluationType.create(
             {"name": "Test Evaluation Type", "code": "result = 0"}
         )
@@ -48,25 +48,22 @@ class TestOkrResult(TransactionCase):
                 "description": "Test OKR Autp",
                 "type": "bubble",
                 "bubble_id": self.test_bubble.id,
-                "with_automation":True,
-                "code": "result = 1 - one"
+                "with_automation": True,
+                "code": "result = 1 - one",
             }
         )
 
     def test_calculation(self):
-        okr_kpi = self.OkrKpi.create(
-            {"name": "one", "code": "result = 1"}
-        )
-        self.test_okr.okr_kpi_ids = [(6,0,okr_kpi.ids)]
+        okr_kpi = self.OkrKpi.create({"name": "one", "code": "result = 1"})
+        self.test_okr.okr_kpi_ids = [(6, 0, okr_kpi.ids)]
         okr_result = self.OkrResult.create(
             {
                 "okr_id": self.test_okr.id,
                 "evaluation_id": self.test_evaluation.id,
-                
             }
         )
         okr_result._run_action_code()
-        self.assertEqual(okr_result.result,0)
+        self.assertEqual(okr_result.result, 0)
 
     def test_create_and_update_okr_result(self):
         # Creare un nuovo risultato OKR
