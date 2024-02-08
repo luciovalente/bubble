@@ -36,7 +36,7 @@ class TestOkr(TransactionCase):
     def test_run_action_code(self):
         # Creare un nuovo OKR con codice eseguibile
         okr = self.Okr.create(
-            {"name": "Executable OKR", "code": 'action = "Test Action"'}
+            {"name": "Executable OKR","with_automation":True, "code": 'action = "Test Action"'}
         )
         result = okr._run_action_code(None)
         self.assertEqual(result, "Test Action")

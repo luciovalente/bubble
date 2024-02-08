@@ -3,9 +3,10 @@ access_bubble_role_user,bubble.role,model_bubble_role,bubble.group_bubble_user,1
 access_bubble_type_user,bubble.type,model_bubble_type,bubble.group_bubble_user,1,0,0,0
 access_bubble_user,bubble,model_bubble,bubble.group_bubble_user,1,0,0,0
 access_role_bubble_user,role.bubble,model_role_bubble,bubble.group_bubble_user,1,0,0,0
-access_bubble_role,bubble.role,model_bubble_role,bubble.group_bubble_manager,1,1,1,1
-access_bubble_type,bubble.type,model_bubble_type,bubble.group_bubble_manager,1,1,1,1
-access_bubble,bubble,model_bubble,bubble.group_bubble_manager,1,1,1,1
+access_bubble_role,bubble.role,model_bubble_role,bubble.group_bubble_administrator,1,1,1,1
+access_bubble_type,bubble.type,model_bubble_type,bubble.group_bubble_administrator,1,1,1,1
+access_bubble,bubble,model_bubble,bubble.group_bubble_manager,1,1,1,0
+access_bubble,bubble,model_bubble,bubble.group_bubble_administrator,1,1,1,1
 access_role_bubble,role.bubble,model_role_bubble,bubble.group_bubble_manager,1,1,1,1
 access_objective_user,objective_user,model_objective,group_bubble_user,1,0,0,0
 access_objective_manager,objective_manager,model_objective,group_bubble_manager,1,1,1,1
@@ -23,5 +24,8 @@ access_okr_evaluation_type_user,okr_evaluation_type_user,model_okr_evaluation_ty
 access_okr_evaluation_type_administrator,okr_evaluation_type_administrator,model_okr_evaluation_type,group_bubble_administrator,1,1,1,1
 access_my_dashboard,wizard_bubble_dashboard,model_wizard_bubble_dashboard,group_bubble_user,1,0,0,0
 access_my_dashboard_admin,wizard_bubble_dashboard_admin,model_wizard_bubble_dashboard,base.group_system,1,1,1,1
+access_okr_kpi_admin,okr_kpi_admin,model_okr_kpi,group_bubble_administrator,1,1,1,1
+access_okr_kpi,okr_kpi,model_okr_kpi,group_bubble_user,1,0,0,0
+
 
 

@@ -76,6 +76,7 @@
                                 <field name="owner_id" widget="many2one_avatar_user" required="1" attrs="{'readonly': [('status','!=','draft')]}"/>
                                 <field name="with_okr_valuation" attrs="{'readonly': [('status','!=','draft')]}"/>
                                 <field name="with_automation" groups="bubble.group_bubble_administrator" attrs="{'readonly': [('status','!=','draft')]}"/>
+                                <field name="run_bubble_type_code" groups="bubble.group_bubble_administrator" attrs="{'readonly': [('status','!=','draft')]}"/>
                                 <field name="model_id" groups="bubble.group_bubble_administrator"/>
                                 <field name="res_ids" groups="bubble.group_bubble_administrator"/>
                                 <field name="member_count" groups="bubble.group_bubble_administrator"/>
@@ -113,8 +114,8 @@
                                     </tree>
                                 </field>
                             </page>
-                            <page string="Code" groups="bubble.group_bubble_administrator" attrs="{'invisible': [('with_automation','=',False)]}">
-                                <field name="code" widget="ace" options="{'mode': 'python'}">
+                            <page string="Code" groups="bubble.group_bubble_administrator" attrs="{'invisible': ['|',('with_automation','=',False),('run_bubble_type_code','=',True)]}">
+                                <field name="code" widget="ace" options="{'mode': 'python'}" attrs="{'required': [('with_automation','=',True),('run_bubble_type_code','=',False)]}">
 
                                 </field>
                             </page>
