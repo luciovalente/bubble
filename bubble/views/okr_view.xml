@@ -32,17 +32,18 @@
                             <field name="okr_code" required="1"/>
                             <field name="name" required="1"/>
                             <field name="description"/>
+                            <field name="weight" groups="bubble.group_bubble_manager"/>
                             <field name="type"/>
                             <field name="bubble_id" attrs="{'invisible': [('type','!=','bubble')]}"/>
                             <field name="user_id" attrs="{'invisible': [('type','!=','personal')]}"/>
                             <field name="bubble_role_id" attrs="{'invisible': [('type','!=','role')]}"/>
                             <field name="company_id" />
-                            <field name="with_automation" groups="bubble.group_bubble_administrator"/>
-                            <field name="code" widget="ace" options="{'mode': 'python'}" groups="bubble.group_bubble_administrator" attrs="{'invisible': [('with_automation','=',False)]}"/>
+                            <field name="with_automation" groups="bubble.group_bubble_manager"/>
+
                         </group>
                         <notebook>
                             <page string="Child Objective">
-                                <field name="child_objective_ids" >
+                                <field name="child_objective_ids">
                                     <tree>
                                         <field name="objective_code" />
                                         <field name="name" />
@@ -50,8 +51,15 @@
                                     </tree>
                                 </field>
                             </page>
+                            <page string="Code" groups="bubble.group_bubble_manager" attrs="{'invisible': [('with_automation','=',False)]}">
+                                <group>
+                                    <field name="okr_kpi_ids" widget="many2many_tags" />
+                                </group>
+                                <field name="code" widget="ace" options="{'mode': 'python'}" groups="bubble.group_bubble_manager" attrs="{'invisible': [('with_automation','=',False)],'required': [('with_automation','=',True)]}"/>
 
-                            
+                            </page>
+
+
                         </notebook>
                     </sheet>
                 </form>

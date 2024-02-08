@@ -1,6 +1,6 @@
 {
     "name": "Yorange",
-    "version": "14.1.2.1",
+    "version": "14.1.3.1",
     "summary": "Bubble and OKR",
     "author": "Lucio Valente",
     "sequence": -100,
@@ -18,6 +18,8 @@
         "views/okr_view.xml",
         "views/okr_result.xml",
         "views/okr_evaluation.xml",
+        "views/kpi.xml",
+        "views/bubble_kpi.xml",
         "views/okr_evaluation_type.xml",
         "wizard/wizard.xml",
         "wizard/wizard_view_bubble.xml",

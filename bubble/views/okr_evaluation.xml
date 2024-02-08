@@ -9,7 +9,7 @@
                     <header>
                         <field name="status" widget="statusbar" statusbar_visible="in_progress,done" />
                         <button string="Set to Done" groups="bubble.group_bubble_manager" class="oe_highlight" type="object" name="action_done" attrs="{'invisible': [('status','not in',('in_progress'))]}" />
-                        <button string="Calculate Final Evaluations"  groups="bubble.group_bubble_manager" type="object" name="execute_evaluation" attrs="{'invisible': [('with_automation','=',False),('status','not in',('in_progress'))]}" />
+                        <button string="Calculate Final Evaluations" groups="bubble.group_bubble_manager" type="object" name="execute_evaluation" attrs="{'invisible': [('with_automation','=',False),('status','not in',('in_progress'))]}" />
 
                     </header>
                     <sheet>
@@ -26,15 +26,17 @@
                         <notebook>
 
                             <page string="OKR">
-                                <field name="okr_result_ids" attrs="{'readonly': [('status','=','done')]}" >
+                                <field name="okr_result_ids" attrs="{'readonly': [('status','=','done')]}">
                                     <tree editable="bottom">
                                         <field name="okr_id" />
+                                        <field name="status" invisible="1" />
                                         <field name="okr_type" />
                                         <field name="bubble_id" />
                                         <field name="bubble_role_id" />
                                         <field name="with_automation" invisible="1" />
-                                        <field name="result" attrs="{'readonly': [('with_automation','=',True)]}" widget="percentage"/>
-                                        <field name="result_char" />
+                                        <field name="auto_result" readonly="1" widget="percentage"/>
+                                        <field name="result" attrs="{'readonly': [('status','=','done')]}" widget="percentage"/>
+                                        <field name="result_char" attrs="{'readonly': [('status','=','done')]}" />
                                     </tree>
                                 </field>
                             </page>

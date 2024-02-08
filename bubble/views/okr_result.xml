@@ -40,7 +40,7 @@
             <field name="model">okr.result</field>
             <field name="arch" type="xml">
                 <form>
-                    
+
                     <sheet>
                         <group>
                             <field name="date_from" readonly="1"/>
@@ -51,12 +51,18 @@
                             <field name="okr_description" readonly="1"/>
                             <field name="owner_id" widget="many2one_avatar_user" readonly="1"/>
                             <field name="evaluation_id" readonly="1"/>
-                            <field name="result"/>
-                            <field name="result_char"/>
+                            <field name="auto_result" readonly="1" widget="percentage"/>
+                            <field name="result" attrs="{'readonly': [('status','=','done')]}" widget="percentage"/>
+                            <field name="result_char" attrs="{'readonly': [('status','=','done')]}" />
                             <field name="status" readonly="1" />
+                            <field name="kpi_result" readonly="1" />
                         </group>
-                        
+
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" options="{'post_refresh':True}" groups="base.group_user"/>
+                        <field name="message_ids"/>
+                    </div>
                 </form>
             </field>
         </record>

@@ -1,0 +1,38 @@
+<odoo>
+    <data>
+        <record id="view_bubble_kpi_tree" model="ir.ui.view">
+            <field name="name">bubble.kpi.tree</field>
+            <field name="model">bubble.kpi</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_bubble_kpi_form" model="ir.ui.view">
+            <field name="name">bubble.kpi.tree</field>
+            <field name="model">bubble.kpi</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="model_id"/>  
+                            <field name="description" required="1" />  
+                            <field name="code" widget="ace" options="{'mode': 'python'}" groups="bubble.group_bubble_administrator" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_bubble_kpi" model="ir.actions.act_window">
+            <field name="name">Bubble Kpi</field>
+            <field name="res_model">bubble.kpi</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

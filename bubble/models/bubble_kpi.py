@@ -10,20 +10,15 @@ from odoo.tools.safe_eval import safe_eval, test_python_expr
 from pytz import timezone
 
 
-class BubbleType(models.Model):
-    _name = "bubble.type"
-    _description = "Bubble Type"
+class BubbleKpi(models.Model):
+    _name = "bubble.kpi"
+    _description = "Bubble Kpi"
 
     active = fields.Boolean(default=True)
     name = fields.Char(string="Name")
-    description = fields.Html(string="Description")
-    company_id = fields.Many2one("res.company", string="Company")
-    role_ids = fields.Many2many("bubble.role", string="Roles")
-    with_automation = fields.Boolean()
-
+    description = fields.Char(string="Description")
     code = fields.Text(string="Code")
-    bubble_ids = fields.One2many("bubble", "bubble_type_id")
-    css_color = fields.Char("CSS color", default="#ff0000")
+    model_id = fields.Many2one("ir.model", string="Model")
 
     @api.constrains("code")
     def _check_python_code(self):
@@ -33,7 +28,7 @@ class BubbleType(models.Model):
                 raise ValidationError(msg)
 
     @api.model
-    def _get_eval_context(self, action=None, bubble_id=None):
+    def _get_eval_context(self, bubble=None):
         def log(message, level="info"):
             with self.pool.cursor() as cr:
                 cr.execute(
@@ -65,18 +60,17 @@ class BubbleType(models.Model):
             "float_compare": float_compare,
             "b64encode": base64.b64encode,
             "b64decode": base64.b64decode,
-            "bubble_type_id": self,
+            "bubble_id": bubble,
             "env": self.env,
             "request": requests.request,
             "json_dumps": json.dumps,
             "json_load": json.load,
             "log": log,
-            "bubble_id": bubble_id,
         }
 
-    def _run_action_code(self):
-        eval_context = self._get_eval_context()
+    def _run_action_code(self, bubble):
+        eval_context = self._get_eval_context(bubble)
         safe_eval(
             self.code.strip(), eval_context, mode="exec", nocopy=True
         )  # nocopy allows to return 'action'
-        return eval_context.get("action")
+        return eval_context.get("result")
